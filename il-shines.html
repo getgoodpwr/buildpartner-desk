@@ -1,0 +1,1246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GOODPWR · Illinois Shines Designee Portal</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20role%3D%22img%22%20aria-label%3D%22GOODPWR%20IL%20Designee%20Compliance%22%3E%20%3Cg%20fill%3D%22%23C9995A%22%3E%20%3Cpath%20d%3D%22M32%201l3%209h-6z%22/%3E%3Cpath%20d%3D%22M32%2063l-3-9h6z%22/%3E%3Cpath%20d%3D%22M1%2032l9-3v6z%22/%3E%3Cpath%20d%3D%22M63%2032l-9%203v-6z%22/%3E%20%3Cpath%20d%3D%22M10.1%2010.1l8.5%204.3-4.2%204.2z%22/%3E%3Cpath%20d%3D%22M53.9%2053.9l-8.5-4.3%204.2-4.2z%22/%3E%3Cpath%20d%3D%22M53.9%2010.1l-4.3%208.5-4.2-4.2z%22/%3E%3Cpath%20d%3D%22M10.1%2053.9l4.3-8.5%204.2%204.2z%22/%3E%20%3Cpath%20d%3D%22M20.1%203.3l5.6%207.6-5%202z%22%20opacity%3D%22.75%22/%3E%3Cpath%20d%3D%22M43.9%203.3l-.6%209.6-5-2z%22%20opacity%3D%22.75%22/%3E%20%3Cpath%20d%3D%22M60.7%2020.1l-7.6%205.6-2-5z%22%20opacity%3D%22.75%22/%3E%3Cpath%20d%3D%22M60.7%2043.9l-9.6-.6%202-5z%22%20opacity%3D%22.75%22/%3E%20%3Cpath%20d%3D%22M43.9%2060.7l-5.6-7.6%205-2z%22%20opacity%3D%22.75%22/%3E%3Cpath%20d%3D%22M20.1%2060.7l.6-9.6%205%202z%22%20opacity%3D%22.75%22/%3E%20%3Cpath%20d%3D%22M3.3%2043.9l7.6-5.6%202%205z%22%20opacity%3D%22.75%22/%3E%3Cpath%20d%3D%22M3.3%2020.1l9.6.6-2%205z%22%20opacity%3D%22.75%22/%3E%20%3C/g%3E%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2220%22%20fill%3D%22%23C9995A%22/%3E%20%3Cpath%20d%3D%22M32%2015.5l12.5%204.6v9.6c0%208.4-5.3%2014.6-12.5%2018.3-7.2-3.7-12.5-9.9-12.5-18.3v-9.6z%22%20fill%3D%22%232B2824%22/%3E%20%3Cpath%20d%3D%22M25.2%2031.6l4.9%204.9%209-9.6%22%20fill%3D%22none%22%20stroke%3D%22%23C9995A%22%20stroke-width%3D%223.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%20%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#2b2824; --ink-2:#413c35; --paper:#f2ecdf; --card:#fffcf6; --line:#e3dac6; --line-2:#cfc3a8;
+  --muted:#6b665a; --sun:#c9995a; --sun-dark:#b0824a; --sun-soft:#f5e8ce; --bone:#d6c6a5; --steel:#8a8d8f;
+  --ok:#1f7a4d; --ok-soft:#dcf1e4; --warn:#9a5b00; --warn-soft:#fdebc8;
+  --bad:#b42318; --bad-soft:#fde2df; --info:#2453a6; --info-soft:#e3ebfa; --mute:#5f5d57; --mute-soft:#ecebe6;
+  --r:12px; --shadow:0 1px 2px rgba(27,27,25,.06),0 6px 20px rgba(27,27,25,.06);
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.5 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--info)}
+h1,h2,h3{font-family:Archivo,Inter,sans-serif;margin:0;letter-spacing:-.01em}
+button,input,select,textarea{font:inherit;color:inherit}
+.hidden{display:none!important}
+.muted{color:var(--muted)} .small{font-size:12.5px}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 16px 80px}
+
+/* top bar */
+.top{background:var(--ink);color:#fff;border-bottom:4px solid var(--sun)}
+.top .in{max-width:1180px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:14px}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand img{height:34px;width:auto}
+.emblem{width:30px;height:30px;flex:none;display:block}
+.gplogo{height:44px;width:auto;display:block;flex:none}
+.ilmark{display:flex;align-items:center;gap:8px;border-left:1px solid #4d473f;padding-left:12px;font-size:12px;font-weight:600;color:var(--bone);line-height:1.25;min-width:0}
+.ilmark span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cobrand{display:flex;align-items:center;gap:16px;background:var(--ink);color:#f2ecdf;border-radius:14px;padding:14px 18px;margin-bottom:18px;border-bottom:4px solid var(--sun)}
+.cobrand .gplogo{height:86px}
+.cobrand .who{font-family:Archivo,Inter,system-ui,sans-serif;font-weight:900;font-size:20px;color:#fff;letter-spacing:.01em}
+.cobrand .who b{color:var(--sun)}
+.cobrand .av{font-size:12.5px;color:var(--bone);margin-top:2px}
+.cobrand .il{margin-left:auto;display:flex;align-items:center;gap:10px;text-align:right;font-size:12.5px;color:var(--bone);font-weight:600;line-height:1.3}
+.cobrand .il .emblem{width:46px;height:46px}
+.login .gplogo{height:92px;margin:0 auto 6px}
+.login .lock{flex-direction:column;gap:4px}
+.login-il{display:flex;justify-content:center;margin-top:10px}
+.login-il .ilmark{border-left:0;padding-left:0;color:var(--muted)}
+@media(max-width:560px){.cobrand{flex-wrap:wrap}.cobrand .il{margin-left:0;text-align:left;width:100%}.cobrand .gplogo{height:70px}.top .ilmark span{display:none}}
+.login .emblem{width:26px;height:26px}
+.lock{display:flex;align-items:center;gap:10px}
+.lock .tag{display:block;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:3px;font-family:Inter,sans-serif}
+.top .lock .tag{display:none}
+.mark{font-family:Archivo,Inter,system-ui,sans-serif;font-weight:900;font-size:20px;letter-spacing:.02em}
+.mark b{color:var(--sun)}
+.login .mark b{color:var(--ink);background:var(--sun);padding:0 4px;border-radius:3px}
+.brand .sub{font-size:12px;color:#d9d3c2;border-left:1px solid #4a4943;padding-left:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top .sp{flex:1}
+.top .who{font-size:12.5px;color:#c9c7bf;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px}
+
+/* buttons & inputs */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--line-2);background:#fff;padding:9px 14px;border-radius:9px;cursor:pointer;font-weight:600;font-size:13.5px;white-space:nowrap;text-decoration:none;color:var(--ink)}
+.btn:hover{border-color:var(--ink)}
+.btn.primary{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn.primary:hover{background:#000}
+.btn.sun{background:var(--sun);border-color:var(--sun);color:var(--ink)}
+.btn.sun:hover{background:var(--sun-dark);border-color:var(--ink)}
+.btn.ghost{background:transparent;border-color:transparent}
+.btn.ghost:hover{background:var(--mute-soft)}
+.btn.dark-ghost{background:transparent;border-color:#4a4943;color:#fff}
+.btn.danger{color:var(--bad)}
+.btn.sm{padding:6px 10px;font-size:12.5px}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+label.f{display:block;font-size:12px;font-weight:600;color:var(--ink-2);margin:0 0 5px}
+.in-f,select.in-f,textarea.in-f{width:100%;border:1px solid var(--line-2);background:#fff;border-radius:9px;padding:9px 11px;outline:none;min-height:40px}
+.in-f:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(201,153,90,.45)}
+textarea.in-f{min-height:80px;resize:vertical}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.grid2{grid-template-columns:1fr}}
+
+/* chips */
+.chip{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap;line-height:1.5}
+.chip::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.8}
+.t-ok{background:var(--ok-soft);color:var(--ok)} .t-warn{background:var(--warn-soft);color:var(--warn)}
+.t-bad{background:var(--bad-soft);color:var(--bad)} .t-info{background:var(--info-soft);color:var(--info)}
+.t-mute{background:var(--mute-soft);color:var(--mute)}
+
+/* cards */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.head-row h1{font-size:26px;font-weight:800}
+.deadlines{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:14px}
+.dl{padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.dl .lbl{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.dl .date{font-family:Archivo,Inter,system-ui,sans-serif;font-size:20px;font-weight:800}
+.dl{border-left:6px solid var(--sun)}
+.dl .days{font-family:Archivo,Inter,system-ui,sans-serif;font-weight:900;font-size:30px;line-height:1;text-align:right}
+.dl .days small{display:block;font-family:Inter;font-size:11.5px;font-weight:600;color:var(--muted)}
+.dl.urgent .days{color:var(--bad)}
+.stats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-bottom:20px}
+.stat{padding:12px 14px;cursor:pointer;transition:border-color .15s}
+.stat:hover{border-color:var(--ink)}
+.stat.on{border-color:var(--ink);box-shadow:inset 0 -4px 0 var(--sun)}
+.stat .n{font-family:Archivo,Inter,system-ui,sans-serif;font-size:26px;font-weight:800;line-height:1.1}
+.stat .l{font-size:12px;color:var(--muted);font-weight:600}
+@media(max-width:900px){.stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:560px){.deadlines{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.toolbar .search{flex:1;min-width:200px}
+.toolbar select{width:auto;min-width:170px}
+
+/* partner list */
+.list{overflow:hidden}
+.lrow{display:grid;grid-template-columns:minmax(180px,1.6fr) 96px repeat(5,minmax(80px,.7fr)) minmax(120px,1fr) 108px;gap:10px;align-items:center;padding:12px 16px;border-top:1px solid var(--line);cursor:pointer}
+.lrow:hover{background:#fffaea}
+.lrow.lh{cursor:default;background:#2B2824;color:#f4efe2;border-top:0;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#d9d3c2}
+.lrow.lh:hover{background:#2B2824}
+.co{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.co-sub{font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cell-lbl{display:none}
+.due{color:var(--bad);font-weight:700}
+.empty{padding:48px 16px;text-align:center;color:var(--muted)}
+@media(max-width:900px){
+  .lrow.lh{display:none}
+  .lrow{grid-template-columns:1fr 1fr;gap:8px 12px}
+  .lrow .c-co{grid-column:1/-1}
+  .cell-lbl{display:block;font-size:11px;color:var(--muted);font-weight:600}
+}
+
+/* layer: drawer & modal */
+.scrim{position:fixed;inset:0;background:rgba(20,20,18,.42);z-index:40}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(580px,100%);background:var(--paper);z-index:41;display:flex;flex-direction:column;box-shadow:-10px 0 40px rgba(0,0,0,.18)}
+.dh{padding:18px 20px;background:#fff;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:flex-start}
+.dh h2{font-size:21px;font-weight:800}
+.eyebrow{font-size:11.5px;font-weight:700;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.x{margin-left:auto;border:0;background:transparent;font-size:26px;line-height:1;cursor:pointer;color:var(--muted);padding:2px 6px}
+.dbody{flex:1;overflow-y:auto;padding:16px 20px 24px}
+.df{padding:12px 20px;background:#fff;border-top:1px solid var(--line);display:flex;gap:10px;justify-content:space-between}
+.sec{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:14px}
+.sec h3{font-size:14px;font-weight:800;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.item{padding:12px 0;border-top:1px dashed var(--line)}
+.item:first-of-type{border-top:0;padding-top:2px}
+.item-top{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:8px}
+.item-name{font-weight:700;font-size:13.5px}
+.item-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.file-line{font-size:12.5px;margin-top:8px;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center}
+.file-line a{word-break:break-all}
+.uplink{color:var(--info);cursor:pointer;font-weight:600}
+.act{font-size:12.5px;border-left:2px solid var(--line-2);padding:0 0 10px 12px;margin-left:4px}
+.act b{font-weight:600}
+.modal{position:fixed;z-index:41;top:50%;left:50%;transform:translate(-50%,-50%);width:min(680px,calc(100% - 32px));max-height:calc(100% - 40px);overflow:auto;background:var(--paper);border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.modal .mh{padding:18px 20px;display:flex;align-items:center;background:#fff;border-bottom:1px solid var(--line)}
+.modal .mh h2{font-size:19px;font-weight:800}
+.modal .mb{padding:18px 20px}
+.modal .mf{padding:14px 20px;display:flex;justify-content:flex-end;gap:10px;background:#fff;border-top:1px solid var(--line)}
+.addrow{display:grid;grid-template-columns:1.2fr 1fr 1.2fr 1.3fr 32px;gap:8px;margin-bottom:8px;align-items:center}
+.addrow select.need{border-color:var(--warn);background:var(--warn-soft)}
+.modal.wide{width:min(900px,calc(100% - 32px))}
+.folderbox{border:1px solid var(--line-2);border-radius:10px;padding:12px;background:#fffbee}
+.folderbox.ok{border-color:#a9d9bd;background:var(--ok-soft)}
+.folderbox.warn{border-color:#f0cf8f;background:var(--warn-soft)}
+.path{font-size:12.5px;margin-top:6px;word-break:break-word}
+@media(max-width:560px){.addrow{grid-template-columns:1fr;padding:10px;border:1px solid var(--line);border-radius:10px;background:#fff}}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid var(--line-2);border-radius:10px;background:#fff;cursor:pointer;margin-bottom:8px}
+.opt input{margin-top:3px;accent-color:var(--ink)}
+.opt b{display:block}
+
+/* login */
+.center{min-height:100vh;display:grid;place-items:center;padding:24px 16px}
+.login{width:min(420px,100%);padding:28px}
+.login .mark{color:var(--ink);font-size:26px}
+.login h1{font-size:20px;margin:14px 0 4px}
+.err{background:var(--bad-soft);color:var(--bad);padding:10px 12px;border-radius:9px;font-size:13px;font-weight:500;margin-top:12px}
+.note{background:var(--sun-soft);border:1px solid var(--sun);padding:12px 14px;border-radius:10px;font-size:13.5px}
+
+/* partner page */
+.pwrap{max-width:760px;margin:0 auto;padding:28px 16px 80px}
+.hero h1{font-size:28px;font-weight:900;line-height:1.15}
+.hero .co-name{font-size:15px;color:var(--muted);margin-top:6px}
+.progress{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin:16px 0 6px}
+.progress i{display:block;height:100%;background:var(--sun);border-radius:99px;transition:width .4s}
+.pdl{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.pdl .pill{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:13px}
+.pdl .pill b{font-family:Archivo,Inter,system-ui,sans-serif}
+.step-card{padding:18px 20px;margin-top:16px}
+.step-card h2{font-size:17px;font-weight:800;display:flex;gap:10px;align-items:center}
+.num{width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--sun);box-shadow:0 0 0 3px var(--sun-soft);display:inline-grid;place-items:center;font-family:Archivo,Inter,system-ui,sans-serif;font-weight:900;font-size:14px;flex:none}
+.step-card.done .num{background:var(--ok);color:#fff}
+.step-card p{margin:8px 0 0}
+.step-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.drop{margin-top:12px;border:1.5px dashed var(--line-2);border-radius:10px;padding:14px;background:#fffbee;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.drop.has{border-color:var(--ok);background:var(--ok-soft)}
+.drop .fn{font-size:13px;font-weight:600;word-break:break-all}
+.check{display:flex;gap:10px;align-items:flex-start;margin-top:12px;font-weight:500;cursor:pointer}
+.check input{width:18px;height:18px;margin-top:1px;accent-color:var(--ink);flex:none}
+.locked{margin-top:10px;font-size:13px;color:var(--ok);font-weight:600}
+.submit-bar{position:sticky;bottom:0;margin-top:22px;padding:14px 0;background:linear-gradient(to top,var(--paper) 70%,transparent)}
+.submit-bar .btn{width:100%;padding:14px;font-size:15px}
+.banner{padding:14px 16px;border-radius:12px;margin-top:16px;font-size:14px}
+.banner.ok{background:var(--ok-soft);color:#14532d}
+.banner.msg{background:var(--warn-soft);color:#5c3700}
+
+.chk{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line)}
+.chk:first-child{border-top:0}
+.chk .ic{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:12px;flex:none}
+.chk .ic.ok{background:var(--ok-soft);color:var(--ok)} .chk .ic.bad{background:var(--bad-soft);color:var(--bad)}
+.chk .d{font-size:12.5px;color:var(--muted);word-break:break-word}
+.testtag{display:inline-block;background:var(--ink);color:var(--sun);font-size:10.5px;font-weight:800;letter-spacing:.06em;padding:1px 6px;border-radius:4px;margin-left:6px;vertical-align:middle}
+.next{background:var(--ink);color:#f4efe2;border-radius:var(--r);padding:16px 18px;margin-bottom:14px}
+.next .nh{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:4px}
+.next .nh h3{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--sun);margin:0}
+.next .big{font-family:Archivo,Inter,system-ui,sans-serif;font-size:19px;font-weight:800;line-height:1.25;color:#fff}
+.next .why{font-size:13px;color:#d9d3c2;margin-top:4px}
+.next ul{margin:10px 0 0;padding:0;list-style:none}
+.next li{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;padding:5px 0;color:#f4efe2}
+.next li .b{width:18px;height:18px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:11px;font-weight:800;margin-top:1px}
+.next li .b.m{background:var(--sun);color:var(--ink)} .next li .b.r{background:#9ec5ff;color:#0b2a5c} .next li .b.ok{background:#8fd3a9;color:#0d3b22}
+.next .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.next .btn{border-color:#4a4943;background:transparent;color:#fff}
+.next .btn:hover{border-color:#fff}
+.next .btn.sun{background:var(--sun);border-color:var(--sun);color:var(--ink)}
+.next .meta{font-size:12px;color:#b9b2a0;margin-top:12px;border-top:1px solid #34332f;padding-top:10px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.next .meta b{color:#f4efe2}
+.hint{font-size:12.5px;color:var(--muted);margin:-4px 0 10px}
+.emailprev{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;max-height:340px;overflow:auto}
+#toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:11px 16px;border-radius:10px;font-size:13.5px;font-weight:500;opacity:0;pointer-events:none;transition:.25s;z-index:60;max-width:calc(100% - 32px)}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+#toast.bad{background:var(--bad)}
+.spin{width:18px;height:18px;border:2.5px solid var(--line-2);border-top-color:var(--ink);border-radius:50%;animation:sp .8s linear infinite;display:inline-block}
+@keyframes sp{to{transform:rotate(360deg)}}
+.loading{padding:80px 16px;text-align:center;color:var(--muted);display:flex;gap:10px;justify-content:center;align-items:center}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="layer"></div>
+<div id="toast"></div>
+
+<script>
+/* ====== CONNECT ====== */
+const API_URL  = 'https://script.google.com/macros/s/AKfycbwFXFl8QQVgOvGXldYZVYF0xWMsD3OQDPQiuzS6glrJKYm94HrlBkiFBvNfW1sKoS5yNQ/exec'; // Deploy > Web app > /exec URL
+const LOGO_URL = ''; // optional: link to the GOODPWR logo image (leave blank to show the wordmark)
+
+/* ====== state & utils ====== */
+const S = { session: null, email: '', partners: [], config: {}, folders: [], filter: 'active', q: '', sel: null, pp: null };
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const app = $('#app'), layer = $('#layer');
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function toast(msg, bad) {
+  const t = $('#toast'); t.textContent = msg; t.className = 'show' + (bad ? ' bad' : '');
+  clearTimeout(t._h); t._h = setTimeout(() => t.className = '', bad ? 5000 : 3000);
+}
+function pad(n) { return String(n).padStart(2, '0'); }
+function ymd(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+function todayStr() { return ymd(new Date()); }
+function yearAgo() { const d = new Date(); d.setFullYear(d.getFullYear() - 1); return ymd(d); }
+function fmtDate(s) { if (!s) return '—'; const v = String(s); if (v.length > 10) { const d = new Date(v); if (!isNaN(d)) return pad(d.getMonth()+1)+'/'+pad(d.getDate())+'/'+d.getFullYear(); } const p = v.slice(0,10).split('-'); return p.length === 3 ? `${p[1]}/${p[2]}/${p[0]}` : v; }
+function fmtWhen(s) { const d = new Date(s); return isNaN(d) ? s : d.toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }); }
+function daysUntil(s) { return Math.round((new Date(s + 'T00:00:00') - new Date(todayStr() + 'T00:00:00')) / 864e5); }
+function baseUrl() { return location.origin + location.pathname; }
+function isArch(p) { return String(p.archived).toUpperCase() === 'TRUE'; }
+function isTest(p) { return String(p.isTest).toUpperCase() === 'TRUE'; }
+
+const EMBLEM = '<svg class="emblem" viewBox="0 0 64 64" aria-hidden="true"><g fill="#C9995A"> <path d="M32 1l3 9h-6z"/><path d="M32 63l-3-9h6z"/><path d="M1 32l9-3v6z"/><path d="M63 32l-9 3v-6z"/> <path d="M10.1 10.1l8.5 4.3-4.2 4.2z"/><path d="M53.9 53.9l-8.5-4.3 4.2-4.2z"/><path d="M53.9 10.1l-4.3 8.5-4.2-4.2z"/><path d="M10.1 53.9l4.3-8.5 4.2 4.2z"/> <path d="M20.1 3.3l5.6 7.6-5 2z" opacity=".75"/><path d="M43.9 3.3l-.6 9.6-5-2z" opacity=".75"/> <path d="M60.7 20.1l-7.6 5.6-2-5z" opacity=".75"/><path d="M60.7 43.9l-9.6-.6 2-5z" opacity=".75"/> <path d="M43.9 60.7l-5.6-7.6 5-2z" opacity=".75"/><path d="M20.1 60.7l.6-9.6 5 2z" opacity=".75"/> <path d="M3.3 43.9l7.6-5.6 2 5z" opacity=".75"/><path d="M3.3 20.1l9.6.6-2 5z" opacity=".75"/> </g> <circle cx="32" cy="32" r="20" fill="#C9995A"/> <path d="M32 15.5l12.5 4.6v9.6c0 8.4-5.3 14.6-12.5 18.3-7.2-3.7-12.5-9.9-12.5-18.3v-9.6z" fill="#2B2824"/> <path d="M25.2 31.6l4.9 4.9 9-9.6" fill="none" stroke="#C9995A" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const GP_LOGO = 'data:image/png;base64,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';
+function brandHTML(light) {
+  const src = LOGO_URL || GP_LOGO;
+  return `<span class="lock"><img class="gplogo" src="${esc(src)}" alt="GOODPWR"><span class="mark" style="${light ? '' : 'color:var(--ink)'}">GOOD<b>PWR</b></span></span>`;
+}
+function ilHTML(text) {
+  return `<span class="ilmark">${EMBLEM}<span>${esc(text)}</span></span>`;
+}
+
+async function api(action, data = {}) {
+  if (!/^https:\/\//.test(API_URL)) throw new Error('The portal is not connected yet (API_URL is missing in index.html).');
+  const body = Object.assign({ action }, data);
+  if (action.indexOf('staff.') === 0 && S.session) body.session = S.session;
+  let res, j;
+  try { res = await fetch(API_URL, { method: 'POST', body: JSON.stringify(body) }); }
+  catch (e) { throw new Error('Could not reach the server. Check your internet connection and try again.'); }
+  try { j = await res.json(); } catch (e) { throw new Error('Unexpected response from the server.'); }
+  if (!j.ok) {
+    if (j.error === 'SESSION_EXPIRED') { logout(); throw new Error('Your session expired. Please sign in again.'); }
+    throw new Error(j.error || 'Something went wrong.');
+  }
+  return j;
+}
+
+function readFile(file, maxMb) {
+  return new Promise((resolve, reject) => {
+    if (file.size > maxMb * 1024 * 1024) return reject(new Error(`${file.name} is larger than ${maxMb} MB.`));
+    const r = new FileReader();
+    r.onload = () => resolve({ name: file.name, type: file.type, data: String(r.result).split(',')[1] || '' });
+    r.onerror = () => reject(new Error('Could not read ' + file.name));
+    r.readAsDataURL(file);
+  });
+}
+
+/* ====== Drive folder matching (mirrors the server) ====== */
+const NAME_NOISE = ['llc','l l c','inc','incorporated','corp','corporation','co','company','ltd','the','pllc','lp'];
+function normName(s) {
+  let t = String(s || '').toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9 ]/g, ' ');
+  t = ' ' + t.replace(/\s+/g, ' ').trim() + ' ';
+  NAME_NOISE.forEach(w => { t = t.split(' ' + w + ' ').join(' '); });
+  return t.replace(/\s+/g, '');
+}
+function matchFolder(company) {
+  const n = normName(company); if (!n) return null;
+  let best = null, bestScore = 0;
+  S.folders.forEach(f => {
+    const fn = normName(f.name); if (!fn) return;
+    let score = 0;
+    if (fn === n) score = 100;
+    else if (fn.length >= 4 && n.length >= 4 && (n.indexOf(fn) === 0 || fn.indexOf(n) === 0)) score = 80 - Math.abs(fn.length - n.length);
+    else if (fn.length >= 5 && n.length >= 5 && (n.indexOf(fn) >= 0 || fn.indexOf(n) >= 0)) score = 50 - Math.abs(fn.length - n.length);
+    if (score > bestScore) { bestScore = score; best = f; }
+  });
+  return bestScore >= 30 ? best : null;
+}
+function isConfirmed(p) { return String(p.folderConfirmed).toUpperCase() === 'TRUE'; }
+function folderName(id) { const f = S.folders.find(x => x.id === id); return f ? f.name : ''; }
+function folderPath(p, choice) {
+  const name = choice === 'new' ? p.company + ' (new folder)' : folderName(choice);
+  return `Build Partners - All › <b>${esc(name)}</b> › Illinois Shines Designee`;
+}
+function folderOptions(selected, company) {
+  return `<option value="">Choose Drive folder…</option>
+    <option value="new" ${selected === 'new' ? 'selected' : ''}>+ Create new folder${company ? ' “' + esc(company) + '”' : ''}</option>
+    ${S.folders.map(f => `<option value="${esc(f.id)}" ${f.id === selected ? 'selected' : ''}>${esc(f.name)}</option>`).join('')}`;
+}
+
+/* ====== status logic ====== */
+const ITEMS = [
+  { k: 'reg', short: 'IL Registration', long: 'Illinois Shines online registration', nofile: true },
+  { k: 'pdf', short: 'Designee PDF', long: 'Completed Designee Registration Form (PDF)' },
+  { k: 'gs', short: 'Good Standing', long: 'IL Secretary of State Statement of Good Standing' },
+  { k: 'mes', short: 'MES / EEC', long: 'MES Compliance Plan or EEC Application' },
+  { k: 'training', short: 'Training', long: 'Required training modules' }
+];
+const OPT_LABEL = {
+  missing: 'Missing', received: 'Received – needs review', verified: 'Verified', rejected: 'Rejected – needs new copy', na: 'N/A – does not qualify'
+};
+const REG_LABEL = { missing: 'Not confirmed', received: 'Partner confirmed – check', verified: 'Verified', rejected: 'Rejected – could not confirm' };
+const TRAIN_LABEL = { missing: 'Not done', received: 'Reported done – confirm', verified: 'Verified complete', rejected: 'Rejected' };
+
+function gsOk(p) { return !!p.gsDate && p.gsDate >= yearAgo(); }
+function evalP(p) {
+  const t = todayStr(), c = S.config;
+  const docs = p.regStatus === 'verified' && p.pdfStatus === 'verified' && p.gsStatus === 'verified' && gsOk(p) && (p.mesStatus === 'verified' || p.mesStatus === 'na');
+  const tr = p.trainingStatus === 'verified';
+  const review = ITEMS.some(i => p[i.k + 'Status'] === 'received');
+  const regOver = !docs && c.regDeadline && t > c.regDeadline;
+  const trOver = !tr && c.trainingDeadline && t > c.trainingDeadline;
+  const fuDue = !!p.nextFollowUp && p.nextFollowUp <= t && !(docs && tr);
+  let overall, tone;
+  if (docs && tr) { overall = 'Fully compliant'; tone = 'ok'; }
+  else if (regOver || trOver) { overall = 'Overdue'; tone = 'bad'; }
+  else if (review) { overall = 'Needs review'; tone = 'info'; }
+  else if (docs) { overall = 'Docs done · training left'; tone = 'ok'; }
+  else { overall = 'Waiting on partner'; tone = 'warn'; }
+  return { docs, tr, review, regOver, trOver, fuDue, overall, tone };
+}
+function missingList(p) {
+  const m = [];
+  const bad = k => ['missing', 'rejected', ''].includes(p[k + 'Status'] || '');
+  if (bad('reg')) m.push(p.regStatus === 'rejected' ? 'Illinois Shines online registration (could not confirm)' : 'Illinois Shines online registration (select GOODPWR LLC, ID 2167)');
+  if (bad('pdf')) m.push(p.pdfStatus === 'rejected' ? 'New copy of the Designee PDF (last one rejected)' : 'Completed Designee Registration Form (PDF)');
+  const gsOld = p.gsDate && !gsOk(p);
+  if (bad('gs') || gsOld) m.push(gsOld || p.gsStatus === 'rejected' ? 'Newer Good Standing statement (must be within 12 months)' : 'Secretary of State Good Standing statement');
+  if (bad('training')) m.push('Training modules completed');
+  if (bad('mes')) m.push('MES plan / EEC application – or mark “does not apply”');
+  return m;
+}
+function reviewList(p) { return ITEMS.filter(i => p[i.k + 'Status'] === 'received').map(i => i.short); }
+
+function nextCard(p) {
+  const miss = missingList(p), rev = reviewList(p), e = evalP(p);
+  const needFolder = !isConfirmed(p) && !isTest(p);
+  let big, why, acts = '';
+  if (!miss.length && !rev.length && !needFolder) {
+    big = 'All set – nothing to do ✓'; why = `${esc(p.company)} has every document verified${e.tr ? ' and training confirmed' : ''}.`;
+  } else if (rev.length) {
+    big = `Review ${rev.length} new upload${rev.length > 1 ? 's' : ''}`;
+    why = 'Open each file below, then set it to <b>Verified</b> – or <b>Rejected</b> and tell them what to fix in the message box.';
+    acts += `<button class="btn sm sun" data-jump="checklist">Review uploads ↓</button>`;
+  } else if (needFolder) {
+    big = 'Confirm where their files are saved';
+    why = 'Check the suggested Drive folder below so uploads land in the right Build Partner folder.';
+    acts += `<button class="btn sm sun" data-jump="folder">Confirm Drive folder ↓</button>`;
+  } else {
+    big = e.fuDue ? `Time to follow up – ${miss.length} item${miss.length > 1 ? 's' : ''} missing` : `Waiting on ${miss.length} item${miss.length > 1 ? 's' : ''} from ${esc(p.company)}`;
+    why = e.fuDue ? 'Send a reminder – it lists exactly what is missing and includes their upload link.' : `Next follow-up is ${fmtDate(p.nextFollowUp)}. You can send a reminder anytime.`;
+  }
+  if (miss.length) acts += `<button class="btn sm ${rev.length || needFolder ? '' : 'sun'}" id="remBtn">Send reminder email</button><button class="btn sm" id="prevBtn">Preview reminder</button>`;
+  acts += `<button class="btn sm" id="copyBtn">Copy upload link</button>`;
+  const list = [
+    ...rev.map(t => `<li><span class="b r">!</span><span><b>Received:</b> ${esc(t)} – needs your review</span></li>`),
+    ...miss.map(t => `<li><span class="b m">•</span><span><b>Missing:</b> ${esc(t)}</span></li>`)
+  ];
+  return `<div class="next">
+    <div class="nh"><h3>What's next</h3>${chip(e.overall, e.tone)}</div>
+    <div class="big">${big}</div>
+    <div class="why">${why}</div>
+    ${list.length ? `<ul>${list.join('')}</ul>` : ''}
+    <div class="acts">${acts}</div>
+    <div class="meta">
+      <span>Last contact: <b>${p.lastFollowUp ? fmtDate(p.lastFollowUp) : (p.invitedAt ? 'Invite ' + fmtDate(p.invitedAt) : '—')}</b></span>
+      <span>Next follow-up: <b>${p.nextFollowUp && miss.length ? fmtDate(p.nextFollowUp) : '—'}</b></span>
+      <span>${folderLine(p).replace(/<[^>]+>/g, '')}</span>
+    </div>
+  </div>`;
+}
+
+function chip(text, tone) { return `<span class="chip t-${tone}">${esc(text)}</span>`; }
+function itemChip(p, k) {
+  const s = p[k + 'Status'] || 'missing';
+  if (k === 'gs' && p.gsDate && !gsOk(p) && s !== 'missing') return chip('Too old', 'bad');
+  const m = { missing: ['Missing', 'warn'], received: [k === 'training' || k === 'reg' ? 'Confirmed' : 'Review', 'info'], verified: ['Verified', 'ok'], rejected: ['Rejected', 'bad'], na: ['N/A', 'mute'] }[s] || ['—', 'mute'];
+  return chip(m[0], m[1]);
+}
+
+/* ====== boot ====== */
+const params = new URLSearchParams(location.search);
+if (params.get('t')) bootPartner(params.get('t'));
+else {
+  try { const s = JSON.parse(sessionStorage.getItem('ilsh_sess') || 'null'); if (s) { S.session = s.session; S.email = s.email; } } catch (e) {}
+  S.session ? loadDash() : renderLogin();
+}
+
+/* ====================================================================
+   STAFF
+   ==================================================================== */
+function renderLogin(msg, step) {
+  closeLayer();
+  step = step || 'email';
+  app.innerHTML = `
+  <div class="center"><form class="card login" id="loginForm" autocomplete="on">
+    <div style="text-align:center">${brandHTML(false)}<div class="login-il">${ilHTML('Illinois Shines · Designee Compliance')}</div></div>
+    <h1>Designee Compliance Portal</h1>
+    <p class="muted small" style="margin:0 0 18px">Illinois Shines · Staff sign-in</p>
+    ${step === 'email' ? `
+      <label class="f" for="lEmail">Work email</label>
+      <input class="in-f" id="lEmail" type="email" placeholder="name@getgoodpwr.com" required autocomplete="email" value="${esc(S.email)}">
+      ${msg ? `<div class="err">${esc(msg)}</div>` : ''}
+      <button class="btn primary" style="width:100%;margin-top:18px;padding:12px" id="lBtn">Email me a sign-in code</button>
+    ` : `
+      <div class="note" style="margin-bottom:14px">We sent a 6-digit code to <b>${esc(S.email)}</b>. It expires in 10 minutes.</div>
+      <label class="f" for="lCode">Sign-in code</label>
+      <input class="in-f" id="lCode" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="123456" required
+        style="font-size:22px;letter-spacing:8px;text-align:center;font-family:Archivo,Inter,system-ui,sans-serif">
+      ${msg ? `<div class="err">${esc(msg)}</div>` : ''}
+      <button class="btn primary" style="width:100%;margin-top:18px;padding:12px" id="lBtn">Sign in</button>
+      <div style="display:flex;justify-content:space-between;margin-top:12px">
+        <button type="button" class="btn ghost sm" id="chgBtn">Use a different email</button>
+        <button type="button" class="btn ghost sm" id="resBtn">Resend code</button>
+      </div>
+    `}
+  </form></div>`;
+  const btnBusy = b => { b.disabled = true; b.innerHTML = '<span class="spin"></span>'; };
+  if (step === 'email') {
+    $('#lEmail').focus();
+    $('#loginForm').onsubmit = async e => {
+      e.preventDefault();
+      btnBusy($('#lBtn'));
+      S.email = $('#lEmail').value.trim().toLowerCase();
+      try { await api('staff.requestCode', { email: S.email }); renderLogin('', 'code'); }
+      catch (err) { renderLogin(err.message, 'email'); }
+    };
+  } else {
+    const codeIn = $('#lCode'); codeIn.focus();
+    codeIn.oninput = () => { codeIn.value = codeIn.value.replace(/\D/g, '').slice(0, 6); if (codeIn.value.length === 6) $('#loginForm').requestSubmit(); };
+    $('#chgBtn').onclick = () => renderLogin('', 'email');
+    const res = $('#resBtn');
+    let wait = 30; res.disabled = true; res.textContent = `Resend in ${wait}s`;
+    const timer = setInterval(() => { wait--; if (!document.body.contains(res)) return clearInterval(timer); if (wait <= 0) { clearInterval(timer); res.disabled = false; res.textContent = 'Resend code'; } else res.textContent = `Resend in ${wait}s`; }, 1000);
+    res.onclick = async () => {
+      res.disabled = true; res.textContent = 'Sending…';
+      try { await api('staff.requestCode', { email: S.email }); renderLogin('', 'code'); toast('New code sent'); }
+      catch (err) { renderLogin(err.message, 'code'); }
+    };
+    $('#loginForm').onsubmit = async e => {
+      e.preventDefault();
+      if (codeIn.value.length !== 6) return;
+      btnBusy($('#lBtn'));
+      try {
+        const j = await api('staff.login', { email: S.email, code: codeIn.value });
+        S.session = j.session; S.email = j.email;
+        try { sessionStorage.setItem('ilsh_sess', JSON.stringify({ session: j.session, email: j.email })); } catch (e) {}
+        loadDash();
+      } catch (err) { renderLogin(err.message, 'code'); }
+    };
+  }
+}
+function logout() {
+  S.session = null; S.partners = [];
+  try { sessionStorage.removeItem('ilsh_sess'); sessionStorage.removeItem('ilsh_list'); } catch (e) {}
+  renderLogin();
+}
+
+async function loadDash(keepLayer) {
+  if (!S.partners.length) {
+    let cached = null;
+    try { cached = JSON.parse(sessionStorage.getItem('ilsh_list') || 'null'); } catch (e) {}
+    if (cached && cached.config) {
+      S.partners = cached.partners; S.config = cached.config; S.folders = cached.folders || [];
+      renderDash();
+    } else app.innerHTML = `<div class="loading"><span class="spin"></span> Loading Build Partners…</div>`;
+  }
+  try {
+    const j = await api('staff.list');
+    S.partners = j.partners; S.config = j.config; S.folders = j.folders || [];
+    try { sessionStorage.setItem('ilsh_list', JSON.stringify({ partners: j.partners, config: j.config, folders: S.folders })); } catch (e) {}
+    const q = $('#q'), hadFocus = q && document.activeElement === q;
+    renderDash();
+    if (hadFocus) { const n = $('#q'); n.focus(); n.setSelectionRange(n.value.length, n.value.length); }
+    if (keepLayer && S.sel) renderDrawer();
+  } catch (e) {
+    if (S.session) app.innerHTML = `<div class="center"><div class="card login"><div class="err">${esc(e.message)}</div><button class="btn" style="margin-top:14px" onclick="loadDash()">Try again</button></div></div>`;
+  }
+}
+
+function counts() {
+  const act = S.partners.filter(p => !isArch(p) && !isTest(p));
+  const ev = act.map(p => evalP(p));
+  return {
+    active: act.length,
+    review: ev.filter(e => e.review).length,
+    missing: ev.filter(e => !e.docs).length,
+    docs: ev.filter(e => e.docs).length,
+    training: ev.filter(e => !e.tr).length,
+    followup: ev.filter(e => e.fuDue).length,
+    overdue: ev.filter(e => e.regOver || e.trOver).length,
+    compliant: ev.filter(e => e.docs && e.tr).length
+  };
+}
+
+function renderDash() {
+  const c = counts(), cfg = S.config;
+  const dReg = daysUntil(cfg.regDeadline), dTr = daysUntil(cfg.trainingDeadline), dSt = daysUntil(cfg.stateDeadline || cfg.regDeadline);
+  const dl = (lbl, date, d) => `
+    <div class="card dl ${d <= 7 ? 'urgent' : ''}">
+      <div><div class="lbl">${lbl}</div><div class="date">${fmtDate(date)}</div></div>
+      <div class="days">${d < 0 ? 'Passed' : d}<small>${d < 0 ? Math.abs(d) + ' days ago' : d === 1 ? 'day left' : 'days left'}</small></div>
+    </div>`;
+  const st = (key, n, l) => `<div class="card stat ${S.filter === key ? 'on' : ''}" data-filter="${key}"><div class="n">${n}</div><div class="l">${l}</div></div>`;
+  app.innerHTML = `
+  <div class="top"><div class="in">
+    <div class="brand">${brandHTML(true)}${ilHTML('Illinois Shines · Designee Compliance')}</div>
+    <div class="sp"></div>
+    <span class="who">${esc(S.email)}</span>
+    <button class="btn sm dark-ghost" id="outBtn">Sign out</button>
+  </div></div>
+  <main class="wrap">
+    <div class="head-row">
+      <div><h1>Build Partner Compliance</h1><div class="muted">Track Designee registration documents and training for every Build Partner.</div></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        ${dueIds().length ? `<button class="btn primary" id="remAllBtn">Send reminders (${dueIds().length} due)</button>` : ''}
+        <button class="btn" id="testBtn">Test</button>
+        <button class="btn" id="setBtn">Deadlines</button>
+        <button class="btn" id="refBtn">Refresh</button>
+        <button class="btn sun" id="addBtn">+ New Designee Request</button>
+      </div>
+    </div>
+    <div class="deadlines">${dl('Submit to GoodPWR by', cfg.regDeadline, dReg)}${dl('Illinois Shines deadline', cfg.stateDeadline || cfg.regDeadline, dSt)}${dl('Training due', cfg.trainingDeadline, dTr)}</div>
+    <div class="stats">
+      ${st('active', c.active, 'Build Partners')}
+      ${st('review', c.review, 'Needs review')}
+      ${st('missing', c.missing, 'Docs incomplete')}
+      ${st('training', c.training, 'Training pending')}
+      ${st('followup', c.followup, 'Follow-up due')}
+      ${st('compliant', c.compliant, 'Fully compliant')}
+    </div>
+    <div class="toolbar">
+      <input class="in-f search" id="q" placeholder="Search company, contact or email" value="${esc(S.q)}">
+      <select class="in-f" id="flt">
+        ${[['active','All active'],['review','Needs review'],['missing','Docs incomplete'],['training','Training pending'],['followup','Follow-up due'],['overdue','Overdue'],['compliant','Fully compliant'],['folder','Folder not confirmed'],['tests','Test runs'],['archived','Archived']]
+          .map(([v,l]) => `<option value="${v}" ${S.filter===v?'selected':''}>${l}</option>`).join('')}
+      </select>
+    </div>
+    <div class="card list" id="list"></div>
+  </main>`;
+  $('#outBtn').onclick = logout;
+  $('#refBtn').onclick = () => loadDash(true);
+  $('#addBtn').onclick = openAdd;
+  $('#setBtn').onclick = openSettings;
+  $('#testBtn').onclick = openTest;
+  if ($('#remAllBtn')) $('#remAllBtn').onclick = remindAll;
+  $('#q').oninput = e => { S.q = e.target.value; renderList(); };
+  $('#flt').onchange = e => { S.filter = e.target.value; renderDash(); };
+  $$('.stat').forEach(el => el.onclick = () => { S.filter = el.dataset.filter; renderDash(); });
+  renderList();
+}
+
+function dueIds() {
+  return S.partners.filter(p => !isArch(p) && !isTest(p) && evalP(p).fuDue && missingList(p).length).map(p => p.id);
+}
+async function remindAll() {
+  const ids = dueIds();
+  const names = S.partners.filter(p => ids.includes(p.id)).map(p => '• ' + p.company + ' (' + missingList(p).length + ' missing)').join('\n');
+  if (!confirm(`Send a reminder email to ${ids.length} Build Partner(s) whose follow-up is due?\n\n${names}\n\nEach email lists only what that partner is missing, with their upload link.`)) return;
+  await busy($('#remAllBtn'), async () => {
+    const j = await api('staff.remindAll', { ids, baseUrl: baseUrl() });
+    j.results.filter(r => r.ok).forEach(r => replacePartner(r.partner));
+    const bad = j.results.filter(r => !r.ok);
+    renderDash();
+    toast(`${j.results.length - bad.length} reminder(s) sent` + (bad.length ? ` · ${bad.length} failed: ${bad[0].error}` : ''), bad.length > 0);
+  });
+}
+
+function filtered() {
+  const q = S.q.trim().toLowerCase();
+  return S.partners.filter(p => {
+    const arch = isArch(p);
+    if (S.filter === 'archived') { if (!arch) return false; }
+    else if (arch) return false;
+    const e = evalP(p);
+    if (S.filter === 'review' && !e.review) return false;
+    if (S.filter === 'missing' && e.docs) return false;
+    if (S.filter === 'training' && e.tr) return false;
+    if (S.filter === 'followup' && !e.fuDue) return false;
+    if (S.filter === 'overdue' && !(e.regOver || e.trOver)) return false;
+    if (S.filter === 'compliant' && !(e.docs && e.tr)) return false;
+    if (S.filter === 'folder' && isConfirmed(p)) return false;
+    if (S.filter === 'tests' && !isTest(p)) return false;
+    if (S.filter !== 'tests' && S.filter !== 'active' && isTest(p)) return false;
+    if (q && ![p.company, p.contact, p.email, p.id].join(' ').toLowerCase().includes(q)) return false;
+    return true;
+  }).sort((a, b) => {
+    const ea = evalP(a), eb = evalP(b);
+    const rank = e => (e.regOver || e.trOver) ? 0 : e.review ? 1 : e.fuDue ? 2 : (e.docs && e.tr) ? 4 : 3;
+    return (isTest(a) - isTest(b)) || rank(ea) - rank(eb) || String(a.company).localeCompare(String(b.company));
+  });
+}
+
+function renderList() {
+  const rows = filtered();
+  const list = $('#list');
+  if (!S.partners.length) {
+    list.innerHTML = `<div class="empty"><b>No Build Partners yet.</b><br>Click <b>+ New Designee Request</b> to send your first one.</div>`;
+    return;
+  }
+  if (!rows.length) { list.innerHTML = `<div class="empty">No Build Partners match this view.</div>`; return; }
+  list.innerHTML = `
+    <div class="lrow lh"><div>Build Partner</div><div>Invited</div>${ITEMS.map(i => `<div>${i.short}</div>`).join('')}<div>Status</div><div>Next follow-up</div></div>
+    ${rows.map(p => {
+      const e = evalP(p);
+      return `<div class="lrow" data-id="${esc(p.id)}">
+        <div class="c-co"><div class="co">${esc(p.company)}${isTest(p) ? '<span class="testtag">TEST</span>' : ''}</div><div class="co-sub">${esc(p.contact || '')}${p.contact ? ' · ' : ''}${esc(p.email)}</div>${isConfirmed(p) || isTest(p) ? '' : '<div class="small" style="color:var(--warn);font-weight:600">Confirm Drive folder</div>'}</div>
+        <div><span class="cell-lbl">Invited</span>${p.invitedAt ? fmtDate(p.invitedAt) : `<span class="muted small">${p.source === 'Emailed separately' ? 'Emailed' : '—'}</span>`}</div>
+        ${ITEMS.map(i => `<div><span class="cell-lbl">${i.short}</span>${itemChip(p, i.k)}</div>`).join('')}
+        <div><span class="cell-lbl">Status</span>${chip(e.overall, e.tone)}</div>
+        <div><span class="cell-lbl">Next follow-up</span><span class="${e.fuDue ? 'due' : ''}">${p.nextFollowUp && !(e.docs && e.tr) ? fmtDate(p.nextFollowUp) : '—'}</span></div>
+      </div>`;
+    }).join('')}`;
+  $$('.lrow[data-id]', list).forEach(r => r.onclick = () => openDrawer(r.dataset.id));
+}
+
+function closeLayer() { layer.innerHTML = ''; S.sel = null; document.body.style.overflow = ''; }
+function bindClose() { $$('[data-close]', layer).forEach(el => el.onclick = closeLayer); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && layer.innerHTML) closeLayer(); });
+
+/* ---------- drawer ---------- */
+function openDrawer(id) { S.sel = id; renderDrawer(); loadActivity(id); }
+function getSel() { return S.partners.find(p => p.id === S.sel); }
+function saveListCache() { try { sessionStorage.setItem('ilsh_list', JSON.stringify({ partners: S.partners, config: S.config, folders: S.folders })); } catch (e) {} }
+function replacePartner(np) { const i = S.partners.findIndex(p => p.id === np.id); if (i >= 0) S.partners[i] = np; else S.partners.push(np); saveListCache(); }
+
+function itemBlock(p, i) {
+  const k = i.k, s = p[k + 'Status'] || 'missing';
+  const opts = (k === 'mes' ? ['missing','received','verified','rejected','na'] : ['missing','received','verified','rejected']);
+  const lab = k === 'training' ? TRAIN_LABEL : k === 'reg' ? REG_LABEL : OPT_LABEL;
+  let extra = '';
+  if (k === 'gs') {
+    const ok = gsOk(p);
+    extra = `<div><label class="f">Date issued</label><input class="in-f" type="date" data-f="gsDate" value="${esc(p.gsDate)}">
+      <div class="small" style="margin-top:4px">${p.gsDate ? (ok ? '<span style="color:var(--ok)">Within 12 months ✓</span>' : '<span style="color:var(--bad)">Older than 12 months – needs a new statement</span>') : '<span class="muted">Must be within the past 12 months</span>'}</div></div>`;
+  } else if (k === 'reg') {
+    extra = `<div class="small muted" style="align-self:end;padding-bottom:6px">Check that the Designee PDF shows <b>GOODPWR LLC (ID 2167)</b> as Approved Vendor${p.regAt ? ` · confirmed by partner ${fmtDate(p.regAt)}` : ''}</div>`;
+  } else if (k === 'training') {
+    extra = `<div><label class="f">Date completed</label><input class="in-f" type="date" data-f="trainingDate" value="${esc(p.trainingDate)}"></div>`;
+  } else extra = '<div></div>';
+  return `<div class="item">
+    <div class="item-top"><span class="item-name">${i.long}</span>${itemChip(p, k)}</div>
+    <div class="item-row">
+      <div><label class="f">Status</label><select class="in-f" data-f="${k}Status">${opts.map(o => `<option value="${o}" ${s===o?'selected':''}>${lab[o]}</option>`).join('')}</select></div>
+      ${extra}
+    </div>
+    ${i.nofile ? '' : `<div class="file-line">
+      ${p[k + 'Url'] ? `<a href="${esc(p[k+'Url'])}" target="_blank" rel="noopener">📄 ${esc(p[k+'FileName'])}</a><span class="muted">${fmtDate(p[k+'At'])}</span>` : `<span class="muted">No file on record</span>`}
+      <label class="uplink">${p[k + 'Url'] ? 'Replace file' : 'Attach file'}<input type="file" class="hidden" data-up="${k}" accept="${k==='pdf'?'.pdf':'.pdf,.png,.jpg,.jpeg,.heic,.doc,.docx'}"></label>
+    </div>`}
+  </div>`;
+}
+
+function renderDrawer() {
+  const p = getSel(); if (!p) return closeLayer();
+  const e = evalP(p);
+  document.body.style.overflow = 'hidden';
+  layer.innerHTML = `
+  <div class="scrim" data-close></div>
+  <aside class="drawer" role="dialog" aria-label="${esc(p.company)}">
+    <div class="dh">
+      <div style="min-width:0">
+        <div class="eyebrow">${esc(p.id)}</div>
+        <h2>${esc(p.company)}</h2>
+        <div class="muted small">${esc(p.contact || 'No contact name')} · <a href="mailto:${esc(p.email)}">${esc(p.email)}</a>${p.phone ? ' · ' + esc(p.phone) : ''}</div>
+      </div>
+      <button class="x" data-close aria-label="Close">×</button>
+    </div>
+    <div class="dbody">
+      ${nextCard(p)}
+      <div class="sec">
+        <h3>Invite</h3>
+        <div class="small muted">${p.invitedAt ? `Invite sent ${fmtDate(p.invitedAt)} · ${p.inviteCount || 1}× total` : (p.source === 'Emailed separately' ? 'Julia emailed them outside the portal – send the invite if they need their upload link' : 'No invite sent yet')}${p.lastPartnerSubmitAt ? ` · They last uploaded ${fmtDate(p.lastPartnerSubmitAt)}` : ''}</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+          <button class="btn sm" id="inviteBtn">${p.invitedAt ? 'Resend invite email' : 'Send invite email'}</button>
+          ${(p.folderUrl) ? `<a class="btn sm" href="${esc(p.folderUrl)}" target="_blank" rel="noopener">Open Drive folder</a>` : ''}
+        </div>
+      </div>
+      <div id="sec-folder"></div>
+      ${isTest(p) ? `<div class="sec"><h3>Test run <span class="testtag">TEST</span></h3><div class="small muted">Uploads from this test go to the separate TEST folder – never Build Partners - All – and emails go only to ${esc(p.email)}.</div></div>` : folderSection(p)}
+      <div class="sec" id="sec-checklist"><h3>Checklist</h3><div class="hint">Open each file, then set it to <b>Verified</b>. If something's wrong, choose <b>Rejected</b> and explain in “Message shown on their upload page”.</div>${ITEMS.map(i => itemBlock(p, i)).join('')}</div>
+
+      <div class="sec">
+        <h3>Log a call or email</h3>
+        <div class="hint">Reminder emails log themselves. Use this when you called, texted or emailed them yourself.</div>
+        <div class="grid2">
+          <div><label class="f">Last follow-up</label><input class="in-f" type="date" data-f="lastFollowUp" value="${esc(p.lastFollowUp)}"></div>
+          <div><label class="f">Next follow-up</label><input class="in-f" type="date" data-f="nextFollowUp" value="${esc(p.nextFollowUp)}"></div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+          <input class="in-f" id="fuNote" placeholder="What did you send or hear? (optional)" style="flex:1;min-width:180px">
+          <select class="in-f" id="fuDays" style="width:auto"><option value="3">Next in 3 days</option><option value="7" selected>Next in 7 days</option><option value="14">Next in 14 days</option></select>
+          <button class="btn sm" id="fuBtn">Log it</button>
+        </div>
+      </div>
+
+      <div class="sec">
+        <h3>Message shown on their upload page</h3>
+        <div class="hint">They'll see this at the top of their page – and it's included when you send a reminder. Click Save changes after typing.</div>
+        <textarea class="in-f" data-f="partnerMessage" placeholder="e.g. Your Good Standing statement is from 2024 – please upload one issued in the last 12 months.">${esc(p.partnerMessage)}</textarea>
+      </div>
+
+      <div class="sec">
+        <h3>Contact & internal notes</h3>
+        <div class="grid2">
+          <div><label class="f">Company</label><input class="in-f" data-f="company" value="${esc(p.company)}"></div>
+          <div><label class="f">Contact name</label><input class="in-f" data-f="contact" value="${esc(p.contact)}"></div>
+          <div><label class="f">Email</label><input class="in-f" type="email" data-f="email" value="${esc(p.email)}"></div>
+          <div><label class="f">Phone</label><input class="in-f" data-f="phone" value="${esc(p.phone)}"></div>
+        </div>
+        <div style="height:12px"></div>
+        <label class="f">Internal notes (staff only)</label>
+        <textarea class="in-f" data-f="notes">${esc(p.notes)}</textarea>
+      </div>
+
+      <div class="sec"><h3>Activity</h3><div id="act"><span class="spin"></span></div></div>
+    </div>
+    <div class="df">
+      <button class="btn ghost danger" id="archBtn">${isArch(p) ? 'Restore' : 'Archive'}</button>
+      <div style="display:flex;gap:8px"><button class="btn" data-close>Close</button><button class="btn primary" id="saveBtn">Save changes</button></div>
+    </div>
+  </aside>`;
+  bindClose();
+
+  $$('[data-jump]', layer).forEach(b => b.onclick = () => {
+    const el = $('#sec-' + b.dataset.jump) || $('#fdSel');
+    const target = b.dataset.jump === 'folder' ? ($('#fdSel') && $('#fdSel').closest('.sec')) : el;
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  const sendRem = async (btn, note) => {
+    await busy(btn, async () => {
+      const j = await api('staff.remind', { id: p.id, baseUrl: baseUrl(), note: note || '' });
+      replacePartner(j.partner); renderList(); renderDrawer(); loadActivity(p.id); refreshStats();
+      toast('Reminder sent to ' + p.email);
+    });
+  };
+  if ($('#remBtn')) $('#remBtn').onclick = () => {
+    if (confirm(`Email ${p.email} a reminder listing the ${missingList(p).length} missing item(s) with their upload link?`)) sendRem($('#remBtn'), p.partnerMessage);
+  };
+  if ($('#prevBtn')) $('#prevBtn').onclick = () => openReminderPreview(p);
+  if (isTest(p)) {
+    const ab = $('#archBtn'); ab.textContent = 'Delete test';
+    ab.onclick = async () => {
+      if (!confirm('Delete this test partner and its test uploads?')) return;
+      await busy(ab, async () => {
+        await api('staff.deleteTest', { id: p.id });
+        S.partners = S.partners.filter(x => x.id !== p.id); saveListCache();
+        closeLayer(); renderDash(); toast('Test deleted');
+      });
+    };
+  }
+  if ($('#fdSel')) $('#fdSel').onchange = e => { $('#fdPath').innerHTML = e.target.value ? folderPath(p, e.target.value) : '<span class="muted">Pick the folder from Build Partners - All</span>'; };
+  if ($('#fdBtn')) $('#fdBtn').onclick = async () => {
+    const choice = $('#fdSel').value;
+    if (!choice) return toast('Pick a Drive folder first.', true);
+    const name = choice === 'new' ? `a new folder “${p.company}”` : `“${folderName(choice)}”`;
+    if (!confirm(`Save ${p.company}'s Illinois Shines documents to ${name} in Build Partners - All?` + (ITEMS.some(i => p[i.k + 'FileId']) ? '\n\nFiles already uploaded will be moved there.' : ''))) return;
+    await busy($('#fdBtn'), async () => {
+      const j = await api('staff.confirmFolder', { id: p.id, folderChoice: choice });
+      replacePartner(j.partner); renderList(); renderDrawer(); loadActivity(p.id);
+      toast('Folder confirmed' + (j.moved ? ` · ${j.moved} file(s) moved` : '') + (j.failed ? ` · ${j.failed} could not be moved` : ''), j.failed > 0);
+    });
+  };
+
+  $('#saveBtn').onclick = async () => {
+    const fields = {};
+    $$('[data-f]', layer).forEach(el => fields[el.dataset.f] = el.value);
+    await busy($('#saveBtn'), async () => {
+      const j = await api('staff.update', { id: p.id, fields, baseUrl: baseUrl() });
+      replacePartner(j.partner); renderList(); renderDrawer(); loadActivity(p.id); refreshStats();
+      if (j.becameCompliant) toast('🎉 ' + p.company + ' is Fully compliant' + (j.complianceNotified ? ' · Compliance was notified' : ''));
+      else if (j.notified) toast('Saved · ' + p.email + ' was emailed what to fix');
+      else if (j.notifyError) toast('Saved, but the rejection email failed: ' + j.notifyError, true);
+      else toast('Saved');
+    });
+  };
+  if (!isTest(p)) $('#archBtn').onclick = async () => {
+    if (!isArch(p) && !confirm(`Archive ${p.company}? Their upload link will stop working.`)) return;
+    await busy($('#archBtn'), async () => {
+      const j = await api('staff.update', { id: p.id, fields: { archived: isArch(p) ? '' : 'TRUE' } });
+      replacePartner(j.partner); closeLayer(); renderDash();
+      toast(isArch(j.partner) ? 'Archived' : 'Restored');
+    });
+  };
+  $('#copyBtn').onclick = async () => {
+    const link = baseUrl() + '?t=' + p.token;
+    try { await navigator.clipboard.writeText(link); toast('Upload link copied'); }
+    catch (e) { prompt('Copy this upload link:', link); }
+  };
+  $('#inviteBtn').onclick = async () => {
+    if (!confirm(`Send the Illinois Shines invite email to ${p.email}?`)) return;
+    await busy($('#inviteBtn'), async () => {
+      const j = await api('staff.invite', { id: p.id, baseUrl: baseUrl() });
+      replacePartner(j.partner); renderList(); renderDrawer(); loadActivity(p.id);
+      toast('Invite sent to ' + p.email);
+    });
+  };
+  $('#fuBtn').onclick = async () => {
+    await busy($('#fuBtn'), async () => {
+      const j = await api('staff.followup', { id: p.id, note: $('#fuNote').value, days: $('#fuDays').value });
+      replacePartner(j.partner); renderList(); renderDrawer(); loadActivity(p.id); refreshStats();
+      toast('Follow-up logged');
+    });
+  };
+  $$('[data-up]', layer).forEach(inp => inp.onchange = async () => {
+    const f = inp.files[0]; if (!f) return;
+    const lbl = inp.parentElement; const old = lbl.firstChild.textContent;
+    lbl.firstChild.textContent = 'Uploading…';
+    try {
+      const file = await readFile(f, 10);
+      const j = await api('staff.upload', { id: p.id, item: inp.dataset.up, file });
+      replacePartner(j.partner); renderList(); renderDrawer(); loadActivity(p.id); refreshStats();
+      toast('File attached');
+    } catch (e) { lbl.firstChild.textContent = old; toast(e.message, true); }
+  });
+}
+
+function folderLine(p) {
+  if (isConfirmed(p)) return `Drive folder: <b>${esc(p.bpFolderId ? folderName(p.bpFolderId) || 'Saved folder' : p.company + ' (new)')}</b> ✓`;
+  return `<span style="color:var(--warn);font-weight:600">Drive folder not confirmed</span> <span class="muted">– uploads wait in a holding folder until you confirm</span>`;
+}
+
+function folderSection(p) {
+  const conf = isConfirmed(p);
+  const suggested = conf ? (p.bpFolderId || 'new') : (p.bpFolderId || (matchFolder(p.company) || {}).id || '');
+  return `<div class="sec">
+    <h3>Drive folder ${conf ? chip('Confirmed', 'ok') : chip('Needs confirmation', 'warn')}</h3>
+    <div class="folderbox ${conf ? 'ok' : 'warn'}">
+      <label class="f">Save ${esc(p.company)}'s documents to</label>
+      <select class="in-f" id="fdSel">${folderOptions(suggested, p.company)}</select>
+      <div class="path" id="fdPath">${suggested ? folderPath(p, suggested) : '<span class="muted">Pick the folder from Build Partners - All</span>'}</div>
+      <div style="display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap">
+        <button class="btn sm ${conf ? '' : 'primary'}" id="fdBtn">${conf ? 'Change folder' : 'Confirm this folder'}</button>
+        <span class="small muted">${conf ? 'Already-uploaded files move to the new folder automatically.' : (!suggested ? 'No matching folder found.' : 'Suggested from the company name – please check it.')}</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+function refreshStats() {
+  // light re-render of the counters without losing the drawer
+  const c = counts();
+  const map = { active: c.active, review: c.review, missing: c.missing, training: c.training, followup: c.followup, compliant: c.compliant };
+  $$('.stat').forEach(el => { const n = map[el.dataset.filter]; if (n !== undefined) $('.n', el).textContent = n; });
+}
+
+async function loadActivity(id) {
+  try {
+    const j = await api('staff.activity', { id });
+    const box = $('#act'); if (!box || S.sel !== id) return;
+    box.innerHTML = j.activity.length ? j.activity.map(a => `
+      <div class="act"><b>${esc(a.action)}</b>${a.detail ? ' – ' + esc(a.detail) : ''}<div class="muted">${fmtWhen(a.at)} · ${esc(a.actor)}</div></div>`).join('')
+      : '<span class="muted small">No activity yet.</span>';
+  } catch (e) { const box = $('#act'); if (box) box.innerHTML = `<span class="muted small">${esc(e.message)}</span>`; }
+}
+
+async function busy(btn, fn) {
+  const html = btn.innerHTML; btn.disabled = true; btn.innerHTML = '<span class="spin"></span>';
+  try { await fn(); } catch (e) { toast(e.message, true); }
+  finally { if (document.body.contains(btn)) { btn.disabled = false; btn.innerHTML = html; } }
+}
+
+/* ---------- add modal ---------- */
+function addRowHTML() {
+  return `<div class="addrow">
+    <input class="in-f" placeholder="Company name *" data-a="company" list="bpFolderList">
+    <input class="in-f" placeholder="Contact name" data-a="contact">
+    <input class="in-f" type="email" placeholder="Email *" data-a="email">
+    <select class="in-f need" data-a="folder" title="Drive folder in Build Partners - All">${folderOptions('', '')}</select>
+    <button class="btn ghost sm" data-rm title="Remove row" aria-label="Remove row">×</button>
+  </div>`;
+}
+function openAdd() {
+  document.body.style.overflow = 'hidden';
+  layer.innerHTML = `
+  <div class="scrim" data-close></div>
+  <div class="modal wide" role="dialog" aria-label="New Designee Request">
+    <div class="mh"><h2>New Designee Request</h2><button class="x" data-close>×</button></div>
+    <div class="mb">
+      <datalist id="bpFolderList">${S.folders.map(f => `<option value="${esc(f.name)}">`).join('')}</datalist>
+      <p class="small muted" style="margin:0 0 10px">Type the company and the Drive folder is suggested from Build Partners - All. <b>Check each folder before adding</b> – that's where their documents will be saved.</p>
+      <div id="rows">${addRowHTML()}</div>
+      <button class="btn sm" id="moreBtn">+ Add another</button>
+      <div style="height:18px"></div>
+      <label class="opt"><input type="radio" name="mode" value="invite" checked><span><b>Send request email now</b><span class="muted small">For new Build Partners. They get the Illinois Shines steps plus their own upload link.</span></span></label>
+      <label class="opt"><input type="radio" name="mode" value="track"><span><b>Track only – already emailed</b><span class="muted small">For partners who already got the email. No email is sent; you can copy or send their upload link later.</span></span></label>
+    </div>
+    <div class="mf"><button class="btn" data-close>Cancel</button><button class="btn primary" id="addGo">Create request</button></div>
+  </div>`;
+  bindClose();
+  const bindRows = () => {
+    $$('[data-rm]', layer).forEach(b => b.onclick = () => { if ($$('.addrow', layer).length > 1) b.parentElement.remove(); });
+    $$('.addrow', layer).forEach(r => {
+      const co = $('[data-a=company]', r), sel = $('[data-a=folder]', r);
+      if (co._bound) return; co._bound = true;
+      const suggest = () => {
+        if (sel.dataset.touched) return;
+        const m = matchFolder(co.value);
+        sel.innerHTML = folderOptions(m ? m.id : (co.value.trim() ? 'new' : ''), co.value.trim());
+        sel.classList.toggle('need', !sel.value);
+      };
+      co.addEventListener('input', suggest);
+      sel.onchange = () => { sel.dataset.touched = '1'; sel.classList.toggle('need', !sel.value); };
+    });
+  };
+  bindRows();
+  $('#moreBtn').onclick = () => { $('#rows').insertAdjacentHTML('beforeend', addRowHTML()); bindRows(); };
+  $('#addGo').onclick = async () => {
+    const partners = $$('.addrow', layer).map(r => ({
+      company: $('[data-a=company]', r).value.trim(), contact: $('[data-a=contact]', r).value.trim(),
+      email: $('[data-a=email]', r).value.trim(), folderChoice: $('[data-a=folder]', r).value
+    })).filter(x => x.company || x.email);
+    const bad = partners.find(x => !x.company || !x.email);
+    if (!partners.length || bad) return toast('Each row needs a company name and an email.', true);
+    const noFolder = partners.find(x => !x.folderChoice);
+    if (noFolder) return toast(`Choose a Drive folder for ${noFolder.company}.`, true);
+    const summary = partners.map(x => `• ${x.company}  →  ${x.folderChoice === 'new' ? 'NEW folder "' + x.company + '"' : folderName(x.folderChoice)}`).join('\n');
+    if (!confirm('Create Designee request(s)? Please confirm the Drive folders:\n\n' + summary + '\n\nDocuments will be saved in each folder\'s "Illinois Shines Designee" subfolder.')) return;
+    const sendInvite = $('input[name=mode]:checked', layer).value === 'invite';
+    await busy($('#addGo'), async () => {
+      const j = await api('staff.add', { partners, sendInvite, baseUrl: baseUrl() });
+      const r = j.results;
+      const added = r.filter(x => x.id).length, skipped = r.filter(x => x.skipped), failed = r.filter(x => x.inviteError);
+      closeLayer(); await loadDash();
+      let msg = `${added} request(s) created` + (sendInvite ? `, ${r.filter(x => x.invited).length} emailed` : '');
+      if (skipped.length) msg += ` · ${skipped.length} skipped (already in portal)`;
+      if (failed.length) msg += ` · invite failed for ${failed.map(x => x.company).join(', ')}: ${failed[0].inviteError}`;
+      toast(msg, failed.length > 0);
+    });
+  };
+}
+
+/* ---------- reminder preview ---------- */
+async function openReminderPreview(p) {
+  const back = () => { renderDrawer(); loadActivity(p.id); };
+  layer.innerHTML = `<div class="scrim"></div><div class="modal wide" role="dialog" aria-label="Reminder preview">
+    <div class="mh"><h2>Reminder to ${esc(p.company)}</h2><button class="x" id="pvX">×</button></div>
+    <div class="mb">
+      <label class="f" for="pvNote">Add a personal note (optional)</label>
+      <textarea class="in-f" id="pvNote" placeholder="e.g. Thanks for sending the PDF! We just need your Good Standing statement now.">${esc(p.partnerMessage)}</textarea>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin:14px 0 8px;gap:10px;flex-wrap:wrap">
+        <div class="small muted" id="pvTo">Loading preview…</div>
+        <button class="btn sm" id="pvRefresh">Update preview</button>
+      </div>
+      <div class="emailprev" id="pvBody"><span class="spin"></span></div>
+    </div>
+    <div class="mf"><button class="btn" id="pvBack">Back</button><button class="btn sun" id="pvSend">Send reminder</button></div>
+  </div>`;
+  $('#pvX').onclick = back; $('#pvBack').onclick = back;
+  const load = async () => {
+    try {
+      const j = await api('staff.remind', { id: p.id, baseUrl: baseUrl(), note: $('#pvNote').value, preview: true });
+      $('#pvTo').innerHTML = `To <b>${esc(j.preview.to)}</b> · ${esc(j.preview.subject)}`;
+      $('#pvBody').innerHTML = j.preview.html;
+      $$('#pvBody a').forEach(a => { a.target = '_blank'; a.rel = 'noopener'; });
+    } catch (e) { $('#pvBody').innerHTML = `<div class="err">${esc(e.message)}</div>`; $('#pvSend').disabled = true; }
+  };
+  $('#pvRefresh').onclick = load;
+  $('#pvSend').onclick = () => busy($('#pvSend'), async () => {
+    const j = await api('staff.remind', { id: p.id, baseUrl: baseUrl(), note: $('#pvNote').value });
+    replacePartner(j.partner); renderList(); refreshStats(); back();
+    toast('Reminder sent to ' + p.email);
+  });
+  load();
+}
+
+/* ---------- test panel ---------- */
+function openTest() {
+  document.body.style.overflow = 'hidden';
+  const tests = S.partners.filter(isTest);
+  layer.innerHTML = `
+  <div class="scrim" data-close></div>
+  <div class="modal" role="dialog" aria-label="Test the portal">
+    <div class="mh"><h2>Test the portal</h2><button class="x" data-close>×</button></div>
+    <div class="mb">
+      <div class="sec">
+        <h3>1 · System check</h3>
+        <div class="small muted" style="margin-bottom:10px">Checks the database, the Build Partners - All folder and saving permission, email sending, and settings. Nothing is sent or changed.</div>
+        <button class="btn sm primary" id="stBtn">Run system check</button>
+        <div id="stOut" style="margin-top:10px"></div>
+      </div>
+      <div class="sec">
+        <h3>2 · Full test run</h3>
+        <div class="small muted" style="margin-bottom:10px">Creates a <b>TEST</b> Build Partner and emails the real invite to <b>${esc(S.email)}</b>. Open the link, upload any sample files and see them arrive here. Test uploads go to a separate TEST folder – never Build Partners - All – and compliance is not emailed.</div>
+        <button class="btn sm sun" id="tiBtn">Send me a test invite</button>
+        <div id="tiOut" style="margin-top:10px"></div>
+      </div>
+      ${tests.length ? `<div class="sec"><h3>Your test runs</h3>${tests.map(t => `
+        <div class="chk"><div style="flex:1;min-width:0"><b>${esc(t.company)}</b><div class="d">${esc(t.id)} · created ${fmtDate(t.createdAt)}</div></div>
+        <a class="btn sm" href="${esc(baseUrl() + '?t=' + t.token)}" target="_blank" rel="noopener">Open upload page</a>
+        <button class="btn sm" data-open="${esc(t.id)}">Review</button></div>`).join('')}</div>` : ''}
+    </div>
+    <div class="mf"><button class="btn" data-close>Close</button></div>
+  </div>`;
+  bindClose();
+  $$('[data-open]', layer).forEach(b => b.onclick = () => openDrawer(b.dataset.open));
+  $('#stBtn').onclick = () => busy($('#stBtn'), async () => {
+    $('#stOut').innerHTML = '<span class="small muted">Checking… this can take a few seconds.</span>';
+    const t0 = performance.now();
+    const j = await api('staff.selfTest');
+    const secs = ((performance.now() - t0) / 1000).toFixed(1);
+    const bad = j.checks.filter(c => !c.ok).length;
+    $('#stOut').innerHTML = `
+      <div class="note" style="margin-bottom:8px;${bad ? 'background:var(--bad-soft);border-color:#f3b4ad' : 'background:var(--ok-soft);border-color:#a9d9bd'}">
+        <b>${bad ? bad + ' item(s) need attention' : 'All checks passed'}</b> · round trip ${secs}s</div>
+      ${j.checks.map(c => `<div class="chk"><span class="ic ${c.ok ? 'ok' : 'bad'}">${c.ok ? '✓' : '!'}</span>
+        <div><b>${esc(c.name)}</b><div class="d">${esc(c.detail)}</div></div></div>`).join('')}`;
+  });
+  $('#tiBtn').onclick = () => busy($('#tiBtn'), async () => {
+    const j = await api('staff.testInvite', { baseUrl: baseUrl() });
+    replacePartner(j.partner); renderList(); refreshStats();
+    $('#tiOut').innerHTML = `<div class="note" style="background:var(--ok-soft);border-color:#a9d9bd">
+      <b>Test invite sent to ${esc(S.email)}.</b> Check your inbox for the email, or
+      <a href="${esc(j.link)}" target="_blank" rel="noopener">open the test upload page</a> now. Uploads will show under <b>${esc(j.partner.company)}</b> in the list.</div>`;
+  });
+}
+
+/* ---------- settings ---------- */
+function openSettings() {
+  document.body.style.overflow = 'hidden';
+  layer.innerHTML = `
+  <div class="scrim" data-close></div>
+  <div class="modal" role="dialog" aria-label="Deadlines">
+    <div class="mh"><h2>Deadlines</h2><button class="x" data-close>×</button></div>
+    <div class="mb">
+      <div class="grid2">
+        <div><label class="f">Submit to GoodPWR Solar by</label><input class="in-f" type="date" id="sReg" value="${esc(S.config.regDeadline)}"></div>
+        <div><label class="f">Illinois Shines registration deadline</label><input class="in-f" type="date" id="sSt" value="${esc(S.config.stateDeadline || '')}"></div>
+        <div><label class="f">Training due</label><input class="in-f" type="date" id="sTr" value="${esc(S.config.trainingDeadline)}"></div>
+      </div>
+      <p class="muted small" style="margin:12px 0 0">These dates appear on the dashboard, in request and reminder emails, and on each partner's upload page. Partners are marked Overdue after the GoodPWR date. Update them each year.</p>
+    </div>
+    <div class="mf"><button class="btn" data-close>Cancel</button><button class="btn primary" id="sGo">Save</button></div>
+  </div>`;
+  bindClose();
+  $('#sGo').onclick = () => busy($('#sGo'), async () => {
+    const j = await api('staff.settings', { regDeadline: $('#sReg').value, stateDeadline: $('#sSt').value, trainingDeadline: $('#sTr').value });
+    S.config = j.config; closeLayer(); renderDash(); toast('Deadlines saved');
+  });
+}
+
+/* ====================================================================
+   BUILD PARTNER UPLOAD PAGE
+   ==================================================================== */
+async function bootPartner(t) {
+  app.innerHTML = `<div class="loading"><span class="spin"></span> Loading your page…</div>`;
+  try {
+    const j = await api('partner.get', { t });
+    S.pp = Object.assign(j, { t, files: {}, justSent: null });
+    renderPartner();
+  } catch (e) {
+    app.innerHTML = `<div class="center"><div class="card login">${brandHTML(false)}<h1>Link unavailable</h1><div class="err">${esc(e.message)}</div></div></div>`;
+  }
+}
+
+function pStatusLine(s, k) {
+  if (s === 'verified') return `<div class="locked">✓ Accepted by GoodPWR Solar</div>`;
+  if (s === 'received') return `<div class="small" style="margin-top:8px;color:var(--info);font-weight:600">${k === 'reg' ? 'Confirmed – GoodPWR Solar will check it against your Designee PDF.' : 'Received – GoodPWR Solar is reviewing it. You can replace it below if needed.'}</div>`;
+  if (s === 'rejected') return `<div class="small" style="margin-top:8px;color:var(--bad);font-weight:600">${k === 'reg' ? 'We could not confirm your registration. Make sure you selected GOODPWR LLC (ID 2167), then tick the box again.' : 'Please upload a new copy' + (k === 'gs' ? ' (issued within the past 12 months)' : '') + '.'}</div>`;
+  if (s === 'na') return `<div class="small" style="margin-top:8px;color:var(--mute);font-weight:600">Marked as not applicable to your business.</div>`;
+  return '';
+}
+
+function renderPartner() {
+  const { partner: p, config: cfg, info } = S.pp;
+  const done = ['reg', 'pdf', 'gs', 'mes', 'training'].filter(k => ['verified', 'received', 'na'].includes(p[k + 'Status'])).length;
+  const drop = (k, accept) => {
+    const f = S.pp.files[k];
+    return `<div class="drop ${f ? 'has' : ''}">
+      <label class="btn sm">${f ? 'Change file' : 'Choose file'}<input type="file" class="hidden" data-pf="${k}" accept="${accept}"></label>
+      <span class="fn">${f ? esc(f.name) : `<span class="muted">No file selected · max ${info.maxMb} MB</span>`}</span>
+    </div>`;
+  };
+  const open = k => p[k + 'Status'] !== 'verified';
+  const isDone = k => ['verified', 'received', 'na'].includes(p[k + 'Status']);
+
+  app.innerHTML = `
+  <div class="top"><div class="in"><div class="brand">${brandHTML(true)}${ilHTML('Illinois Shines Designee Registration')}</div></div></div>
+  <main class="pwrap">
+    <div class="cobrand">
+      <img class="gplogo" src="${esc(LOGO_URL || GP_LOGO)}" alt="GOODPWR">
+      <div><div class="who">GOOD<b>PWR</b> Solar</div><div class="av">Approved Vendor · ID ${esc(info.avId)}</div></div>
+      <div class="il">${EMBLEM}<span>Illinois Shines<br>Designee Registration</span></div>
+    </div>
+    <section class="hero">
+      <h1>Illinois Shines Designee Registration</h1>
+      <div class="co-name">For <b>${esc(p.company)}</b>${p.contact ? ' · ' + esc(p.contact) : ''}</div>
+      <div class="progress"><i style="width:${done * 20}%"></i></div>
+      <div class="small muted">${done} of 5 items submitted · You must be fully compliant before performing Illinois installation work for GoodPWR Solar.</div>
+      <div class="pdl">
+        <div class="pill">Submit to GoodPWR by <b>${fmtDate(cfg.regDeadline)}</b></div>
+        <div class="pill">Illinois Shines deadline <b>${fmtDate(cfg.stateDeadline || cfg.regDeadline)}</b></div>
+        <div class="pill">Training due <b>${fmtDate(cfg.trainingDeadline)}</b></div>
+      </div>
+      ${S.pp.justSent ? `<div class="banner ok"><b>Thank you!</b> We received: ${esc(S.pp.justSent.join(', '))}.${done < 5 ? ' Please come back to this page to send the remaining items.' : ' GoodPWR Solar will review your documents.'}</div>` : ''}
+      ${p.partnerMessage ? `<div class="banner msg"><b>Message from GoodPWR Solar:</b> ${esc(p.partnerMessage)}</div>` : ''}
+    </section>
+
+    <div class="card step-card ${isDone('reg') ? 'done' : ''}">
+      <div class="step-head"><h2><span class="num">1</span>Register online with Illinois Shines</h2></div>
+      <p>Sign the Illinois Shines Designee Registration Form online. Select <b>${esc(info.avName)}</b> (Approved Vendor ID <b>${esc(info.avId)}</b>) as your Approved Vendor.</p>
+      <p style="margin-top:12px"><a class="btn primary" href="${esc(info.officialUrl)}" target="_blank" rel="noopener">Open the Illinois Shines form ↗</a></p>
+      ${pStatusLine(p.regStatus, 'reg')}
+      ${['missing', 'rejected', ''].includes(p.regStatus || 'missing') ? `
+        <label class="check"><input type="checkbox" id="regDone" ${S.pp.regDone ? 'checked' : ''}><span>We registered online and selected ${esc(info.avName)} (ID ${esc(info.avId)}) as our Approved Vendor.</span></label>` : ''}
+    </div>
+
+    <div class="card step-card ${isDone('pdf') ? 'done' : ''}">
+      <h2><span class="num">2</span>Upload your completed Designee Registration Form</h2>
+      <p class="muted">The PDF copy of your completed form, showing your connection to ${esc(info.avName)}.</p>
+      ${pStatusLine(p.pdfStatus, 'pdf')}
+      ${open('pdf') ? drop('pdf', '.pdf') : ''}
+    </div>
+
+    <div class="card step-card ${isDone('gs') ? 'done' : ''}">
+      <h2><span class="num">3</span>Illinois Secretary of State Statement of Good Standing</h2>
+      <p class="muted">Must be issued within the past 12 months (on or after ${fmtDate(yearAgo())}).</p>
+      ${pStatusLine(p.gsStatus, 'gs')}
+      ${open('gs') ? `
+        <div style="margin-top:12px;max-width:260px"><label class="f" for="gsDate">Date issued</label><input class="in-f" type="date" id="gsDate" value="${esc(S.pp.gsDate || (p.gsStatus === 'rejected' ? '' : p.gsDate) || '')}" max="${todayStr()}"></div>
+        ${drop('gs', '.pdf,.png,.jpg,.jpeg,.heic')}` : ''}
+    </div>
+
+    <div class="card step-card ${isDone('training') ? 'done' : ''}">
+      <h2><span class="num">4</span>Complete all required training modules</h2>
+      <p class="muted">Training must be completed by ${fmtDate(cfg.trainingDeadline)}.</p>
+      ${pStatusLine(p.trainingStatus, 'training')}
+      ${open('training') ? `
+        <label class="check"><input type="checkbox" id="trDone" ${S.pp.trDone ? 'checked' : ''}><span>We have completed all required Illinois Shines training modules.</span></label>
+        <div style="margin-top:10px;max-width:260px"><label class="f" for="trDate">Date completed</label><input class="in-f" type="date" id="trDate" value="${esc(S.pp.trDate || p.trainingDate || '')}" max="${todayStr()}"></div>
+        <div class="small muted" style="margin-top:10px">Certificate or screenshot (optional)</div>
+        ${drop('training', '.pdf,.png,.jpg,.jpeg,.heic')}` : ''}
+    </div>
+
+    <div class="card step-card ${isDone('mes') ? 'done' : ''}">
+      <h2><span class="num">5</span>MES Compliance Plan or EEC Application</h2>
+      <p class="muted">Submit a Minimum Equity Standard (MES) Compliance Plan or an Equity Eligible Contractor (EEC) application, if your business qualifies.</p>
+      ${pStatusLine(p.mesStatus, 'mes')}
+      ${open('mes') && p.mesStatus !== 'na' ? `
+        ${drop('mes', '.pdf,.png,.jpg,.jpeg,.heic,.doc,.docx')}
+        <label class="check"><input type="checkbox" id="mesNA" ${S.pp.mesNA ? 'checked' : ''}><span>This does not apply – our business does not qualify for MES or EEC.</span></label>` : ''}
+    </div>
+
+    <div class="submit-bar"><button class="btn sun" id="pSubmit">Submit to GoodPWR Solar</button></div>
+    <p class="small muted" style="text-align:center">Questions? Email <a href="mailto:${esc(info.contact)}">${esc(info.contact)}</a></p>
+  </main>`;
+
+  // keep typed values when re-rendering
+  const keep = () => {
+    if ($('#gsDate')) S.pp.gsDate = $('#gsDate').value;
+    if ($('#trDone')) S.pp.trDone = $('#trDone').checked;
+    if ($('#trDate')) S.pp.trDate = $('#trDate').value;
+    if ($('#mesNA')) S.pp.mesNA = $('#mesNA').checked;
+    if ($('#regDone')) S.pp.regDone = $('#regDone').checked;
+  };
+  $$('[data-pf]').forEach(inp => inp.onchange = () => {
+    const f = inp.files[0]; if (!f) return;
+    if (f.size > info.maxMb * 1024 * 1024) { toast(`${f.name} is larger than ${info.maxMb} MB.`, true); return; }
+    if (inp.dataset.pf === 'pdf' && !/\.pdf$/i.test(f.name)) { toast('Please upload the form as a PDF.', true); return; }
+    keep(); S.pp.files[inp.dataset.pf] = f;
+    if (inp.dataset.pf === 'mes') S.pp.mesNA = false; S.pp.regDone = false;
+    renderPartner();
+  });
+  if ($('#mesNA')) $('#mesNA').onchange = e => { keep(); if (e.target.checked) delete S.pp.files.mes; renderPartner(); };
+  ['#gsDate', '#trDate', '#trDone', '#regDone'].forEach(s => { if ($(s)) $(s).onchange = keep; });
+  $('#pSubmit').onclick = submitPartner;
+}
+
+async function submitPartner() {
+  const st = S.pp, info = st.info;
+  const gsDate = $('#gsDate') ? $('#gsDate').value : '';
+  const trainingDone = $('#trDone') ? $('#trDone').checked : false;
+  const trainingDate = $('#trDate') ? $('#trDate').value : '';
+  const mesNA = $('#mesNA') ? $('#mesNA').checked : false;
+  const regDone = $('#regDone') ? $('#regDone').checked : false;
+  if (st.files.gs) {
+    if (!gsDate) return toast('Enter the date your Good Standing statement was issued.', true);
+    if (gsDate < yearAgo()) return toast('The Good Standing statement must be issued within the past 12 months.', true);
+  }
+  if (st.files.training && !trainingDone) return toast('Check the training box to confirm you completed all modules.', true);
+  const hasAny = Object.keys(st.files).length || mesNA || trainingDone || regDone;
+  if (!hasAny) return toast('Add at least one document or check a box before submitting.', true);
+
+  const btn = $('#pSubmit');
+  await busy(btn, async () => {
+    btn.innerHTML = '<span class="spin"></span>&nbsp; Uploading…';
+    const files = {};
+    for (const k of Object.keys(st.files)) files[k] = await readFile(st.files[k], info.maxMb);
+    const j = await api('partner.submit', { t: st.t, files, gsDate, mesNA, trainingDone, trainingDate, regDone });
+    S.pp.partner = j.partner; S.pp.files = {}; S.pp.justSent = j.received;
+    S.pp.gsDate = ''; S.pp.trDone = false; S.pp.trDate = ''; S.pp.mesNA = false;
+    renderPartner(); window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+</script>
+<script>
+/* "All portals" shortcut back to the GoodPWR Solar Partner Hub (staff views only) */
+(function(){var a=document.createElement('a');a.href='./';a.textContent='\u2302 All portals';a.id='gp-hub-pill';
+a.style.cssText='position:fixed;left:14px;bottom:14px;z-index:15;background:#141414;color:#fff;font:600 13px/1 Inter,system-ui,sans-serif;padding:9px 13px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25);opacity:.9';
+var show=function(){return !/[?&]t=/.test(location.search);};var u=function(){a.style.display=show()?'block':'none';};document.body.appendChild(a);u();window.addEventListener('hashchange',u);})();
+</script>
+</body>
+</html>
