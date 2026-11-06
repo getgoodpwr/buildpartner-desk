@@ -208,6 +208,8 @@ div.alert.err{display:block;background:var(--err-soft);border-color:#f3c3be;colo
 .drop span{font-size:13px;color:var(--muted)}
 .upl.has-err{border-color:var(--err)}
 .w9-form{border-top:1px solid var(--line-2);margin-top:14px;padding-top:4px}
+.fix-note{background:#fff8ea;border-left:3px solid var(--gold);padding:10px 12px;border-radius:6px;margin:6px 0 12px;font-size:14px}
+.docs li.d-Replaced{opacity:.65}
 .w9-form .grid .field{padding:8px 0}
 [data-w9f].has-err .input,[data-w9f].has-err .choices{outline:2px solid var(--err);outline-offset:2px;border-radius:8px}
 [data-w9f] .err{color:var(--err);font-size:13px;margin-top:4px}
@@ -374,7 +376,7 @@ tr.needs td:first-child{box-shadow:inset 4px 0 0 #e0902a}
 .chip.More-Information-Required{background:#fdebd7;color:#8a4310}
 .chip.Approved,.chip.Completed,.chip.Fulfilled{background:var(--ok-soft);color:var(--ok)}
 .chip.Rejected,.chip.Revoked{background:var(--err-soft);color:var(--err)}
-.chip.Archived,.chip.Expired,.chip.Not-Needed{background:#ecebe8;color:#6b6760}
+.chip.Archived,.chip.Expired,.chip.Not-Needed,.chip.Replaced{background:#ecebe8;color:#6b6760}
 dialog.drawer{position:fixed;inset:0 0 0 auto;margin:0;height:100%;max-height:100%;width:min(680px,100%);border:none;padding:0;background:var(--paper);box-shadow:-10px 0 40px rgba(0,0,0,.18)}
 dialog.drawer::backdrop{background:rgba(34,32,29,.45)}
 .drawer-head{position:sticky;top:0;background:var(--char);color:var(--bone);padding:16px 20px;display:flex;gap:12px;align-items:flex-start;z-index:2}
@@ -531,6 +533,16 @@ dialog.drawer::backdrop{background:rgba(34,32,29,.45)}
   </section>
 
   <!-- ===================== LOCKED (no invitation) ===================== -->
+  <section id="view-fix" hidden>
+    <div class="form-wrap">
+      <div class="form-head">
+        <img data-logo alt="" aria-hidden="true">
+        <div><h1>Update your documents</h1><p id="f-sub"></p></div>
+      </div>
+      <div class="form-body" id="f-body"></div>
+    </div>
+  </section>
+
   <section id="view-locked" hidden>
     <div class="lock">
       <img data-logo alt="GoodPWR logo">
@@ -1180,6 +1192,17 @@ const PDFLIB_URL = 'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-li
 
 const W9 = {
   mode: 'online', built: null, dirty: true,
+  /* Where the finished W-9 goes. Default: the onboarding form. The corrected-documents page swaps this. */
+  host: {
+    paint() { Onb.paintUploads(); },
+    hasBuilt() { return Onb.uploads.some(u => u.category === 'w9' && u.w9 && u.status !== 'bad'); },
+    async replace(file) {
+      for (const u of Onb.uploads.filter(u => u.category === 'w9')) await Onb.removeUpload(u.id);
+      Onb.addFiles('w9', [file]);
+      const it = Onb.uploads.filter(u => u.category === 'w9').pop(); if (it) it.w9 = true;
+    },
+    name() { return readValues($('#onboarding-form'), Onb.allFields).businessName || ''; }
+  },
   CLASSES: [['individual', 'Individual / sole proprietor'], ['ccorp', 'C corporation'], ['scorp', 'S corporation'], ['partnership', 'Partnership'], ['trust', 'Trust / estate'], ['llc', 'LLC'], ['other', 'Other']],
 
   html() {
@@ -1241,8 +1264,7 @@ const W9 = {
   /** Pre-fills line 1 from the business name the partner already entered. */
   prefill() {
     const n = $('#w9-name'); if (!n || n.value) return;
-    const vals = readValues($('#onboarding-form'), Onb.allFields);
-    if (vals.businessName) n.value = vals.businessName;
+    const v = this.host.name(); if (v) n.value = v;
   },
 
   tinType() { const r = $('input[name="w9tin"]:checked'); return r ? r.value : ''; },
@@ -1251,8 +1273,8 @@ const W9 = {
   setMode(m) {
     this.mode = m;
     $('#w9-form').hidden = m !== 'online';
-    const desc = $('[data-upl="w9"] p.desc'); if (desc) desc.textContent = m === 'online' ? 'Fill out the IRS Form W-9 below and click “Create my W-9”.' : 'Signed IRS Form W-9 for the business.';
-    Onb.paintUploads();
+    const desc = $('[data-upl="w9"] p.desc'); if (desc && !desc.hasAttribute('data-keep')) desc.textContent = m === 'online' ? 'Fill out the IRS Form W-9 below and click “Create my W-9”.' : 'Signed IRS Form W-9 for the business.';
+    this.host.paint();
   },
 
   syncCls() {
@@ -1271,7 +1293,7 @@ const W9 = {
   },
 
   /** True when the online W-9 still has to be (re)created before moving on. */
-  pending() { return this.mode === 'online' && (this.dirty || !Onb.uploads.some(u => u.category === 'w9' && u.w9 && u.status !== 'bad')); },
+  pending() { return this.mode === 'online' && (this.dirty || !this.host.hasBuilt()); },
 
   read() {
     const v = id => ($('#w9-' + id) || {}).value ? $('#w9-' + id).value.trim() : '';
@@ -1345,11 +1367,9 @@ const W9 = {
       const bytes = await this.makePdf(w);
       const safe = w.name.replace(/[^\w .&-]+/g, '').trim().slice(0, 60) || 'W-9';
       const file = new File([bytes], 'W-9 – ' + safe + '.pdf', { type: 'application/pdf' });
-      for (const u of Onb.uploads.filter(u => u.category === 'w9')) await Onb.removeUpload(u.id);
       if (this.built) URL.revokeObjectURL(this.built);
       this.built = URL.createObjectURL(file);
-      Onb.addFiles('w9', [file]);
-      const it = Onb.uploads.filter(u => u.category === 'w9').pop(); if (it) it.w9 = true;
+      await this.host.replace(file);
       this.dirty = false;
       st.innerHTML = `<span style="color:var(--ok);font-weight:700">✓ W-9 created and signed.</span> <a href="${this.built}" target="_blank" rel="noopener">Preview it</a>`;
       $('#w9-tin').value = '';   // the TIN is now only inside the PDF
@@ -1360,6 +1380,158 @@ const W9 = {
     } finally { buttonBusy(b, false); }
   }
 };
+
+/* ============================================================================
+   CORRECTED DOCUMENTS — opened from the "Upload corrected documents" button in
+   a More Information Required email (?fix=…#fix). Only the flagged documents
+   are shown; each corrected file replaces the old one on the same application.
+   ========================================================================== */
+const Fix = {
+  token: '', data: null, sessionId: '', items: {},
+
+  start(token, data) {
+    this.token = token; this.data = data; this.sessionId = uuid(); this.items = {};
+    ['home', 'prospect', 'onboarding', 'locked'].forEach(v => { $('#view-' + v).hidden = true; });
+    $('#view-fix').hidden = false;
+    document.body.classList.add('invite-mode');
+    document.title = 'Update your documents · GoodPWR Build Partner Portal';
+    this.render();
+  },
+
+  render() {
+    const d = this.data, ext = CFG.uploads.allowedExtensions.map(x => '.' + x).join(',');
+    $('#f-sub').textContent = (d.company ? d.company + ' · ' : '') + d.referenceId;
+    if (!d.docs.length) {
+      $('#f-body').innerHTML = '<div class="alert ok" style="margin-top:16px"><b>Nothing to update.</b> All requested documents have already been received — thank you! We’ll be in touch.</div>';
+      return;
+    }
+    $('#f-body').innerHTML = `<p style="margin:16px 0 4px">Hi ${esc(d.contact || 'there')}, our team reviewed your onboarding and needs ${d.docs.length === 1 ? 'one document' : d.docs.length + ' documents'} updated. Add the corrected file${d.docs.length === 1 ? '' : 's'} below and click <b>Send corrected documents</b>. You don’t need to fill out the whole form again.</p>
+      ${d.message ? `<div class="alert info" style="margin:12px 0">${esc(d.message).replace(/\n/g, '<br>')}</div>` : ''}
+      <div class="limits">Accepted: <b>${CFG.uploads.allowedExtensions.map(x => x.toUpperCase()).join(', ')}</b> · max <b>${CFG.uploads.maxFileMb} MB</b> per file.</div>
+      ${d.docs.map(x => `<div class="upl" data-fixdoc="${esc(x.id)}"${x.category === 'w9' ? ' data-upl="w9"' : ''}>
+        <div class="upl-head"><h3>${esc(x.label)}</h3><span class="chip ${esc(String(x.status).replace(/[^A-Za-z]+/g, '-'))}">${esc(x.status)}</span></div>
+        <p class="desc" data-keep>${x.file ? 'Your earlier file: ' + esc(x.file) : ''}</p>
+        ${x.note ? `<div class="fix-note"><b>What we need:</b> ${esc(x.note).replace(/\n/g, '<br>')}</div>` : ''}
+        ${x.category === 'w9' ? W9.html() : ''}
+        <div class="drop" tabindex="0" role="button" data-fixdrop="${esc(x.id)}"><b>Drag the corrected file here or tap to choose</b><span>1 file</span></div>
+        <input type="file" hidden accept="${ext},image/jpeg,image/png,application/pdf" data-fixpick="${esc(x.id)}">
+        <ul class="files" data-fixlist="${esc(x.id)}"></ul>
+      </div>`).join('')}
+      <div id="f-alert"></div>
+      <div class="row" style="margin-top:16px"><button type="button" class="btn btn-dark" id="f-send">Send corrected documents</button></div>`;
+    const box = $('#f-body');
+    box.addEventListener('click', e => {
+      const dr = e.target.closest('[data-fixdrop]'); if (dr) $(`[data-fixpick="${dr.dataset.fixdrop}"]`, box).click();
+      const rm = e.target.closest('[data-fixrm]'); if (rm) this.remove(rm.dataset.fixrm);
+      const rt = e.target.closest('[data-fixretry]'); if (rt) { const it = this.items[rt.dataset.fixretry]; if (it && it.file) this.upload(rt.dataset.fixretry, it.file, it.w9); }
+      if (e.target.closest('#f-send')) this.submit(e.target.closest('#f-send'));
+    });
+    box.addEventListener('keydown', e => { const dr = e.target.closest('[data-fixdrop]'); if (dr && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); $(`[data-fixpick="${dr.dataset.fixdrop}"]`, box).click(); } });
+    box.addEventListener('change', e => { const p = e.target.closest('[data-fixpick]'); if (p && p.files[0]) { this.upload(p.dataset.fixpick, p.files[0], false); p.value = ''; } });
+    ['dragenter', 'dragover'].forEach(ev => box.addEventListener(ev, e => { const dr = e.target.closest('[data-fixdrop]'); if (dr) { e.preventDefault(); dr.classList.add('over'); } }));
+    ['dragleave', 'drop'].forEach(ev => box.addEventListener(ev, e => { const dr = e.target.closest('[data-fixdrop]'); if (dr) { e.preventDefault(); dr.classList.remove('over'); if (ev === 'drop' && e.dataTransfer.files[0]) this.upload(dr.dataset.fixdrop, e.dataTransfer.files[0], false); } }));
+    const w9doc = d.docs.find(x => x.category === 'w9');
+    if (w9doc) {
+      W9.mode = 'online';
+      W9.host = {
+        paint: () => this.paint(),
+        hasBuilt: () => { const it = this.items[w9doc.id]; return !!(it && it.w9 && it.status !== 'bad'); },
+        replace: file => this.upload(w9doc.id, file, true),
+        name: () => d.company || ''
+      };
+      W9.init(box); W9.prefill();
+    }
+    this.paint();
+  },
+
+  paint() {
+    this.data.docs.forEach(x => {
+      const it = this.items[x.id], list = $(`[data-fixlist="${x.id}"]`), drop = $(`[data-fixdrop="${x.id}"]`);
+      if (!list) return;
+      if (drop) drop.hidden = !!(it && it.status !== 'bad') || (x.category === 'w9' && W9.mode === 'online');
+      if (!it) { list.innerHTML = ''; return; }
+      const ext = (it.name.split('.').pop() || '').toUpperCase().slice(0, 4);
+      const state = it.status === 'ok' ? '✓ Uploaded · ' + fmtBytes(it.size) : it.status === 'bad' ? esc(it.error) : (it.pct ? 'Uploading ' + it.pct + '%' : 'Uploading…');
+      const bar = it.status === 'uploading' ? `<div class="bar"><i${it.pct ? ` style="animation:none;margin-left:0;width:${it.pct}%"` : ''}></i></div>` : '';
+      list.innerHTML = `<li class="file ${it.status === 'ok' ? 'ok' : it.status === 'bad' ? 'bad' : ''}"><span class="ico">${esc(ext)}</span><span class="nm"><b>${esc(it.name)}</b><span class="st">${state}</span>${bar}</span><span class="acts">${it.status === 'bad' && it.file ? `<button type="button" class="btn-link" data-fixretry="${esc(x.id)}">Retry</button>` : ''}${it.status !== 'uploading' ? `<button type="button" class="btn-link" data-fixrm="${esc(x.id)}">Remove</button>` : ''}</span></li>`;
+    });
+  },
+
+  async upload(docId, file, isW9) {
+    const doc = this.data.docs.find(x => x.id === docId); if (!doc) return;
+    const ext = (file.name.split('.').pop() || '').toLowerCase();
+    if (this.items[docId] && this.items[docId].token) await this.remove(docId, true);
+    const it = this.items[docId] = { name: file.name, size: file.size, status: 'uploading', file, w9: isW9, pct: 0 };
+    const al = $('#f-alert'), sb = $('#f-send'); if (al) al.innerHTML = ''; if (sb) delete sb.dataset.confirmed;
+    if (CFG.uploads.allowedExtensions.indexOf(ext) === -1) { it.status = 'bad'; it.error = 'Only ' + CFG.uploads.allowedExtensions.join(', ').toUpperCase() + ' files are accepted.'; it.file = null; this.paint(); return; }
+    this.paint();
+    try {
+      let f = file;
+      if (/^image\/(jpeg|png)$/.test(f.type) && f.size > 900 * 1024) { try { f = await shrinkImage(f); } catch (e) { f = file; } it.size = f.size; it.name = f.name; }
+      if (f.size > maxMbFor(doc.category) * 1048576) throw { message: `This file is larger than ${maxMbFor(doc.category)} MB. Please use a smaller file.` };
+      const base = { sessionId: this.sessionId, fixToken: this.token, category: doc.category, fileName: f.name, mimeType: f.type, size: f.size };
+      const res = f.size <= SMALL_FILE
+        ? await withRetry(async () => Api.call('uploadFile', Object.assign({ dataBase64: await toBase64(f) }, base), { timeoutMs: 120000 }))
+        : await uploadInPieces(f, base, pct => { it.pct = pct; this.paint(); });
+      if (this.items[docId] !== it) return;             // replaced while uploading
+      Object.assign(it, { status: 'ok', token: res.uploadToken, name: res.fileName, size: res.size, file: null });
+    } catch (err) {
+      if (this.items[docId] !== it) return;
+      it.status = 'bad'; it.error = (err && err.message) || 'Upload failed.';
+    }
+    this.paint();
+  },
+
+  async remove(docId, quiet) {
+    const it = this.items[docId]; if (!it) return;
+    delete this.items[docId];
+    if (!quiet) this.paint();
+    if (it.token) { try { await Api.call('discardUpload', { sessionId: this.sessionId, uploadToken: it.token }); } catch (e) { /* cleaned up later */ } }
+  },
+
+  async submit(btn) {
+    const al = $('#f-alert'); al.innerHTML = '';
+    if (Object.values(this.items).some(i => i.status === 'uploading')) { al.innerHTML = '<div class="alert warn" style="margin-top:12px">Please wait for your files to finish uploading.</div>'; return; }
+    const w9doc = this.data.docs.find(x => x.category === 'w9');
+    if (w9doc && W9.mode === 'online' && W9.dirty && W9.built) { al.innerHTML = '<div class="alert warn" style="margin-top:12px">You changed your W-9 answers — click “Create my W-9” again first.</div>'; return; }
+    const files = Object.keys(this.items).filter(k => this.items[k].status === 'ok').map(k => ({ docId: k, uploadToken: this.items[k].token }));
+    if (!files.length) { al.innerHTML = '<div class="alert err" style="margin-top:12px">Add at least one corrected document first.</div>'; return; }
+    const missing = this.data.docs.filter(x => !files.some(f => f.docId === x.id)).map(x => x.label);
+    if (missing.length && !btn.dataset.confirmed) {
+      btn.dataset.confirmed = '1';
+      al.innerHTML = `<div class="alert warn" style="margin-top:12px">Still missing: <b>${missing.map(esc).join(', ')}</b>. Click <b>Send corrected documents</b> again to send what you have now — you can use this same link later for the rest.</div>`;
+      return;
+    }
+    buttonBusy(btn, true, 'Sending…');
+    try {
+      const res = await Api.call('submitFix', { token: this.token, sessionId: this.sessionId, files }, { timeoutMs: 120000 });
+      if (!res.remaining) store.del('gp_fix_token');
+      $('#f-body').innerHTML = `<div class="done" tabindex="-1"><div class="tick" aria-hidden="true">✓</div><h2>Documents sent</h2>
+        <p>Thank you — we received ${res.saved} corrected document${res.saved === 1 ? '' : 's'} for <b>${esc(res.referenceId)}</b>. Our team will review ${res.saved === 1 ? 'it' : 'them'} and contact you if anything else is needed.</p>
+        ${res.remaining ? `<div class="alert warn">${res.remaining} requested document${res.remaining === 1 ? ' is' : 's are'} still missing. Open the link from your email again when ${res.remaining === 1 ? 'it’s' : 'they’re'} ready.</div>` : ''}</div>`;
+      window.scrollTo(0, 0);
+    } catch (err) {
+      al.innerHTML = `<div class="alert err" style="margin-top:12px">${esc((err && err.message) || 'Could not send. Please try again.')}</div>`;
+      buttonBusy(btn, false);
+    }
+  }
+};
+
+/* Reads ?fix=… once, keeps it for this tab, and removes it from the address bar. */
+function readFixToken() {
+  let t = '';
+  try {
+    const q = new URLSearchParams(location.search);
+    t = (q.get('fix') || '').toLowerCase();
+    if (t) {
+      store.set('gp_fix_token', t);
+      q.delete('fix');
+      const rest = q.toString();
+      history.replaceState(null, '', location.pathname + (rest ? '?' + rest : '') + '#fix');
+    } else if (/^#fix/.test(location.hash || '')) { t = store.get('gp_fix_token') || ''; }
+  } catch (e) { /* ignore */ }
+  return /^[a-f0-9]{48}$/.test(t) ? t : '';
+}
 
 const Onb = {
   key: 'gp_onboarding_draft',
@@ -2079,6 +2251,20 @@ async function boot() {
   if (isPreview()) $('#banner').innerHTML = '<div class="banner warn"><b>Preview mode — portal not connected.</b> Set <code>API_URL</code> in index.html to your Apps Script Web App URL. Submissions and uploads are disabled until then.</div>';
 
   const onStaffRoute = /^#\/?staff/.test(location.hash || '');
+  const fixToken = isPreview() || onStaffRoute ? '' : readFixToken();
+  if (fixToken) {
+    try {
+      const fx = await Api.call('getFix', { token: fixToken }, { timeoutMs: 30000 });
+      $('#view-loading').hidden = true;
+      Fix.start(fixToken, fx);
+    } catch (err) {
+      store.del('gp_fix_token');
+      $('#view-loading').hidden = true;
+      document.body.classList.add('invite-mode');
+      showLocked(err && err.code === 'FIX_EXPIRED' ? 'Link expired' : 'Link not valid', (err && err.message) || 'We couldn’t open this link. Please check your connection and try again.');
+    }
+    return;
+  }
   const token = isPreview() || onStaffRoute ? '' : readInviteToken();
   if (token) {
     try {
@@ -2437,7 +2623,8 @@ const Staff = {
     const tally = rev.length ? `<div class="doc-tally">${statuses.filter(count).map(s => `${this.chip(s)}<small style="align-self:center;color:var(--muted)">× ${count(s)}</small>`).join(' ')}</div>` : '';
     const item = d => {
       const open = d.restricted ? '<small>Being moved — run setupDatabase</small>' : d.url ? `<a href="${esc(d.url)}" target="_blank" rel="noopener">Open</a>` : '';
-      const top = `<div class="doc-top"><span><b>${esc(d.category)}</b><small>${esc(d.name)}${d.size ? ' · ' + fmtBytes(d.size) : ''}</small></span><span class="doc-links">${d.reviewable ? this.chip(d.status) : ''}${open}</span></div>`;
+      const top = `<div class="doc-top"><span><b>${esc(d.category)}</b><small>${esc(d.name)}${d.size ? ' · ' + fmtBytes(d.size) : ''}</small></span><span class="doc-links">${d.reviewable || d.status === 'Replaced' ? this.chip(d.status) : ''}${open}</span></div>`;
+      if (d.status === 'Replaced') return `<li class="doc-r d-Replaced">${top}<div class="doc-meta">The partner sent a corrected version${d.notes ? ' · ' + esc(d.notes) : ''}</div></li>`;
       if (!d.reviewable) return `<li>${top}</li>`;
       const opts = statuses.map(s => `<option value="${esc(s)}"${s === d.status ? ' selected' : ''}>${esc(s)}</option>`).join('');
       const meta = d.reviewedBy ? `<div class="doc-meta">Last reviewed by ${esc(d.reviewedBy)}${d.reviewedAt ? ' · ' + this.fmt(d.reviewedAt, true) : ''}</div>` : '';
@@ -2447,7 +2634,7 @@ const Staff = {
         <button type="button" class="btn btn-ghost" data-act="doc-save">Save</button></div>${meta}<div data-doc-msg></div></li>`;
     };
     return `<div class="panel"><h3>Documents (${list.length})</h3>${tally}${list.length ? '<ul class="docs">' + list.map(item).join('') + '</ul>' : '<p class="sub">No documents.</p>'}
-      ${rev.length ? `<p class="sub" style="margin:8px 0 0;font-size:12.5px">Review each file here. When you set the application to <b>More Information Required</b> or <b>Rejected</b>${r.applicantEmailsOn ? ', the partner’s email lists every document marked More Information Required or Rejected, with your notes.' : ', flagged documents and notes are saved for your team (applicant emails are off).'}</p>` : ''}
+      ${rev.length ? `<p class="sub" style="margin:8px 0 0;font-size:12.5px">Review each file here. When you set the application to <b>More Information Required</b>${r.applicantEmailsOn ? ', the partner gets one email listing every document marked More Information Required or Rejected, with your notes and a link to upload just those files.' : ', flagged documents and notes are saved for your team (applicant emails are off).'}</p>` : ''}
       ${r.folderUrl ? `<p style="margin:10px 0 0"><a href="${esc(r.folderUrl)}" target="_blank" rel="noopener">Open documents folder in Drive →</a></p>` : ''}</div>`;
   },
 
