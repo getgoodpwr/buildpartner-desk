@@ -1337,22 +1337,34 @@ function drawReq(d){
   const ad = $('#adBtn'); if (ad) ad.onclick = () => {
     const box = $('#addBox'); if (!box.hidden) { box.hidden = true; return; }
     const have = d.items.map(i => i.key);
+    const onReq = String(d.states||'').split(',').map(x => x.trim()).filter(Boolean);
+    const mkt = c => c.state || (c.key.indexOf('il_')===0 ? 'Illinois' : c.key.indexOf('nv_')===0 ? 'Nevada' : '');
     const left = (S.catalog||[]).filter(c => have.indexOf(c.key) < 0);
-    const groups = [...new Set(left.map(c => c.group || 'Other'))];
-    box.innerHTML = `<b style="display:block;margin-bottom:4px">Add documents to this request</b>
-      <p class="kv" style="margin-bottom:10px">Forgot something? Pick it below. The BP uses the same link, and nothing they already uploaded is lost.</p>
-      ${left.length ? groups.map(g => `<div style="margin:8px 0 4px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--mut,#888)">${esc(g)}</div>` +
-        left.filter(c => (c.group||'Other')===g).map(c => `<label style="display:flex;gap:8px;align-items:flex-start;padding:4px 0;cursor:pointer"><input type="checkbox" value="${esc(c.key)}" style="margin-top:3px"> <span>${esc(c.label)}</span></label>`).join('')).join('')
-        : '<p class="kv">Every document is already on this request.</p>'}
-      ${left.length ? `<label style="display:flex;gap:8px;align-items:center;margin:12px 0 10px;padding-top:10px;border-top:1px solid var(--line)"><input type="checkbox" id="adNotify" checked> Email ${esc(d.email)} about the new document(s)</label>
-      <div class="footer-acts"><button class="btn sm" id="adGo">Add to request</button><button class="btn sm ghost" id="adX">Cancel</button></div>` : ''}`;
+    const newMkts = (S.states||[]).filter(m => onReq.indexOf(m) < 0);
+    const docs = left.filter(c => !mkt(c) || onReq.indexOf(mkt(c)) > -1);   // documents for markets already on the request
+    const groups = [...new Set(docs.map(c => c.group || 'Other'))];
+    const H = t => `<div style="margin:12px 0 4px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--mut,#888)">${t}</div>`;
+    const ck = (c, chk) => `<label style="display:flex;gap:8px;align-items:flex-start;padding:4px 0;cursor:pointer"><input type="checkbox" value="${esc(c.key)}" ${chk?'checked':''} style="margin-top:3px"> <span>${esc(c.label)}</span></label>`;
+    box.innerHTML = `<b style="display:block;margin-bottom:4px">Add documents or markets</b>
+      <p class="kv" style="margin-bottom:4px">Forgot something? Pick it below. The BP uses the same link, and nothing they already uploaded is lost.</p>
+      ${newMkts.length ? H('Add a market') + `<div style="display:flex;flex-wrap:wrap;gap:6px 14px">${newMkts.map(m => `<label style="display:flex;gap:6px;align-items:center;cursor:pointer"><input type="checkbox" data-m="${esc(m)}"> ${esc(m)}</label>`).join('')}</div><div id="adMk"></div>` : ''}
+      ${groups.map(g => H(esc(g==='State'?'Licenses':g)) + docs.filter(c => (c.group||'Other')===g).map(c => ck(c,false)).join('')).join('')}
+      <label style="display:flex;gap:8px;align-items:center;margin:14px 0 10px;padding-top:10px;border-top:1px solid var(--line)"><input type="checkbox" id="adNotify" checked> Email ${esc(d.email)} about the new document(s)</label>
+      <div class="footer-acts"><button class="btn sm" id="adGo">Add to request</button><button class="btn sm ghost" id="adX">Cancel</button></div>`;
     box.hidden = false; box.scrollIntoView({ behavior:'smooth', block:'nearest' });
-    const x = $('#adX'); if (x) x.onclick = () => box.hidden = true;
-    const go = $('#adGo'); if (go) go.onclick = () => {
+    const drawMk = () => {
+      const picked = [...box.querySelectorAll('[data-m]:checked')].map(i => i.dataset.m);
+      $('#adMk').innerHTML = picked.map(m => H(esc(m)+' documents') + left.filter(c => mkt(c)===m).map(c => ck(c,true)).join('')).join('');
+    };
+    box.querySelectorAll('[data-m]').forEach(i => i.onchange = drawMk);
+    $('#adX').onclick = () => box.hidden = true;
+    const go = $('#adGo'); go.onclick = () => {
       const keys = [...box.querySelectorAll('input[type=checkbox][value]:checked')].map(i => i.value);
-      if (!keys.length) return toast('Pick at least one document', true);
-      const notify = $('#adNotify').checked;
-      act(go, () => sapi('addItems', { id:d.id, items:keys, notify }), keys.length + ' document' + (keys.length>1?'s':'') + ' added' + (notify ? ' and BP emailed 📨' : ''));
+      const states = [...box.querySelectorAll('[data-m]:checked')].map(i => i.dataset.m);
+      if (!keys.length && !states.length) return toast('Pick at least one document or market', true);
+      const notify = $('#adNotify').checked && keys.length > 0;
+      const msg = [keys.length ? keys.length + ' document' + (keys.length>1?'s':'') + ' added' : '', states.length ? states.join(', ') + ' added' : ''].filter(Boolean).join(' · ') + (notify ? ' · BP emailed 📨' : '');
+      act(go, () => sapi('addItems', { id:d.id, items:keys, states, notify }), msg);
     };
   };
   $('#cpBtn').onclick = () => { navigator.clipboard.writeText(d.link).then(() => toast('BP link copied'), () => prompt('Copy this link:', d.link)); };
