@@ -44,6 +44,30 @@
   .g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:1.4fr 1fr}
   .sec{margin-top:16px}
   h2{font-size:12px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;color:var(--mute);margin:0 0 14px}
+  /* review queue */
+  .rq{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+  .rqh{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+  .rqh .ic{width:38px;height:38px;font-size:19px;border-radius:10px}
+  .rqh h3{margin:0;font-size:17px;font-weight:700;letter-spacing:-.2px;flex:1}
+  .rqh .tot{font-size:13px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--soft2);color:var(--ink2)}
+  .rqh .tot.hot{background:var(--gold);color:#fff}
+  .rqs{margin:0 0 10px 48px;font-size:12.5px;color:var(--mute)}
+  .rql{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+  .rql a{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;text-decoration:none;background:var(--soft);transition:background .15s,border-color .15s}
+  .rql a:hover{background:var(--gold-l);border-color:var(--gold-b)}
+  .rql b{font-size:20px;font-weight:800;min-width:30px;text-align:center;font-variant-numeric:tabular-nums;color:var(--gold-d)}
+  .rql span{flex:1;min-width:0}
+  .rql span em{display:block;font-style:normal;font-weight:600;font-size:14px}
+  .rql span small{display:block;font-size:12px;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rql i{font-style:normal;color:var(--mute);font-size:14px}
+  .rqok{padding:14px 12px;border-radius:12px;background:var(--hit);color:var(--ok);font-weight:600;font-size:14px}
+  .rqnote{font-size:12.5px;color:var(--mute);margin-top:10px}
+  .rqnote a{color:var(--gold-d);font-weight:600}
+  .rqbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 2px 10px;min-height:24px}
+  .rqbar h2{margin:0;color:var(--ink2)}
+  .rqbar button{background:var(--soft2);border:0;color:var(--ink2);font:inherit;font-size:12.5px;cursor:pointer;padding:4px 6px;border-radius:6px}
+  .rqbar button:hover{color:var(--ink);background:var(--soft3)}
+  @media (max-width:760px){ .rq{grid-template-columns:1fr} .rqs{margin-left:0} }
   /* portals */
   .portal{display:flex;flex-direction:column;gap:10px;text-decoration:none;transition:transform .15s, box-shadow .15s}
   .portal:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(20,20,20,.05), 0 14px 30px rgba(20,20,20,.08)}
@@ -202,6 +226,13 @@
 </header>
 
 <main class="wrap">
+  <div class="rqbar"><h2>To review</h2><button id="rqRef" title="Refresh">↻ <span id="rqAt">Loading…</span></button></div>
+  <div class="rq">
+    <div class="card" id="rqC"><div class="rqh"><div class="ic">🛡️</div><h3>Compliance</h3><span class="tot" id="rqCt">…</span></div><p class="rqs">W-9s, COIs, banking, MSA &amp; addenda, IL Shines documents</p><ul class="rql" id="rqCl"></ul></div>
+    <div class="card" id="rqF"><div class="rqh"><div class="ic">🦺</div><h3>Field Ops</h3><span class="tot" id="rqFt">…</span></div><p class="rqs">Licenses &amp; certifications, Site Capture, agreements to countersign</p><ul class="rql" id="rqFl"></ul></div>
+  </div>
+  <div class="rqnote" id="rqNote" style="margin:-6px 2px 14px"></div>
+
   <div class="grid g3">
     <a class="card portal" href="onboarding.html#staff">
       <div class="ic">🤝</div>
@@ -613,6 +644,86 @@ document.addEventListener('keydown', e => {
 });
 
 render(); tick(); setInterval(tick, 15000); weather(); setInterval(weather, 30 * 60 * 1000);
+
+/* ===== To review: counts from the Follow-Up system and the Onboarding portal ===== */
+const RQ = {
+  FU_API: 'https://script.google.com/macros/s/AKfycbzmVgj1hEmPZVIfoomyi3iqVLOSWRtikhBTz9bGRckjXflbU0a4Ln1xXFXez-8W_pylQA/exec',
+  ON_API: 'https://script.google.com/macros/s/AKfycbwmFvIGjCzdcS8gAIxSrBh9vQ6-ss_RgdnH-9PKi_Is028gssuuWs7ou8HF4CDrsC0Z/exec',
+  get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
+  // Which team reviews what (BP Onboarding SOP, Step 4)
+  bucket(t){
+    t = String(t || '').toLowerCase();
+    if (/^il_|shines|designee|good standing|\bdg\b|distributed generation/.test(t)) return ['C', 'IL Shines documents'];
+    if (/w-?9/.test(t)) return ['C', 'W-9s'];
+    if (/(^|_)wc(_|$)|workers/.test(t)) return ['C', "Workers' comp"];
+    if (/coi|insurance|liability|umbrella|^lr_/.test(t)) return ['C', 'COIs'];
+    if (/ach|bank/.test(t)) return ['C', 'Banking info'];
+    if (/msa|agreement|addend/.test(t)) return ['C', 'MSA & addenda'];
+    if (/conduct|coc/.test(t)) return ['C', 'Codes of Conduct'];
+    if (/^st_|^lic_|^license|^certs|^nv_|licen|certif|osha/.test(t)) return ['F', 'Licenses & certifications'];
+    return ['C', 'Other documents'];
+  },
+  async post(url, body){
+    const r = await fetch(url, { method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(body) });
+    const j = await r.json(); if (!j.ok) throw (typeof j.error === 'string' ? { message: j.error } : (j.error || { message:'Error' })); return j.data;
+  },
+  async followUp(){
+    const s = this.get('bpf_session'); if (!s) return { signin: true };
+    try { return { items: await this.post(this.FU_API, { action:'reviewQueue', session: s }) }; }
+    catch(e){ return /SIGNIN/.test(e.message) ? { signin: true } : { error: true }; }
+  },
+  async onboarding(){
+    let s = null; try { const v = JSON.parse(this.get('gp_staff_session') || 'null'); if (v && v.s && v.until > Date.now()) s = v.s; } catch(e){}
+    if (!s) return { signin: true };
+    const run = (action, data) => this.post(this.ON_API, { action:'staff', apiVersion:1, payload:{ session: s, action, data: data || {} } });
+    try { return { full: true, ...(await run('reviewSummary')) }; }
+    catch(e){
+      if (e && /NOT_AUTH/.test(e.code || '')) return { signin: true };
+      try { // older onboarding backend: Site Capture requests only
+        const d = await run('listSiteCapture', { page: 1, q: '', status: 'New' });
+        return { siteCapture: (d.rows || []).map(r => ({ bp: r['Company'], id: r['Request ID'] })) };
+      } catch(e2){ return /NOT_AUTH/.test((e2 && e2.code) || '') ? { signin: true } : { error: true }; }
+    }
+  },
+  build(fu, on){
+    const T = { C: {}, F: {} };
+    const add = (team, label, bp, href) => { const g = T[team][label] || (T[team][label] = { n: 0, bps: [], href }); g.n++; if (bp && g.bps.indexOf(bp) < 0) g.bps.push(bp); };
+    (fu.items || []).forEach(i => { const [t, l] = this.bucket(i.key); add(t, l, i.bp, 'followup.html'); });
+    (on.docs || []).forEach(d => { const [t, l] = this.bucket(d.category); add(t, l, d.bp, 'onboarding.html#staff'); });
+    (on.siteCapture || []).forEach(x => add('F', 'Site Capture profiles', x.bp, 'onboarding.html#staff'));
+    (on.countersign || []).forEach(x => add('F', 'Agreements to countersign', x.bp, 'onboarding.html#staff'));
+    const notes = [];
+    if (fu.signin) notes.push('<a href="followup.html">Sign in to Follow-Up</a> to include its uploads');
+    if (on.signin) notes.push('<a href="onboarding.html#staff">Sign in to Onboarding</a> to include its forms');
+    if (fu.error || on.error) notes.push("Couldn't reach one of the portals. Try ↻ in a minute");
+    return { T, notes, at: Date.now() };
+  },
+  draw(d){
+    const ORDER = { C: ['W-9s','COIs',"Workers' comp",'Banking info','MSA & addenda','IL Shines documents','Codes of Conduct','Other documents'], F: ['Licenses & certifications','Site Capture profiles','Agreements to countersign'] };
+    ['C','F'].forEach(t => {
+      const g = d.T[t], keys = Object.keys(g).sort((a, b) => ORDER[t].indexOf(a) - ORDER[t].indexOf(b));
+      const tot = keys.reduce((n, k) => n + g[k].n, 0);
+      const el = document.getElementById('rq' + t + 't'); el.textContent = tot ? tot + ' to review' : 'Clear'; el.className = 'tot' + (tot ? ' hot' : '');
+      document.getElementById('rq' + t + 'l').innerHTML = keys.length ? keys.map(k => `<li><a href="${g[k].href}"><b>${g[k].n}</b><span><em>${esc(k)}</em><small>${esc(g[k].bps.join(' · '))}</small></span><i>→</i></a></li>`).join('')
+        : '<li class="rqok">✓ All caught up</li>';
+    });
+    document.getElementById('rqNote').innerHTML = d.notes.join(' · ');
+    document.getElementById('rqAt').textContent = 'Updated ' + new Date(d.at).toLocaleTimeString([], { hour:'numeric', minute:'2-digit' });
+  },
+  async load(){
+    document.getElementById('rqAt').textContent = 'Refreshing…';
+    const [fu, on] = await Promise.all([this.followUp(), this.onboarding()]);
+    const d = this.build(fu, on); this.draw(d);
+    try { localStorage.setItem('desk_review', JSON.stringify(d)); } catch(e){}
+  },
+  init(){
+    try { const c = JSON.parse(this.get('desk_review') || 'null'); if (c && c.T) this.draw(c); } catch(e){}
+    document.getElementById('rqRef').onclick = () => this.load();
+    this.load();
+    setInterval(() => { if (!document.hidden) this.load(); }, 5 * 60 * 1000);
+  }
+};
+RQ.init();
 </script>
 </body>
 </html>
