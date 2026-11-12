@@ -676,6 +676,8 @@ async function staffBoot(){
     applyBoot(b);
     if (!cached || S.tab === 'list') staffView(); else updateHeader();
   } catch(e){ if (S.session && !cached) app.innerHTML = `<div class="card narrow"><p>${esc(e.message)}</p></div>`; }
+  const op = params.get('open'); // link from a "ready to countersign" email
+  if (op && S.session && !S._opened) { S._opened = true; S.tab = 'list'; openReq(op); }
   S.folders = readCache('bpf_folders');
   loadFolders(); // warm up the folder list for the New request tab
 }
