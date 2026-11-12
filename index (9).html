@@ -653,6 +653,7 @@ const RQ = {
   // Which team reviews what (BP Onboarding SOP, Step 4)
   bucket(t){
     t = String(t || '').toLowerCase();
+    if (t === '__countersign') return ['F', 'Agreements to countersign'];
     if (/^il_|shines|designee|good standing|\bdg\b|distributed generation/.test(t)) return ['C', 'IL Shines documents'];
     if (/w-?9/.test(t)) return ['C', 'W-9s'];
     if (/(^|_)wc(_|$)|workers/.test(t)) return ['C', "Workers' comp"];
