@@ -7,7 +7,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20role%3D%22img%22%20aria-label%3D%22GOODPWR%20IL%20Designee%20Compliance%22%3E%20%3Cg%20fill%3D%22%23C9995A%22%3E%20%3Cpath%20d%3D%22M32%201l3%209h-6z%22/%3E%3Cpath%20d%3D%22M32%2063l-3-9h6z%22/%3E%3Cpath%20d%3D%22M1%2032l9-3v6z%22/%3E%3Cpath%20d%3D%22M63%2032l-9%203v-6z%22/%3E%20%3Cpath%20d%3D%22M10.1%2010.1l8.5%204.3-4.2%204.2z%22/%3E%3Cpath%20d%3D%22M53.9%2053.9l-8.5-4.3%204.2-4.2z%22/%3E%3Cpath%20d%3D%22M53.9%2010.1l-4.3%208.5-4.2-4.2z%22/%3E%3Cpath%20d%3D%22M10.1%2053.9l4.3-8.5%204.2%204.2z%22/%3E%20%3Cpath%20d%3D%22M20.1%203.3l5.6%207.6-5%202z%22%20opacity%3D%22.75%22/%3E%3Cpath%20d%3D%22M43.9%203.3l-.6%209.6-5-2z%22%20opacity%3D%22.75%22/%3E%20%3Cpath%20d%3D%22M60.7%2020.1l-7.6%205.6-2-5z%22%20opacity%3D%22.75%22/%3E%3Cpath%20d%3D%22M60.7%2043.9l-9.6-.6%202-5z%22%20opacity%3D%22.75%22/%3E%20%3Cpath%20d%3D%22M43.9%2060.7l-5.6-7.6%205-2z%22%20opacity%3D%22.75%22/%3E%3Cpath%20d%3D%22M20.1%2060.7l.6-9.6%205%202z%22%20opacity%3D%22.75%22/%3E%20%3Cpath%20d%3D%22M3.3%2043.9l7.6-5.6%202%205z%22%20opacity%3D%22.75%22/%3E%3Cpath%20d%3D%22M3.3%2020.1l9.6.6-2%205z%22%20opacity%3D%22.75%22/%3E%20%3C/g%3E%20%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2220%22%20fill%3D%22%23C9995A%22/%3E%20%3Cpath%20d%3D%22M32%2015.5l12.5%204.6v9.6c0%208.4-5.3%2014.6-12.5%2018.3-7.2-3.7-12.5-9.9-12.5-18.3v-9.6z%22%20fill%3D%22%232B2824%22/%3E%20%3Cpath%20d%3D%22M25.2%2031.6l4.9%204.9%209-9.6%22%20fill%3D%22none%22%20stroke%3D%22%23C9995A%22%20stroke-width%3D%223.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%20%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Inter:wght@400;500;600;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#2b2824; --ink-2:#413c35; --paper:#f2ecdf; --card:#fffcf6; --line:#e3dac6; --line-2:#cfc3a8;
@@ -223,6 +223,44 @@ textarea.in-f{min-height:80px;resize:vertical}
 .next .meta b{color:#f4efe2}
 .hint{font-size:12.5px;color:var(--muted);margin:-4px 0 10px}
 .emailprev{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;max-height:340px;overflow:auto}
+.pnote{margin-top:10px;background:var(--sun-soft);border:1px solid var(--line-2);border-radius:10px;padding:10px 12px;font-size:13px;white-space:pre-wrap;word-break:break-word}
+.pnote b{display:block;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;white-space:normal}
+.next .pn{margin-top:10px;background:#34332f;border-radius:8px;padding:8px 10px;font-size:13px;color:#f2ecdf;white-space:pre-wrap;word-break:break-word}
+.choice{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1.5px solid var(--line-2);border-radius:10px;background:#fff;cursor:pointer;margin-top:8px;font-weight:500}
+.choice input{margin-top:3px;accent-color:var(--ink);width:17px;height:17px;flex:none}
+.choice:has(input:checked){border-color:var(--ink);background:var(--sun-soft)}
+.choices.need .choice{border-color:var(--bad)}
+.req{color:var(--bad);font-weight:700}
+.dlrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.dform{margin-top:14px;border:1px solid var(--line-2);border-radius:12px;padding:16px;background:#fffdf8}
+.dform h3{font-size:14px;font-weight:800;margin:16px 0 8px}
+.dform h3:first-child{margin-top:0}
+.dform .grid2{gap:10px}
+.dform .in-f.bad{border-color:var(--bad);background:var(--bad-soft)}
+.dform .chk4{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px}
+@media(max-width:560px){.dform .chk4{grid-template-columns:1fr}}
+.dform .term{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-top:1px dashed var(--line);font-size:13.5px;cursor:pointer}
+.dform .term input,.dform .chk4 input{width:17px;height:17px;flex:none;margin-top:2px;accent-color:var(--ink)}
+.dform .term.bad span,.dform .chk4.bad span{color:var(--bad)}
+.sigwrap{position:relative;border:1.5px dashed var(--line-2);border-radius:10px;background:#fff;height:150px;touch-action:none}
+.sigwrap.bad{border-color:var(--bad)}
+.sigwrap canvas{width:100%;height:100%;display:block;border-radius:10px;cursor:crosshair;touch-action:none}
+.sigwrap .hint{position:absolute;left:14px;bottom:10px;font-size:12px;color:var(--muted);pointer-events:none}
+.sigwrap .line{position:absolute;left:14px;right:14px;bottom:38px;border-bottom:1px solid var(--line-2);pointer-events:none}
+.dform .errs{background:var(--bad-soft);color:var(--bad);border-radius:9px;padding:10px 12px;font-size:13px;margin-top:12px;font-weight:500}
+.signed{margin-top:14px;background:var(--ok-soft);border:1px solid #a9d9bd;border-radius:12px;padding:12px 14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;color:#14532d}
+.signed b{flex:1;min-width:200px}
+.submit-bar.static{position:static;background:none}
+.sigtabs{display:inline-flex;border:1px solid var(--line-2);border-radius:9px;overflow:hidden;margin-bottom:8px}
+.sigtabs button{border:0;background:#fff;padding:7px 16px;font:600 13px Inter,system-ui,sans-serif;cursor:pointer;color:var(--ink)}
+.sigtabs button+button{border-left:1px solid var(--line-2)}
+.sigtabs button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.sigtyped{height:150px;display:flex;align-items:center;justify-content:center;padding:0 16px 22px;font:600 46px 'Dancing Script','Segoe Script','Brush Script MT','Lucida Handwriting',cursive;color:#111;overflow:hidden;white-space:nowrap}
+.sigtyped.empty{font:500 13px Inter,system-ui,sans-serif;color:var(--muted)}
+.consent{display:flex;gap:10px;align-items:flex-start;margin-top:14px;padding:12px 14px;border:1.5px solid var(--line-2);border-radius:10px;background:#fff;font-size:13px;line-height:1.5;cursor:pointer}
+.consent input{width:18px;height:18px;flex:none;margin-top:2px;accent-color:var(--ink)}
+.consent.bad{border-color:var(--bad);background:var(--bad-soft)}
+.consent ul{margin:6px 0 0;padding-left:18px}
 #toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:11px 16px;border-radius:10px;font-size:13.5px;font-weight:500;opacity:0;pointer-events:none;transition:.25s;z-index:60;max-width:calc(100% - 32px)}
 #toast.show{opacity:1;transform:translate(-50%,0)}
 #toast.bad{background:var(--bad)}
@@ -238,8 +276,103 @@ textarea.in-f{min-height:80px;resize:vertical}
 
 <script>
 /* ====== CONNECT ====== */
+const DESIGNEE_FORM_URL = 'Designee-Registration-Form.pdf'; // fillable form – upload it to the same GitHub folder as this page
 const API_URL  = 'https://script.google.com/macros/s/AKfycbwFXFl8QQVgOvGXldYZVYF0xWMsD3OQDPQiuzS6glrJKYm94HrlBkiFBvNfW1sKoS5yNQ/exec'; // Deploy > Web app > /exec URL
 const LOGO_URL = ''; // optional: link to the GOODPWR logo image (leave blank to show the wordmark)
+
+/* ===== Designee form filler: writes answers + signature onto the official PDF (no library) ===== */
+async function gpDeflate(bytes) {
+  if (typeof CompressionStream === 'undefined') return null;
+  const cs = new CompressionStream('deflate');
+  const out = new Response(new Blob([bytes]).stream().pipeThrough(cs));
+  return new Uint8Array(await out.arrayBuffer());
+}
+function gpWinAnsi(str) {
+  const map = { '‘': "'", '’': "'", '“': '"', '”': '"', '–': '-', '—': '-', '…': '...', ' ': ' ' };
+  let out = '';
+  for (const ch of String(str || '').normalize('NFC')) {
+    const c = map[ch] !== undefined ? map[ch] : ch;
+    for (const cc of c) { const code = cc.codePointAt(0); out += (code >= 32 && code <= 255 && !(code >= 127 && code <= 159)) ? cc : '?'; }
+  }
+  return out;
+}
+function gpPdfStr(s) { return '(' + s.replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)') + ')'; }
+function gpWidth(s, size, W) { let w = 0; for (const ch of s) w += W[ch.charCodeAt(0)] || 556; return w * size / 1000; }
+async function gpStampDesignee(src, map, v, sig) {
+  const enc = s => { const a = new Uint8Array(s.length); for (let i = 0; i < s.length; i++) a[i] = s.charCodeAt(i) & 255; return a; };
+  const tailTxt = Array.from(src.subarray(Math.max(0, src.length - 2048)), b => String.fromCharCode(b)).join('');
+  const prev = parseInt(tailTxt.slice(tailTxt.lastIndexOf('startxref') + 9).trim(), 10);
+  const trl = tailTxt.slice(tailTxt.lastIndexOf('trailer'));
+  const size = parseInt((trl.match(/\/Size\s+(\d+)/) || [])[1], 10);
+  const info = (trl.match(/\/Info\s+(\d+\s+\d+\s+R)/) || [])[1];
+  if (!prev || !size) throw new Error('Could not read the form template.');
+  const B = map.boxes, W = map.w, ops = [];
+  const text = (name, value, idx, base) => {
+    const box = (B[name] || [])[idx || 0]; if (!box) return;
+    let s = gpWinAnsi(value).trim(); if (!s) return;
+    const [x0, y0, x1, y1] = box, bw = x1 - x0 - 4, bh = y1 - y0;
+    let fs = Math.min(base || 9, bh * 0.75);
+    while (fs > 5.5 && gpWidth(s, fs, W) > bw) fs -= 0.25;
+    while (s.length > 1 && gpWidth(s, fs, W) > bw) s = s.slice(0, -1);
+    const y = y0 + (bh - fs * 0.72) / 2;
+    ops.push(`BT /GPHelv ${fs.toFixed(2)} Tf 0 g ${(x0 + 2).toFixed(2)} ${y.toFixed(2)} Td ${gpPdfStr(s)} Tj ET`);
+  };
+  ['Name', 'Company Name', 'Street Address', 'Phone', 'City', 'State', 'Email Address', 'Zip Code'].forEach(n => text(n, v[n], 0, 9));
+  text('D/B/A Information', v['D/B/A Information'], 0, 10);
+  text('Social Media', v['Social Media'], 0, 10);
+  (B['Initials'] || []).forEach((_, i) => text('Initials', v['Initials'], i, 9));
+  ['Print Name', 'Title', 'Signer Company', 'Date'].forEach(n => text(n, v[n], 0, 10));
+  Object.keys(v.types || {}).forEach(n => {
+    if (!v.types[n] || !B[n]) return;
+    const [x0, y0, x1, y1] = B[n][0], w = x1 - x0, h = y1 - y0, f = (a, b) => (a).toFixed(2) + ' ' + (b).toFixed(2);
+    ops.push(`q 0 G 1.6 w 1 J 1 j ${f(x0 + w * 0.2, y0 + h * 0.52)} m ${f(x0 + w * 0.42, y0 + h * 0.22)} l ${f(x0 + w * 0.82, y0 + h * 0.84)} l S Q`);
+  });
+  let sigObjs = null;
+  if (sig && B['Signature']) {
+    const [x0, y0, x1] = B['Signature'][0], maxW = x1 - x0 - 4, maxH = 19;
+    const sc = Math.min(maxW / sig.w, maxH / sig.h), dw = sig.w * sc, dh = sig.h * sc;
+    ops.push(`q ${dw.toFixed(2)} 0 0 ${dh.toFixed(2)} ${(x0 + 2).toFixed(2)} ${(y0 + 1).toFixed(2)} cm /GPSig Do Q`);
+    const ink = new Uint8Array(sig.w * sig.h);
+    const [inkD, alphaD] = await Promise.all([gpDeflate(ink), gpDeflate(sig.alpha)]);
+    sigObjs = { ink: inkD || ink, alpha: alphaD || sig.alpha, filter: inkD ? '/Filter /FlateDecode ' : '' };
+  } else ops.push('');
+  if (v.esignNote) ops.push(`BT /GPHelv 6.5 Tf 0.35 g 66 43 Td ${gpPdfStr(gpWinAnsi(v.esignNote))} Tj ET`);
+  const content = enc(ops.join('\n') + '\n');
+  const N = size, objs = [];
+  const add = (num, head, stream) => objs.push({ num, head, stream });
+  add(map.rootNum, map.rootDict);
+  add(map.pageNum, map.pageDict.replace('%%CONTENT%%', `${N} 0 R`).replace('%%HELV%%', `${N + 1} 0 R`).replace('%%ZADB%%', `${N + 2} 0 R`).replace('%%SIG%%', `${N + 3} 0 R`));
+  add(N, `<< /Length ${content.length} >>`, content);
+  add(N + 1, '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>');
+  add(N + 2, '<< /Type /Font /Subtype /Type1 /BaseFont /ZapfDingbats >>');
+  if (sigObjs) {
+    add(N + 3, `<< /Type /XObject /Subtype /Image /Width ${sig.w} /Height ${sig.h} /ColorSpace /DeviceGray /BitsPerComponent 8 ${sigObjs.filter}/SMask ${N + 4} 0 R /Length ${sigObjs.ink.length} >>`, sigObjs.ink);
+    add(N + 4, `<< /Type /XObject /Subtype /Image /Width ${sig.w} /Height ${sig.h} /ColorSpace /DeviceGray /BitsPerComponent 8 ${sigObjs.filter}/Length ${sigObjs.alpha.length} >>`, sigObjs.alpha);
+  } else {
+    add(N + 3, '<< /Type /XObject /Subtype /Image /Width 1 /Height 1 /ColorSpace /DeviceGray /BitsPerComponent 8 /Decode [1 0] /Length 1 >>', new Uint8Array([0]));
+    add(N + 4, '<< >>');
+  }
+  const parts = [src]; let off = src.length;
+  const push = u => { parts.push(u); off += u.length; };
+  if (src[src.length - 1] !== 10) push(enc('\n'));
+  const offsets = {};
+  for (const o of objs) {
+    offsets[o.num] = off;
+    push(enc(`${o.num} 0 obj\n${o.head}\n`));
+    if (o.stream) { push(enc('stream\n')); push(o.stream); push(enc('\nendstream\n')); }
+    push(enc('endobj\n'));
+  }
+  const xrefAt = off;
+  const nums = Object.keys(offsets).map(Number).sort((a, b) => a - b);
+  let xref = 'xref\n';
+  for (const n of nums) xref += `${n} 1\n${String(offsets[n]).padStart(10, '0')} 00000 n \n`;
+  xref += `trailer\n<< /Size ${N + 5} /Root ${map.rootNum} 0 R${info ? ' /Info ' + info : ''} /Prev ${prev} >>\nstartxref\n${xrefAt}\n%%EOF\n`;
+  push(enc(xref));
+  const out = new Uint8Array(off); let p = 0; for (const u of parts) { out.set(u, p); p += u.length; }
+  return out;
+}
+
+const GP_STAMP_MAP = {"pageNum":57,"rootNum":1,"pageDict":"<<\n/CropBox [ 0 0 612 792 ]\n/Group 130 0 R\n/MediaBox [ 0 0 612 792 ]\n/Rotate 0\n/StructParents 1\n/Tabs /S\n/Type /Page\n/Parent 2 0 R\n/Contents [ 202 0 R 203 0 R 204 0 R 205 0 R %%CONTENT%% ]\n/Resources <<\n/ColorSpace <<\n/CS0 131 0 R\n/CS1 131 0 R\n/CS2 131 0 R\n>>\n/ExtGState <<\n/GS0 133 0 R\n/GS1 134 0 R\n>>\n/Font <<\n/C2_0 135 0 R\n/C2_1 143 0 R\n/C2_2 151 0 R\n/TT0 154 0 R\n/TT1 158 0 R\n/TT2 162 0 R\n/TT3 166 0 R\n/TT4 170 0 R\n/TT5 174 0 R\n/Helvetica-7098480789 178 0 R\n/Helvetica-9742682568 178 0 R\n/GPHelv %%HELV%%\n/GPZaDb %%ZADB%%\n>>\n/ProcSet [ /PDF /Text /ImageC /ImageI ]\n/XObject <<\n/Im0 179 0 R\n/Im1 181 0 R\n/Im2 182 0 R\n/Im3 184 0 R\n/Im4 188 0 R\n/Im5 192 0 R\n/Im6 194 0 R\n/Im7 196 0 R\n/Im8 198 0 R\n/Im9 200 0 R\n/GPSig %%SIG%%\n>>\n>>\n/Annots [ 58 0 R ]\n>>","rootDict":"<<\n/Type /Catalog\n/Pages 2 0 R\n>>","boxes":{"Name":[[83.52,629.88,265.2,643.8]],"Company Name":[[401.04,626.64,537.6,640.44]],"Street Address":[[122.4,607.8,263.64,622.2]],"Phone":[[358.68,607.8,538.08,620.88]],"City":[[82.56,586.08,185.88,599.4]],"State":[[225.72,586.8,263.76,599.4]],"Email Address":[[395.52,588.36,536.88,600.96]],"Zip Code":[[100.08,564.96,186.0,578.64]],"Disclosure Form Designee":[[174.72,543.12,187.92,554.04]],"Marketing or Sales Designee":[[174.72,524.04,187.92,535.68]],"Community Solar Subscriber Designee":[[338.28,543.72,351.48,555.72]],"Installer Designee":[[338.88,524.16,351.96,535.68]],"D/B/A Information":[[37.68,423.36,573.84,439.2]],"Social Media":[[37.68,364.32,573.84,380.04]],"Initials":[[40.92,305.64,67.68,318.6],[41.04,278.76,67.92,291.72],[40.56,233.64,67.44,246.6],[40.92,203.64,67.68,216.6],[40.92,160.44,67.68,173.4]],"Signature":[[80.88,96.24,260.88,111.24]],"Print Name":[[362.28,94.92,529.92,109.92]],"Title":[[66.0,74.52,260.88,89.52]],"Signer Company":[[353.16,73.2,530.76,88.2]],"Date":[[64.92,51.96,261.36,66.96]]},"w":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,278,278,355,556,556,889,667,191,333,333,389,584,278,333,278,278,556,556,556,556,556,556,556,556,556,556,278,278,584,584,584,556,1015,667,667,722,722,667,611,778,722,278,500,667,556,833,722,778,667,778,722,667,611,722,667,944,667,667,611,278,278,278,469,556,333,556,556,500,556,556,278,556,556,222,222,500,222,833,556,556,556,556,333,500,278,556,500,722,500,500,500,334,260,334,584,761,761,761,761,761,761,761,761,761,761,761,761,761,761,761,761,761,761,761,761,761,761,761,761,761,761,761,761,761,761,761,761,761,278,333,556,556,556,556,260,556,333,737,370,556,584,333,737,333,400,584,333,333,333,556,537,278,333,333,365,556,834,834,834,611,667,667,667,667,667,667,1000,722,667,667,667,667,278,278,278,278,722,722,778,778,778,778,778,584,778,722,722,722,722,667,667,611,556,556,556,556,556,556,889,500,556,556,556,556,278,278,278,278,556,556,556,556,556,556,556,584,611,556,556,556,556,500,556,500]};
 
 /* ====== state & utils ====== */
 const S = { session: null, email: '', partners: [], config: {}, folders: [], filter: 'active', q: '', sel: null, pp: null };
@@ -273,7 +406,40 @@ function ilHTML(text) {
   return `<span class="ilmark">${EMBLEM}<span>${esc(text)}</span></span>`;
 }
 
+/* ---------- practice mode (?demo=1): sample Build Partner, nothing is saved or sent ---------- */
+const DEMO = {
+  p: { company: 'Sample Solar LLC', contact: 'Jordan Reyes', email: 'jordan@samplesolar.com', regStatus: 'missing', pdfStatus: 'missing', gsStatus: 'missing', gsDate: '',
+       mesStatus: 'missing', trainingStatus: 'missing', trainingDate: '', partnerMessage: '', partnerNote: '', partnerNoteAt: '', regProgress: '', regBlocker: '', regBlockerAt: '' },
+  label: { reg: 'Illinois Shines Online Registration', pdf: 'Designee Registration Form (AV 2409)', gs: 'Secretary of State Statement of Good Standing', mes: 'MES Compliance Plan or EEC Application', training: 'Training Certificate' }
+};
+async function demoApi(action, b) {
+  await new Promise(r => setTimeout(r, 400));
+  const P = DEMO.p;
+  if (action === 'partner.get') return { ok: true, partner: Object.assign({}, P),
+    config: { regDeadline: '2026-11-15', stateDeadline: '2026-11-30', trainingDeadline: '2026-12-31' },
+    info: { avName: 'GOODPWR SOLAR', avId: 'AV 2409', officialUrl: 'https://energysolutionsipa.my.site.com/newdesignee/s/', maxMb: 10, contact: 'compliance@getgoodpwr.com' } };
+  if (action === 'partner.submit') {
+    const open = ['missing', 'rejected', ''].includes(P.regStatus || 'missing');
+    if (open && !b.regChoice) throw new Error('Step 1: please tell us if your Illinois Shines online registration is completed or not completed yet.');
+    if (open && b.regChoice === 'notdone' && !String(b.regBlocker || '').trim()) throw new Error('Step 1: please tell us what is keeping you from completing your Designee Registration Form.');
+    const got = [];
+    if (open && b.regChoice === 'done') { P.regStatus = 'received'; P.regProgress = 'done'; got.push('Illinois Shines online registration confirmed completed'); }
+    if (open && b.regChoice === 'notdone' && (b.regBlocker !== P.regBlocker || P.regProgress !== 'notdone')) { P.regProgress = 'notdone'; P.regBlocker = b.regBlocker; P.regBlockerAt = new Date().toISOString(); got.push('Illinois Shines online registration NOT completed yet – reason: "' + b.regBlocker + '"'); }
+    Object.keys(b.files || {}).forEach(k => { P[k + 'Status'] = 'received'; P[k + 'FileName'] = b.files[k].name; got.push(DEMO.label[k] + (k === 'pdf' && b.formOnline ? ' (filled out and signed online)' : '')); });
+    if (b.esign && b.formOnline) got.push('Electronic signature by ' + b.esign.name + ' – signature certificate would be saved');
+    if (b.gsDate) P.gsDate = b.gsDate;
+    if (b.mesNA) { P.mesStatus = 'na'; got.push('MES/EEC marked "does not apply"'); }
+    if (b.trainingDone) { P.trainingStatus = 'received'; P.trainingDate = b.trainingDate || ''; if (!(b.files || {}).training) got.push('Training reported complete'); }
+    if (b.note !== undefined) { P.partnerNote = b.note; P.partnerNoteAt = new Date().toISOString(); got.push(b.note ? 'Status note: "' + b.note + '"' : 'Status note cleared'); }
+    if (!got.length) throw new Error('Nothing new to submit yet. Add a document or check a box first.');
+    P.lastPartnerSubmitAt = new Date().toISOString();
+    return { ok: true, partner: Object.assign({}, P), received: got };
+  }
+  throw new Error('Not available in practice mode.');
+}
+
 async function api(action, data = {}) {
+  if (S.demo) return demoApi(action, data);
   if (!/^https:\/\//.test(API_URL)) throw new Error('The portal is not connected yet (API_URL is missing in index.html).');
   const body = Object.assign({ action }, data);
   if (action.indexOf('staff.') === 0 && S.session) body.session = S.session;
@@ -333,8 +499,8 @@ function folderOptions(selected, company) {
 
 /* ====== status logic ====== */
 const ITEMS = [
-  { k: 'reg', short: 'IL Registration', long: 'Illinois Shines online registration', nofile: true },
-  { k: 'pdf', short: 'Designee PDF', long: 'Completed Designee Registration Form (PDF)' },
+  { k: 'reg', short: 'IL Registration', long: 'Illinois Shines Online Registration', nofile: true },
+  { k: 'pdf', short: 'Designee Form', long: 'Designee Registration Form (AV 2409)' },
   { k: 'gs', short: 'Good Standing', long: 'IL Secretary of State Statement of Good Standing' },
   { k: 'mes', short: 'MES / EEC', long: 'MES Compliance Plan or EEC Application' },
   { k: 'training', short: 'Training', long: 'Required training modules' }
@@ -342,7 +508,6 @@ const ITEMS = [
 const OPT_LABEL = {
   missing: 'Missing', received: 'Received – needs review', verified: 'Verified', rejected: 'Rejected – needs new copy', na: 'N/A – does not qualify'
 };
-const REG_LABEL = { missing: 'Not confirmed', received: 'Partner confirmed – check', verified: 'Verified', rejected: 'Rejected – could not confirm' };
 const TRAIN_LABEL = { missing: 'Not done', received: 'Reported done – confirm', verified: 'Verified complete', rejected: 'Rejected' };
 
 function gsOk(p) { return !!p.gsDate && p.gsDate >= yearAgo(); }
@@ -365,8 +530,8 @@ function evalP(p) {
 function missingList(p) {
   const m = [];
   const bad = k => ['missing', 'rejected', ''].includes(p[k + 'Status'] || '');
-  if (bad('reg')) m.push(p.regStatus === 'rejected' ? 'Illinois Shines online registration (could not confirm)' : 'Illinois Shines online registration (select GOODPWR LLC, ID 2167)');
-  if (bad('pdf')) m.push(p.pdfStatus === 'rejected' ? 'New copy of the Designee PDF (last one rejected)' : 'Completed Designee Registration Form (PDF)');
+  if (bad('reg')) m.push(p.regStatus === 'rejected' ? 'Illinois Shines online registration (could not confirm)' : 'Illinois Shines online registration (select GOODPWR SOLAR, AV 2409)');
+  if (bad('pdf')) m.push(p.pdfStatus === 'rejected' ? 'New copy of the Designee Registration Form (last one rejected)' : 'Signed Designee Registration Form (AV 2409)');
   const gsOld = p.gsDate && !gsOk(p);
   if (bad('gs') || gsOld) m.push(gsOld || p.gsStatus === 'rejected' ? 'Newer Good Standing statement (must be within 12 months)' : 'Secretary of State Good Standing statement');
   if (bad('training')) m.push('Training modules completed');
@@ -403,6 +568,8 @@ function nextCard(p) {
     <div class="nh"><h3>What's next</h3>${chip(e.overall, e.tone)}</div>
     <div class="big">${big}</div>
     <div class="why">${why}</div>
+    ${p.regProgress === 'notdone' && !['received','verified'].includes(p.regStatus) ? `<div class="pn">⚠️ <b>IL Shines registration not completed (${fmtDate(p.regBlockerAt)}):</b> ${esc(p.regBlocker)}</div>` : ''}
+    ${p.partnerNote ? `<div class="pn">💬 <b>Their note (${fmtDate(p.partnerNoteAt)}):</b> ${esc(p.partnerNote)}</div>` : ''}
     ${list.length ? `<ul>${list.join('')}</ul>` : ''}
     <div class="acts">${acts}</div>
     <div class="meta">
@@ -423,7 +590,8 @@ function itemChip(p, k) {
 
 /* ====== boot ====== */
 const params = new URLSearchParams(location.search);
-if (params.get('t')) bootPartner(params.get('t'));
+if (params.get('demo') === '1') { S.demo = true; bootPartner('PRACTICE-MODE-0000000000000'); }
+else if (params.get('t')) bootPartner(params.get('t'));
 else {
   try { const s = JSON.parse(sessionStorage.getItem('ilsh_sess') || 'null'); if (s) { S.session = s.session; S.email = s.email; } } catch (e) {}
   S.session ? loadDash() : renderLogin();
@@ -647,7 +815,7 @@ function renderList() {
     ${rows.map(p => {
       const e = evalP(p);
       return `<div class="lrow" data-id="${esc(p.id)}">
-        <div class="c-co"><div class="co">${esc(p.company)}${isTest(p) ? '<span class="testtag">TEST</span>' : ''}</div><div class="co-sub">${esc(p.contact || '')}${p.contact ? ' · ' : ''}${esc(p.email)}</div>${isConfirmed(p) || isTest(p) ? '' : '<div class="small" style="color:var(--warn);font-weight:600">Confirm Drive folder</div>'}</div>
+        <div class="c-co"><div class="co">${esc(p.company)}${isTest(p) ? '<span class="testtag">TEST</span>' : ''}</div><div class="co-sub">${esc(p.contact || '')}${p.contact ? ' · ' : ''}${esc(p.email)}</div>${p.regProgress === 'notdone' && !['received','verified'].includes(p.regStatus) ? `<div class="co-sub" style="color:var(--warn);font-weight:600" title="${esc(p.regBlocker)}">⚠️ IL Shines registration not completed: ${esc(p.regBlocker)}</div>` : ''}${p.partnerNote ? `<div class="co-sub" title="${esc(p.partnerNote)}">💬 ${esc(p.partnerNote)}</div>` : ''}${isConfirmed(p) || isTest(p) ? '' : '<div class="small" style="color:var(--warn);font-weight:600">Confirm Drive folder</div>'}</div>
         <div><span class="cell-lbl">Invited</span>${p.invitedAt ? fmtDate(p.invitedAt) : `<span class="muted small">${p.source === 'Emailed separately' ? 'Emailed' : '—'}</span>`}</div>
         ${ITEMS.map(i => `<div><span class="cell-lbl">${i.short}</span>${itemChip(p, i.k)}</div>`).join('')}
         <div><span class="cell-lbl">Status</span>${chip(e.overall, e.tone)}</div>
@@ -670,14 +838,14 @@ function replacePartner(np) { const i = S.partners.findIndex(p => p.id === np.id
 function itemBlock(p, i) {
   const k = i.k, s = p[k + 'Status'] || 'missing';
   const opts = (k === 'mes' ? ['missing','received','verified','rejected','na'] : ['missing','received','verified','rejected']);
-  const lab = k === 'training' ? TRAIN_LABEL : k === 'reg' ? REG_LABEL : OPT_LABEL;
+  const lab = (k === 'training' || k === 'reg') ? TRAIN_LABEL : OPT_LABEL;
   let extra = '';
   if (k === 'gs') {
     const ok = gsOk(p);
     extra = `<div><label class="f">Date issued</label><input class="in-f" type="date" data-f="gsDate" value="${esc(p.gsDate)}">
       <div class="small" style="margin-top:4px">${p.gsDate ? (ok ? '<span style="color:var(--ok)">Within 12 months ✓</span>' : '<span style="color:var(--bad)">Older than 12 months – needs a new statement</span>') : '<span class="muted">Must be within the past 12 months</span>'}</div></div>`;
   } else if (k === 'reg') {
-    extra = `<div class="small muted" style="align-self:end;padding-bottom:6px">Check that the Designee PDF shows <b>GOODPWR LLC (ID 2167)</b> as Approved Vendor${p.regAt ? ` · confirmed by partner ${fmtDate(p.regAt)}` : ''}</div>`;
+    extra = `<div class="small muted" style="align-self:end;padding-bottom:6px">Check that their Illinois Shines registration shows <b>GOODPWR SOLAR (AV 2409)</b> as Approved Vendor${p.regAt ? ` · confirmed by partner ${fmtDate(p.regAt)}` : ''}</div>`;
   } else if (k === 'training') {
     extra = `<div><label class="f">Date completed</label><input class="in-f" type="date" data-f="trainingDate" value="${esc(p.trainingDate)}"></div>`;
   } else extra = '<div></div>';
@@ -687,6 +855,9 @@ function itemBlock(p, i) {
       <div><label class="f">Status</label><select class="in-f" data-f="${k}Status">${opts.map(o => `<option value="${o}" ${s===o?'selected':''}>${lab[o]}</option>`).join('')}</select></div>
       ${extra}
     </div>
+    ${k === 'pdf' && p.esignAt ? `<div class="pnote" style="background:var(--ok-soft)"><b>Signed electronically · ${fmtWhen(p.esignAt)}</b>${esc(p.esignName)}${p.esignTitle ? ', ' + esc(p.esignTitle) : ''} · ${esc(p.esignMethod || '')} signature${p.esignCertUrl ? ` · <a href="${esc(p.esignCertUrl)}" target="_blank" rel="noopener">Signature certificate</a>` : ''}</div>` : ''}
+    ${k === 'reg' && p.regProgress === 'notdone' && !['received','verified'].includes(p.regStatus) ? `<div class="pnote" style="background:var(--warn-soft)"><b>Partner says: not completed yet · ${fmtDate(p.regBlockerAt)}</b>${esc(p.regBlocker)}</div>` : ''}
+    ${k === 'reg' && p.partnerNote ? `<div class="pnote"><b>Partner's status note · ${fmtDate(p.partnerNoteAt)}</b>${esc(p.partnerNote)}</div>` : ''}
     ${i.nofile ? '' : `<div class="file-line">
       ${p[k + 'Url'] ? `<a href="${esc(p[k+'Url'])}" target="_blank" rel="noopener">📄 ${esc(p[k+'FileName'])}</a><span class="muted">${fmtDate(p[k+'At'])}</span>` : `<span class="muted">No file on record</span>`}
       <label class="uplink">${p[k + 'Url'] ? 'Replace file' : 'Attach file'}<input type="file" class="hidden" data-up="${k}" accept="${k==='pdf'?'.pdf':'.pdf,.png,.jpg,.jpeg,.heic,.doc,.docx'}"></label>
@@ -1023,7 +1194,12 @@ function openTest() {
         <div id="stOut" style="margin-top:10px"></div>
       </div>
       <div class="sec">
-        <h3>2 · Full test run</h3>
+        <h3>2 · Practice the upload page</h3>
+        <div class="small muted" style="margin-bottom:10px">Opens the Build Partner upload page with a sample company. Try every step, including <b>Fill out &amp; sign online</b>. Nothing is saved, emailed or uploaded to Drive.</div>
+        <a class="btn sm sun" href="${esc(baseUrl() + '?demo=1')}" target="_blank" rel="noopener">Open practice upload page ↗</a>
+      </div>
+      <div class="sec">
+        <h3>3 · Full test run</h3>
         <div class="small muted" style="margin-bottom:10px">Creates a <b>TEST</b> Build Partner and emails the real invite to <b>${esc(S.email)}</b>. Open the link, upload any sample files and see them arrive here. Test uploads go to a separate TEST folder – never Build Partners - All – and compliance is not emailed.</div>
         <button class="btn sm sun" id="tiBtn">Send me a test invite</button>
         <div id="tiOut" style="margin-top:10px"></div>
@@ -1098,10 +1274,191 @@ async function bootPartner(t) {
 
 function pStatusLine(s, k) {
   if (s === 'verified') return `<div class="locked">✓ Accepted by GoodPWR Solar</div>`;
-  if (s === 'received') return `<div class="small" style="margin-top:8px;color:var(--info);font-weight:600">${k === 'reg' ? 'Confirmed – GoodPWR Solar will check it against your Designee PDF.' : 'Received – GoodPWR Solar is reviewing it. You can replace it below if needed.'}</div>`;
-  if (s === 'rejected') return `<div class="small" style="margin-top:8px;color:var(--bad);font-weight:600">${k === 'reg' ? 'We could not confirm your registration. Make sure you selected GOODPWR LLC (ID 2167), then tick the box again.' : 'Please upload a new copy' + (k === 'gs' ? ' (issued within the past 12 months)' : '') + '.'}</div>`;
+  if (s === 'received') return `<div class="small" style="margin-top:8px;color:var(--info);font-weight:600">${k === 'reg' ? 'Marked completed – GoodPWR Solar is reviewing your registration.' : 'Received – GoodPWR Solar is reviewing it. You can replace it below if needed.'}</div>`;
+  if (s === 'rejected') return `<div class="small" style="margin-top:8px;color:var(--bad);font-weight:600">${k === 'reg' ? 'We could not confirm your Illinois Shines registration. Make sure you selected ' + esc(S.pp.info.avName) + ' (' + esc(S.pp.info.avId) + '), then confirm again below.' : 'Please upload a new copy' + (k === 'gs' ? ' (issued within the past 12 months)' : '') + '.'}</div>`;
   if (s === 'na') return `<div class="small" style="margin-top:8px;color:var(--mute);font-weight:600">Marked as not applicable to your business.</div>`;
   return '';
+}
+
+/* ---------- online Designee Registration Form ---------- */
+const DF_TERMS = [
+  'We have reviewed and commit to comply with all Illinois Shines requirements applicable to our work as a Designee.',
+  'We have read, understand, and will abide by the Consumer Protection Handbook, Program Guidebook, and associated materials, and commit to ensuring that our employees and any agents operating on our behalf are trained to understand and abide by these requirements.',
+  'We acknowledge that, subject to our approval as a Designee by one or more Approved Vendors, we will be listed in a public database of Designees on the Illinois Shines website (illinoisshines.com).',
+  'We will maintain accurate, current, and comprehensive registration information related to our business relationships with Approved Vendors and Designees and acknowledge this information is subject to review, verification, and acceptance by the Approved Vendor.',
+  'We acknowledge and accept that Designees that act in violation of Illinois Shines requirements are subject to disciplinary action from the IPA which could result in suspension from the Illinois Shines program of both the Designee and/or any Approved Vendors on whose behalf the Designee ultimately acts.'
+];
+const DF_TYPES = [
+  ['Disclosure Form Designee', 'Disclosure Form Designee'],
+  ['Community Solar Subscriber Designee', 'Community Solar Subscriber Designee'],
+  ['Marketing or Sales Designee', 'Marketing or Sales Designee'],
+  ['Installer Designee', 'Installer Designee (DG Installer Certificate approved by the Illinois Commerce Commission required upon registration)']
+];
+function usDate(d) { return pad(d.getMonth() + 1) + '/' + pad(d.getDate()) + '/' + d.getFullYear(); }
+function dfState(p) {
+  if (!S.pp.df) {
+    const contact = p.contact && p.contact !== 'Test run' ? p.contact : '';
+    S.pp.df = { 'Name': contact, 'Company Name': p.company || '', 'Street Address': '', 'City': '', 'State': 'IL', 'Zip Code': '', 'Phone': '', 'Email Address': p.email || '',
+      'D/B/A Information': '', 'Social Media': '', 'Initials': '', 'Print Name': contact, 'Title': '', 'Signer Company': p.company || '' };
+    S.pp.dt = {}; S.pp.terms = [false, false, false, false, false]; S.pp.sigUrl = '';
+  }
+  return S.pp.df;
+}
+function designeeFormHTML(p, info) {
+  const v = dfState(p), bad = S.pp.dfBad || {};
+  const f = (key, label, o = {}) => `<div${o.wide ? ' style="grid-column:1/-1"' : ''}><label class="f">${label}${o.opt ? ' <span class="muted">(optional)</span>' : ' <span class="req">*</span>'}</label>
+    <input class="in-f${bad[key] ? ' bad' : ''}" data-df="${esc(key)}" value="${esc(v[key])}"${o.type ? ` type="${o.type}"` : ''}${o.max ? ` maxlength="${o.max}"` : ''}${o.ph ? ` placeholder="${esc(o.ph)}"` : ''}${o.auto ? ` autocomplete="${o.auto}"` : ''}></div>`;
+  return `<div class="dform" id="dform">
+    <div class="small muted" style="margin-bottom:10px">Approved Vendor: <b>${esc(info.avName)}</b> · <b>${esc(info.avId)}</b> (already filled in)</div>
+    <h3>Designee information</h3>
+    <div class="grid2">
+      ${f('Name', 'Name', { auto: 'name' })}${f('Company Name', 'Company name', { auto: 'organization' })}
+      ${f('Street Address', 'Street address', { wide: true, auto: 'street-address' })}
+      ${f('City', 'City', { auto: 'address-level2' })}
+      <div class="grid2" style="gap:10px">${f('State', 'State', { max: 2, auto: 'address-level1' })}${f('Zip Code', 'Zip code', { max: 10, auto: 'postal-code' })}</div>
+      ${f('Phone', 'Phone', { type: 'tel', auto: 'tel' })}${f('Email Address', 'Email address', { type: 'email', auto: 'email' })}
+    </div>
+    <h3>Type of Designee <span class="req">*</span> <span class="muted small" style="font-weight:500">select all that apply</span></h3>
+    <div class="chk4${bad.types ? ' bad' : ''}">${DF_TYPES.map(([k, l]) => `<label class="check" style="margin-top:0"><input type="checkbox" data-dt="${esc(k)}" ${S.pp.dt[k] ? 'checked' : ''}><span>${esc(l)}</span></label>`).join('')}</div>
+    <h3>D/B/A and social media</h3>
+    <div class="grid2">
+      ${f('D/B/A Information', 'D/B/A (“doing business as”) names', { wide: true, opt: true, ph: 'Trade name or assumed name, if any' })}
+      ${f('Social Media', 'Social media accounts with Illinois Shines information', { wide: true, opt: true, ph: 'e.g. facebook.com/yourcompany' })}
+    </div>
+    <h3>Terms and conditions <span class="req">*</span></h3>
+    <div class="small muted" style="margin-bottom:4px">Check each statement. Your initials are added next to all five on the form.</div>
+    ${DF_TERMS.map((t, i) => `<label class="term${bad['term' + i] ? ' bad' : ''}"><input type="checkbox" data-term="${i}" ${S.pp.terms[i] ? 'checked' : ''}><span>${esc(t)}</span></label>`).join('')}
+    <div class="grid2" style="margin-top:8px">${f('Initials', 'Your initials', { max: 4 })}<div></div></div>
+    <h3>Signature <span class="req">*</span></h3>
+    <div class="small muted" style="margin-bottom:6px">By signing, I assert that I have the authority to enter into binding agreements on behalf of this Designee.</div>
+    <div class="sigtabs" role="group" aria-label="Signature method"><button type="button" data-sigmode="draw" aria-pressed="${S.pp.sigMode !== 'type'}">Draw</button><button type="button" data-sigmode="type" aria-pressed="${S.pp.sigMode === 'type'}">Type</button></div>
+    ${S.pp.sigMode === 'type' ? `
+      <input class="in-f${bad.sig ? ' bad' : ''}" id="sigTypeIn" maxlength="60" placeholder="Type your full name" value="${esc(S.pp.sigTyped || '')}" autocomplete="name">
+      <div class="sigwrap${bad.sig ? ' bad' : ''}" style="margin-top:8px"><div class="sigtyped${S.pp.sigTyped ? '' : ' empty'}" id="sigTypePreview">${S.pp.sigTyped ? esc(S.pp.sigTyped) : 'Your signature will appear here'}</div><div class="line"></div></div>` : `
+      <div class="sigwrap${bad.sig ? ' bad' : ''}"><canvas id="sigPad"></canvas><div class="line"></div><div class="hint">Sign here with your mouse or finger</div></div>
+      <div style="text-align:right;margin-top:4px"><button class="btn ghost sm" id="sigClear" type="button">Clear signature</button></div>`}
+    <div class="grid2" style="margin-top:6px">
+      ${f('Print Name', 'Print name')}${f('Title', 'Title', { ph: 'e.g. Owner' })}
+      ${f('Signer Company', 'Company')}
+      <div><label class="f">Date</label><input class="in-f" value="${usDate(new Date())}" disabled></div>
+    </div>
+    <label class="consent${bad.consent ? ' bad' : ''}"><input type="checkbox" id="esignConsent" ${S.pp.consent ? 'checked' : ''}>
+      <span><b>Electronic signature agreement</b> <span class="req">*</span><br>${esignConsentHTML(info)}</span></label>
+    ${S.pp.dfErr ? `<div class="errs">${esc(S.pp.dfErr)}</div>` : ''}
+    <button class="btn sun" id="dfCreate" style="width:100%;margin-top:14px;padding:13px">Create my signed form</button>
+  </div>`;
+}
+function esignConsentText(info) {
+  const v = S.pp.df || {};
+  const who = (v['Print Name'] || '').trim() || 'the signer named above';
+  const co = (v['Signer Company'] || v['Company Name'] || '').trim() || 'the company named above';
+  return 'I, ' + who + ', agree to sign this Designee Registration Form electronically. I confirm that: (1) I am authorized to sign on behalf of ' + co +
+    '; (2) the signature I ' + (S.pp.sigMode === 'type' ? 'typed' : 'drew') + ' above is my own legal signature, and I intend it to have the same legal effect as a handwritten signature; ' +
+    '(3) the information in this form is true and correct; and (4) I understand GoodPWR Solar will keep a record of this signing, including the date and time, the email address the signing link was sent to, my device information, and a fingerprint of the signed document, and will email a copy to me.';
+}
+function esignConsentHTML(info) {
+  const v = S.pp.df || {};
+  const who = esc((v['Print Name'] || '').trim() || 'the signer named above');
+  const co = esc((v['Signer Company'] || v['Company Name'] || '').trim() || 'the company named above');
+  return `I, <b>${who}</b>, agree to sign this form electronically. I confirm that:
+    <ul><li>I am authorized to sign on behalf of <b>${co}</b>.</li>
+    <li>The signature I ${S.pp.sigMode === 'type' ? 'typed' : 'drew'} above is my own legal signature, and I intend it to have the same legal effect as a handwritten signature.</li>
+    <li>The information in this form is true and correct.</li>
+    <li>GoodPWR Solar will keep a record of this signing – date and time, the email the signing link was sent to, my device information, and a fingerprint of the signed document – and will email a copy to me.</li></ul>`;
+}
+function bindDesigneeForm() {
+  const form = $('#dform'); if (!form) return;
+  $$('[data-df]', form).forEach(el => el.oninput = () => { S.pp.df[el.dataset.df] = el.value; el.classList.remove('bad'); });
+  $$('[data-df]', form).forEach(el => { if (['Print Name', 'Signer Company'].includes(el.dataset.df)) el.onchange = () => { const c = $('#esignConsent'); if (c) c.nextElementSibling.innerHTML = '<b>Electronic signature agreement</b> <span class="req">*</span><br>' + esignConsentHTML(); }; });
+  const cs = $('#esignConsent'); if (cs) cs.onchange = () => { S.pp.consent = cs.checked; cs.closest('.consent').classList.remove('bad'); };
+  $$('[data-dt]', form).forEach(el => el.onchange = () => { S.pp.dt[el.dataset.dt] = el.checked; });
+  $$('[data-term]', form).forEach(el => el.onchange = () => { S.pp.terms[+el.dataset.term] = el.checked; el.closest('.term').classList.remove('bad'); });
+  $$('[data-sigmode]', form).forEach(b => b.onclick = () => { S.pp.sigMode = b.dataset.sigmode; renderPartner(); const t = $('#sigTypeIn'); if (t) t.focus(); });
+  const ti = $('#sigTypeIn');
+  if (ti) {
+    if (!S.pp.sigTyped && S.pp.df['Print Name']) { S.pp.sigTyped = S.pp.df['Print Name']; ti.value = S.pp.sigTyped; const pv = $('#sigTypePreview'); pv.textContent = S.pp.sigTyped; pv.classList.remove('empty'); }
+    ti.oninput = () => { S.pp.sigTyped = ti.value; const pv = $('#sigTypePreview'); pv.textContent = ti.value.trim() || 'Your signature will appear here'; pv.classList.toggle('empty', !ti.value.trim()); ti.classList.remove('bad'); pv.parentElement.classList.remove('bad'); };
+  }
+  $('#dfCreate').onclick = createSignedForm;
+  const cv = $('#sigPad'); if (!cv) return;
+  const wrap = cv.parentElement, hint = wrap.querySelector('.hint'), dpr = Math.max(1, window.devicePixelRatio || 1);
+  const r = wrap.getBoundingClientRect();
+  cv.width = Math.max(1, Math.round(r.width * dpr)); cv.height = Math.max(1, Math.round(r.height * dpr));
+  const ctx = cv.getContext('2d');
+  const setPen = () => { ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#111'; ctx.fillStyle = '#111'; ctx.lineWidth = 2.4 * dpr; };
+  setPen();
+  if (S.pp.sigUrl) { const im = new Image(); im.onload = () => { ctx.drawImage(im, 0, 0, cv.width, cv.height); setPen(); }; im.src = S.pp.sigUrl; hint.style.display = 'none'; }
+  let drawing = false, last = null;
+  const pt = e => { const b = cv.getBoundingClientRect(); return [(e.clientX - b.left) * dpr, (e.clientY - b.top) * dpr]; };
+  cv.onpointerdown = e => { e.preventDefault(); drawing = true; last = pt(e); try { cv.setPointerCapture(e.pointerId); } catch (x) {} hint.style.display = 'none'; ctx.beginPath(); ctx.arc(last[0], last[1], ctx.lineWidth / 2, 0, Math.PI * 2); ctx.fill(); };
+  cv.onpointermove = e => { if (!drawing) return; const p2 = pt(e); ctx.beginPath(); ctx.moveTo(last[0], last[1]); ctx.lineTo(p2[0], p2[1]); ctx.stroke(); last = p2; };
+  const end = () => { if (!drawing) return; drawing = false; S.pp.sigUrl = cv.toDataURL('image/png'); wrap.classList.remove('bad'); };
+  cv.onpointerup = end; cv.onpointercancel = end;
+  $('#sigClear').onclick = () => { ctx.clearRect(0, 0, cv.width, cv.height); S.pp.sigUrl = ''; hint.style.display = ''; };
+}
+async function typedSignatureCanvas(name) {
+  const font = "600 96px 'Dancing Script', 'Segoe Script', 'Brush Script MT', 'Lucida Handwriting', cursive";
+  try { await document.fonts.load(font, name); } catch (e) {}
+  const c = document.createElement('canvas'), x = c.getContext('2d');
+  x.font = font; const w = Math.ceil(x.measureText(name).width) + 40;
+  c.width = Math.min(w, 3000); c.height = 150;
+  x.font = font; x.fillStyle = '#111'; x.textBaseline = 'middle'; x.fillText(name, 20, 78);
+  return c;
+}
+async function signatureAlpha() {
+  let cv;
+  if (S.pp.sigMode === 'type') {
+    const name = String(S.pp.sigTyped || '').trim(); if (name.length < 2) return null;
+    cv = await typedSignatureCanvas(name);
+  } else { cv = $('#sigPad'); if (!cv || !S.pp.sigUrl) return null; }
+  const w = cv.width, h = cv.height, d = cv.getContext('2d').getImageData(0, 0, w, h).data;
+  let x0 = w, y0 = h, x1 = -1, y1 = -1;
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) if (d[(y * w + x) * 4 + 3] > 20) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+  if (x1 < 0 || (x1 - x0) < 8) return null;
+  const m = 6; x0 = Math.max(0, x0 - m); y0 = Math.max(0, y0 - m); x1 = Math.min(w - 1, x1 + m); y1 = Math.min(h - 1, y1 + m);
+  const cw = x1 - x0 + 1, ch = y1 - y0 + 1, alpha = new Uint8Array(cw * ch);
+  for (let y = 0; y < ch; y++) for (let x = 0; x < cw; x++) alpha[y * cw + x] = d[((y + y0) * w + (x + x0)) * 4 + 3];
+  return { w: cw, h: ch, alpha };
+}
+async function createSignedForm() {
+  const v = S.pp.df, bad = {}, miss = [];
+  const names = { 'Signer Company': 'Company (signature)', 'Email Address': 'Email address', 'Zip Code': 'Zip code', 'Street Address': 'Street address', 'Company Name': 'Company name', 'Print Name': 'Print name' };
+  ['Name', 'Company Name', 'Street Address', 'City', 'State', 'Zip Code', 'Phone', 'Email Address', 'Initials', 'Print Name', 'Title', 'Signer Company']
+    .forEach(k => { if (!String(v[k] || '').trim()) { bad[k] = 1; miss.push(names[k] || k); } });
+  if (String(v['Email Address'] || '').trim() && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v['Email Address'].trim())) { bad['Email Address'] = 1; miss.push('a valid email'); }
+  if (String(v['State'] || '').trim() && !/^[A-Za-z]{2}$/.test(v['State'].trim())) { bad['State'] = 1; miss.push('a 2-letter state'); }
+  if (!DF_TYPES.some(([k]) => S.pp.dt[k])) { bad.types = 1; miss.push('Type of Designee'); }
+  S.pp.terms.forEach((t, i) => { if (!t) bad['term' + i] = 1; });
+  if (S.pp.terms.some(t => !t)) miss.push('all five terms');
+  const sig = await signatureAlpha();
+  if (!sig) { bad.sig = 1; miss.push(S.pp.sigMode === 'type' ? 'your typed signature' : 'your signature'); }
+  if (!S.pp.consent) { bad.consent = 1; miss.push('the electronic signature agreement'); }
+  if (miss.length) {
+    S.pp.dfBad = bad; S.pp.dfErr = 'Please complete: ' + miss.join(', ') + '.';
+    renderPartner(); const e = $('#dform .errs'); if (e) e.scrollIntoView({ behavior: 'smooth', block: 'center' }); return;
+  }
+  const btn = $('#dfCreate');
+  await busy(btn, async () => {
+    btn.innerHTML = '<span class="spin"></span>&nbsp; Creating your signed form…';
+    let src;
+    try { const res = await fetch(DESIGNEE_FORM_URL); if (res.ok === false) throw 0; src = new Uint8Array(await res.arrayBuffer()); }
+    catch (e) { throw new Error('Could not load the form. Please use “Download the PDF instead”.'); }
+    const vals = {}; Object.keys(v).forEach(k => vals[k] = String(v[k] || '').trim());
+    vals['State'] = vals['State'].toUpperCase(); vals['Initials'] = vals['Initials'].toUpperCase(); vals['Date'] = usDate(new Date());
+    vals.types = Object.assign({}, S.pp.dt);
+    const now = new Date();
+    let tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+    S.pp.esign = { consent: true, consentText: esignConsentText(), method: S.pp.sigMode === 'type' ? 'type' : 'draw',
+      name: vals['Print Name'], title: vals['Title'], email: vals['Email Address'], tz, clientTime: now.toString().slice(0, 33), device: navigator.userAgent };
+    const bytes = await gpStampDesignee(src, GP_STAMP_MAP, vals, sig);
+    const name = 'Designee Registration Form - ' + (vals['Company Name'] || 'signed').replace(/[^\w .&-]/g, '') + '.pdf';
+    const file = new File([bytes], name, { type: 'application/pdf' });
+    if (S.pp.signedUrl) URL.revokeObjectURL(S.pp.signedUrl);
+    S.pp.files.pdf = file; S.pp.signedUrl = URL.createObjectURL(file); S.pp.formOnline = true;
+    S.pp.formOpen = false; S.pp.dfErr = ''; S.pp.dfBad = {};
+    renderPartner(); $('#step2').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    toast('Signed form created – click Submit to send it');
+  });
 }
 
 function renderPartner() {
@@ -1122,9 +1479,10 @@ function renderPartner() {
   <main class="pwrap">
     <div class="cobrand">
       <img class="gplogo" src="${esc(LOGO_URL || GP_LOGO)}" alt="GOODPWR">
-      <div><div class="who">GOOD<b>PWR</b> Solar</div><div class="av">Approved Vendor · ID ${esc(info.avId)}</div></div>
+      <div><div class="who">GOOD<b>PWR</b> Solar</div><div class="av">Approved Vendor · ${esc(info.avId)}</div></div>
       <div class="il">${EMBLEM}<span>Illinois Shines<br>Designee Registration</span></div>
     </div>
+    ${S.demo ? `<div class="banner msg" style="margin:0 0 14px"><b>Practice mode</b> – this is what a Build Partner sees, with a sample company. Click around, fill out and sign the form, and submit. Nothing is saved or emailed. You can open the signed PDF with “View signed form”.</div>` : ''}
     <section class="hero">
       <h1>Illinois Shines Designee Registration</h1>
       <div class="co-name">For <b>${esc(p.company)}</b>${p.contact ? ' · ' + esc(p.contact) : ''}</div>
@@ -1139,20 +1497,42 @@ function renderPartner() {
       ${p.partnerMessage ? `<div class="banner msg"><b>Message from GoodPWR Solar:</b> ${esc(p.partnerMessage)}</div>` : ''}
     </section>
 
-    <div class="card step-card ${isDone('reg') ? 'done' : ''}">
+    <div class="card step-card ${isDone('reg') ? 'done' : ''}" id="step1">
       <div class="step-head"><h2><span class="num">1</span>Register online with Illinois Shines</h2></div>
-      <p>Sign the Illinois Shines Designee Registration Form online. Select <b>${esc(info.avName)}</b> (Approved Vendor ID <b>${esc(info.avId)}</b>) as your Approved Vendor.</p>
-      <p style="margin-top:12px"><a class="btn primary" href="${esc(info.officialUrl)}" target="_blank" rel="noopener">Open the Illinois Shines form ↗</a></p>
+      <p>Go to the Illinois Shines online registration, register your company as a Designee, and select <b>${esc(info.avName)}</b> (<b>${esc(info.avId)}</b>) as your Approved Vendor.</p>
+      <div class="dlrow"><a class="btn primary" href="${esc(info.officialUrl)}" target="_blank" rel="noopener">Illinois Shines online registration ↗</a></div>
       ${pStatusLine(p.regStatus, 'reg')}
-      ${['missing', 'rejected', ''].includes(p.regStatus || 'missing') ? `
-        <label class="check"><input type="checkbox" id="regDone" ${S.pp.regDone ? 'checked' : ''}><span>We registered online and selected ${esc(info.avName)} (ID ${esc(info.avId)}) as our Approved Vendor.</span></label>` : ''}
+      ${['missing', 'rejected', ''].includes(p.regStatus || 'missing') ? (() => {
+        const ch = S.pp.regChoice !== undefined ? S.pp.regChoice : (p.regProgress === 'notdone' ? 'notdone' : '');
+        const bl = S.pp.regBlocker !== undefined ? S.pp.regBlocker : (p.regBlocker || '');
+        return `
+        <div style="margin-top:14px;font-weight:600">Is your Illinois Shines online registration completed? <span class="req">*</span></div>
+        <div class="choices${S.pp.regNeed ? ' need' : ''}">
+          <label class="choice"><input type="radio" name="regChoice" value="done" ${ch === 'done' ? 'checked' : ''}><span>Completed – we registered online and selected ${esc(info.avName)} (${esc(info.avId)}) as our Approved Vendor.</span></label>
+          <label class="choice"><input type="radio" name="regChoice" value="notdone" ${ch === 'notdone' ? 'checked' : ''}><span>Not completed yet</span></label>
+        </div>
+        ${ch === 'notdone' ? `
+          <label class="f" for="regBlocker" style="margin-top:12px">What's keeping you from completing the online registration? <span class="req">*</span></label>
+          <textarea class="in-f" id="regBlocker" maxlength="2000" placeholder="e.g. We can't find GOODPWR SOLAR in the online system, or we're waiting on our owner.">${esc(bl)}</textarea>
+          ${p.regBlocker && p.regProgress === 'notdone' ? `<div class="small muted" style="margin-top:4px">Last updated ${fmtDate(p.regBlockerAt)}</div>` : ''}` : ''}`;
+      })() : ''}
     </div>
 
-    <div class="card step-card ${isDone('pdf') ? 'done' : ''}">
-      <h2><span class="num">2</span>Upload your completed Designee Registration Form</h2>
-      <p class="muted">The PDF copy of your completed form, showing your connection to ${esc(info.avName)}.</p>
+    <div class="card step-card ${isDone('pdf') ? 'done' : ''}" id="step2">
+      <h2><span class="num">2</span>Sign the Designee Registration Form</h2>
+      <p>Fill out, initial and sign the Designee Registration Form. <b>${esc(info.avName)}</b> (<b>${esc(info.avId)}</b>) is already filled in as your Approved Vendor.</p>
+      <p class="muted" style="margin-top:6px">Sign it right here, or download the PDF, sign it, and upload it below. GoodPWR Solar then sends our approval to the Illinois Shines Program Administrator to link your company to ours.</p>
       ${pStatusLine(p.pdfStatus, 'pdf')}
-      ${open('pdf') ? drop('pdf', '.pdf') : ''}
+      ${S.pp.signedUrl ? `<div class="signed"><b>✓ Your signed form is ready. Click “Submit to GoodPWR Solar” below to send it.</b>
+          <a class="btn sm" href="${S.pp.signedUrl}" target="_blank" rel="noopener">View signed form</a><button class="btn sm" id="dfEdit">Edit</button></div>` : ''}
+      ${open('pdf') && !S.pp.signedUrl ? `
+      <div class="dlrow">
+        <button class="btn ${S.pp.formOpen ? '' : 'primary'}" id="dfToggle">${S.pp.formOpen ? 'Hide the online form' : 'Fill out & sign online'}</button>
+        <a class="btn" href="${esc(DESIGNEE_FORM_URL)}" target="_blank" rel="noopener" download>Download the PDF instead ↓</a>
+      </div>
+      ${S.pp.formOpen ? designeeFormHTML(p, info) : ''}
+      <div class="small muted" style="margin-top:12px">Signed a downloaded copy? Upload it here:</div>
+      ${drop('pdf', '.pdf')}` : ''}
     </div>
 
     <div class="card step-card ${isDone('gs') ? 'done' : ''}">
@@ -1184,7 +1564,14 @@ function renderPartner() {
         <label class="check"><input type="checkbox" id="mesNA" ${S.pp.mesNA ? 'checked' : ''}><span>This does not apply – our business does not qualify for MES or EEC.</span></label>` : ''}
     </div>
 
-    <div class="submit-bar"><button class="btn sun" id="pSubmit">Submit to GoodPWR Solar</button></div>
+    <div class="card step-card">
+      <h2>Anything else we should know? <span class="muted small" style="font-family:Inter,sans-serif;font-weight:500">(optional)</span></h2>
+      <p class="muted">Let us know where you are in the process or if something is holding you up – GoodPWR Solar will see this note.</p>
+      ${p.partnerNote ? `<div class="pnote"><b>Your last note · ${fmtDate(p.partnerNoteAt)}</b>${esc(p.partnerNote)}</div>` : ''}
+      <textarea class="in-f" id="pNote" style="margin-top:12px" maxlength="2000" placeholder="e.g. Our training is scheduled for next week.">${esc(S.pp.note !== undefined ? S.pp.note : (p.partnerNote || ''))}</textarea>
+    </div>
+
+    <div class="submit-bar${S.pp.formOpen ? ' static' : ''}"><button class="btn sun" id="pSubmit">Submit to GoodPWR Solar</button></div>
     <p class="small muted" style="text-align:center">Questions? Email <a href="mailto:${esc(info.contact)}">${esc(info.contact)}</a></p>
   </main>`;
 
@@ -1194,18 +1581,26 @@ function renderPartner() {
     if ($('#trDone')) S.pp.trDone = $('#trDone').checked;
     if ($('#trDate')) S.pp.trDate = $('#trDate').value;
     if ($('#mesNA')) S.pp.mesNA = $('#mesNA').checked;
-    if ($('#regDone')) S.pp.regDone = $('#regDone').checked;
+    const rc = $('input[name=regChoice]:checked'); if (rc) S.pp.regChoice = rc.value;
+    if ($('#regBlocker')) S.pp.regBlocker = $('#regBlocker').value;
+    if ($('#pNote')) S.pp.note = $('#pNote').value;
   };
+  S.pp.keep = keep;
   $$('[data-pf]').forEach(inp => inp.onchange = () => {
     const f = inp.files[0]; if (!f) return;
     if (f.size > info.maxMb * 1024 * 1024) { toast(`${f.name} is larger than ${info.maxMb} MB.`, true); return; }
     if (inp.dataset.pf === 'pdf' && !/\.pdf$/i.test(f.name)) { toast('Please upload the form as a PDF.', true); return; }
     keep(); S.pp.files[inp.dataset.pf] = f;
-    if (inp.dataset.pf === 'mes') S.pp.mesNA = false; S.pp.regDone = false;
+    if (inp.dataset.pf === 'pdf' && S.pp.signedUrl) { URL.revokeObjectURL(S.pp.signedUrl); S.pp.signedUrl = ''; S.pp.formOnline = false; }
+    if (inp.dataset.pf === 'mes') S.pp.mesNA = false;
     renderPartner();
   });
   if ($('#mesNA')) $('#mesNA').onchange = e => { keep(); if (e.target.checked) delete S.pp.files.mes; renderPartner(); };
-  ['#gsDate', '#trDate', '#trDone', '#regDone'].forEach(s => { if ($(s)) $(s).onchange = keep; });
+  $$('input[name=regChoice]').forEach(r => r.onchange = () => { keep(); S.pp.regNeed = false; renderPartner(); const t = $('#regBlocker'); if (t) t.focus(); });
+  ['#gsDate', '#trDate', '#trDone', '#regBlocker', '#pNote'].forEach(s => { if ($(s)) $(s).onchange = keep; });
+  if ($('#dfToggle')) $('#dfToggle').onclick = () => { keep(); S.pp.formOpen = !S.pp.formOpen; renderPartner(); if (S.pp.formOpen) $('#dform').scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+  if ($('#dfEdit')) $('#dfEdit').onclick = () => { keep(); URL.revokeObjectURL(S.pp.signedUrl); S.pp.signedUrl = ''; S.pp.formOnline = false; delete S.pp.files.pdf; S.pp.formOpen = true; renderPartner(); $('#dform').scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+  bindDesigneeForm();
   $('#pSubmit').onclick = submitPartner;
 }
 
@@ -1215,13 +1610,22 @@ async function submitPartner() {
   const trainingDone = $('#trDone') ? $('#trDone').checked : false;
   const trainingDate = $('#trDate') ? $('#trDate').value : '';
   const mesNA = $('#mesNA') ? $('#mesNA').checked : false;
-  const regDone = $('#regDone') ? $('#regDone').checked : false;
+  const regOpen = ['missing', 'rejected', ''].includes(st.partner.regStatus || 'missing');
+  const rcEl = $('input[name=regChoice]:checked');
+  const regChoice = rcEl ? rcEl.value : '';
+  const regBlocker = $('#regBlocker') ? $('#regBlocker').value.trim() : '';
+  if (regOpen && !regChoice) { if (S.pp.keep) S.pp.keep(); S.pp.regNeed = true; renderPartner(); $('#step1').scrollIntoView({ behavior: 'smooth', block: 'start' }); return toast('Step 1: tell us if your Illinois Shines online registration is completed or not completed yet.', true); }
+  if (regOpen && regChoice === 'notdone' && !regBlocker) { $('#regBlocker').focus(); return toast('Step 1: tell us what is keeping you from completing the online registration.', true); }
+  const regDone = regChoice === 'done';
+  const note = $('#pNote') ? $('#pNote').value.trim() : '';
+  const noteChanged = note !== String(st.partner.partnerNote || '');
   if (st.files.gs) {
     if (!gsDate) return toast('Enter the date your Good Standing statement was issued.', true);
     if (gsDate < yearAgo()) return toast('The Good Standing statement must be issued within the past 12 months.', true);
   }
   if (st.files.training && !trainingDone) return toast('Check the training box to confirm you completed all modules.', true);
-  const hasAny = Object.keys(st.files).length || mesNA || trainingDone || regDone;
+  const blockerChanged = regChoice === 'notdone' && (regBlocker !== String(st.partner.regBlocker || '') || st.partner.regProgress !== 'notdone');
+  const hasAny = Object.keys(st.files).length || mesNA || trainingDone || regDone || noteChanged || blockerChanged;
   if (!hasAny) return toast('Add at least one document or check a box before submitting.', true);
 
   const btn = $('#pSubmit');
@@ -1229,9 +1633,9 @@ async function submitPartner() {
     btn.innerHTML = '<span class="spin"></span>&nbsp; Uploading…';
     const files = {};
     for (const k of Object.keys(st.files)) files[k] = await readFile(st.files[k], info.maxMb);
-    const j = await api('partner.submit', { t: st.t, files, gsDate, mesNA, trainingDone, trainingDate, regDone });
+    const j = await api('partner.submit', { t: st.t, files, gsDate, mesNA, trainingDone, trainingDate, regChoice: regOpen ? regChoice : '', regBlocker, formOnline: !!(S.pp.formOnline && st.files.pdf), esign: (S.pp.formOnline && st.files.pdf) ? S.pp.esign : undefined, note: noteChanged ? note : undefined });
     S.pp.partner = j.partner; S.pp.files = {}; S.pp.justSent = j.received;
-    S.pp.gsDate = ''; S.pp.trDone = false; S.pp.trDate = ''; S.pp.mesNA = false;
+    S.pp.gsDate = ''; S.pp.trDone = false; S.pp.trDate = ''; S.pp.mesNA = false; if (S.pp.signedUrl) URL.revokeObjectURL(S.pp.signedUrl); S.pp.signedUrl = ''; S.pp.formOnline = false; S.pp.df = null; S.pp.esign = null; S.pp.consent = false; S.pp.regChoice = undefined; S.pp.regBlocker = undefined; S.pp.regNeed = false; S.pp.note = undefined;
     renderPartner(); window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
@@ -1240,7 +1644,7 @@ async function submitPartner() {
 /* "All portals" shortcut back to the GoodPWR Solar Partner Hub (staff views only) */
 (function(){var a=document.createElement('a');a.href='./';a.textContent='\u2302 All portals';a.id='gp-hub-pill';
 a.style.cssText='position:fixed;left:14px;bottom:14px;z-index:15;background:#141414;color:#fff;font:600 13px/1 Inter,system-ui,sans-serif;padding:9px 13px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25);opacity:.9';
-var show=function(){return !/[?&]t=/.test(location.search);};var u=function(){a.style.display=show()?'block':'none';};document.body.appendChild(a);u();window.addEventListener('hashchange',u);})();
+var show=function(){return !/[?&](t|demo)=/.test(location.search);};var u=function(){a.style.display=show()?'block':'none';};document.body.appendChild(a);u();window.addEventListener('hashchange',u);})();
 </script>
 </body>
 </html>
