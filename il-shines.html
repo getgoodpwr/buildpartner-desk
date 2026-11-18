@@ -508,12 +508,12 @@ const ITEMS = [
 const OPT_LABEL = {
   missing: 'Missing', received: 'Received – needs review', verified: 'Verified', rejected: 'Rejected – needs new copy', na: 'N/A – does not qualify'
 };
-const TRAIN_LABEL = { missing: 'Not done', received: 'Reported done – confirm', verified: 'Verified complete', rejected: 'Rejected' };
+const TRAIN_LABEL = { missing: 'Not done', received: 'Reported done – confirm', verified: 'Verified complete', bpconfirmed: 'BP confirmed – Shines will verify upon submission', rejected: 'Rejected' };
 
 function gsOk(p) { return !!p.gsDate && p.gsDate >= yearAgo(); }
 function evalP(p) {
   const t = todayStr(), c = S.config;
-  const docs = p.regStatus === 'verified' && p.pdfStatus === 'verified' && p.gsStatus === 'verified' && gsOk(p) && (p.mesStatus === 'verified' || p.mesStatus === 'na');
+  const docs = (p.regStatus === 'verified' || p.regStatus === 'bpconfirmed') && p.pdfStatus === 'verified' && p.gsStatus === 'verified' && gsOk(p) && (p.mesStatus === 'verified' || p.mesStatus === 'na');
   const tr = p.trainingStatus === 'verified';
   const review = ITEMS.some(i => p[i.k + 'Status'] === 'received');
   const regOver = !docs && c.regDeadline && t > c.regDeadline;
@@ -584,7 +584,7 @@ function chip(text, tone) { return `<span class="chip t-${tone}">${esc(text)}</s
 function itemChip(p, k) {
   const s = p[k + 'Status'] || 'missing';
   if (k === 'gs' && p.gsDate && !gsOk(p) && s !== 'missing') return chip('Too old', 'bad');
-  const m = { missing: ['Missing', 'warn'], received: [k === 'training' || k === 'reg' ? 'Confirmed' : 'Review', 'info'], verified: ['Verified', 'ok'], rejected: ['Rejected', 'bad'], na: ['N/A', 'mute'] }[s] || ['—', 'mute'];
+  const m = { missing: ['Missing', 'warn'], received: [k === 'training' || k === 'reg' ? 'Confirmed' : 'Review', 'info'], verified: ['Verified', 'ok'], bpconfirmed: ['BP confirmed', 'ok'], rejected: ['Rejected', 'bad'], na: ['N/A', 'mute'] }[s] || ['—', 'mute'];
   return chip(m[0], m[1]);
 }
 
@@ -837,7 +837,7 @@ function replacePartner(np) { const i = S.partners.findIndex(p => p.id === np.id
 
 function itemBlock(p, i) {
   const k = i.k, s = p[k + 'Status'] || 'missing';
-  const opts = (k === 'mes' ? ['missing','received','verified','rejected','na'] : ['missing','received','verified','rejected']);
+  const opts = k === 'mes' ? ['missing','received','verified','rejected','na'] : k === 'reg' ? ['missing','received','bpconfirmed','verified','rejected'] : ['missing','received','verified','rejected'];
   const lab = (k === 'training' || k === 'reg') ? TRAIN_LABEL : OPT_LABEL;
   let extra = '';
   if (k === 'gs') {
@@ -845,7 +845,7 @@ function itemBlock(p, i) {
     extra = `<div><label class="f">Date issued</label><input class="in-f" type="date" data-f="gsDate" value="${esc(p.gsDate)}">
       <div class="small" style="margin-top:4px">${p.gsDate ? (ok ? '<span style="color:var(--ok)">Within 12 months ✓</span>' : '<span style="color:var(--bad)">Older than 12 months – needs a new statement</span>') : '<span class="muted">Must be within the past 12 months</span>'}</div></div>`;
   } else if (k === 'reg') {
-    extra = `<div class="small muted" style="align-self:end;padding-bottom:6px">Check that their Illinois Shines registration shows <b>GOODPWR SOLAR (AV 2409)</b> as Approved Vendor${p.regAt ? ` · confirmed by partner ${fmtDate(p.regAt)}` : ''}</div>`;
+    extra = `<div class="small muted" style="align-self:end;padding-bottom:6px">GoodPWR can’t see the Illinois Shines site – when the BP confirms they registered with <b>GOODPWR SOLAR (AV 2409)</b>, choose <b>BP confirmed – Shines will verify upon submission</b>${p.regAt ? ` · confirmed by partner ${fmtDate(p.regAt)}` : ''}</div>`;
   } else if (k === 'training') {
     extra = `<div><label class="f">Date completed</label><input class="in-f" type="date" data-f="trainingDate" value="${esc(p.trainingDate)}"></div>`;
   } else extra = '<div></div>';
@@ -1273,6 +1273,7 @@ async function bootPartner(t) {
 }
 
 function pStatusLine(s, k) {
+  if (s === 'bpconfirmed') return `<div class="locked">✓ Confirmed – Illinois Shines will verify your registration upon submission</div>`;
   if (s === 'verified') return `<div class="locked">✓ Accepted by GoodPWR Solar</div>`;
   if (s === 'received') return `<div class="small" style="margin-top:8px;color:var(--info);font-weight:600">${k === 'reg' ? 'Marked completed – GoodPWR Solar is reviewing your registration.' : 'Received – GoodPWR Solar is reviewing it. You can replace it below if needed.'}</div>`;
   if (s === 'rejected') return `<div class="small" style="margin-top:8px;color:var(--bad);font-weight:600">${k === 'reg' ? 'We could not confirm your Illinois Shines registration. Make sure you selected ' + esc(S.pp.info.avName) + ' (' + esc(S.pp.info.avId) + '), then confirm again below.' : 'Please upload a new copy' + (k === 'gs' ? ' (issued within the past 12 months)' : '') + '.'}</div>`;
@@ -1457,13 +1458,13 @@ async function createSignedForm() {
     S.pp.files.pdf = file; S.pp.signedUrl = URL.createObjectURL(file); S.pp.formOnline = true;
     S.pp.formOpen = false; S.pp.dfErr = ''; S.pp.dfBad = {};
     renderPartner(); $('#step2').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    toast('Signed form created – click Submit to send it');
+    toast('Form signed – now click Submit to GoodPWR Solar to send it');
   });
 }
 
 function renderPartner() {
   const { partner: p, config: cfg, info } = S.pp;
-  const done = ['reg', 'pdf', 'gs', 'mes', 'training'].filter(k => ['verified', 'received', 'na'].includes(p[k + 'Status'])).length;
+  const done = ['reg', 'pdf', 'gs', 'mes', 'training'].filter(k => ['verified', 'bpconfirmed', 'received', 'na'].includes(p[k + 'Status'])).length;
   const drop = (k, accept) => {
     const f = S.pp.files[k];
     return `<div class="drop ${f ? 'has' : ''}">
@@ -1472,7 +1473,7 @@ function renderPartner() {
     </div>`;
   };
   const open = k => p[k + 'Status'] !== 'verified';
-  const isDone = k => ['verified', 'received', 'na'].includes(p[k + 'Status']);
+  const isDone = k => ['verified', 'bpconfirmed', 'received', 'na'].includes(p[k + 'Status']);
 
   app.innerHTML = `
   <div class="top"><div class="in"><div class="brand">${brandHTML(true)}${ilHTML('Illinois Shines Designee Registration')}</div></div></div>
@@ -1523,8 +1524,9 @@ function renderPartner() {
       <p>Fill out, initial and sign the Designee Registration Form. <b>${esc(info.avName)}</b> (<b>${esc(info.avId)}</b>) is already filled in as your Approved Vendor.</p>
       <p class="muted" style="margin-top:6px">Sign it right here, or download the PDF, sign it, and upload it below. GoodPWR Solar then sends our approval to the Illinois Shines Program Administrator to link your company to ours.</p>
       ${pStatusLine(p.pdfStatus, 'pdf')}
-      ${S.pp.signedUrl ? `<div class="signed"><b>✓ Your signed form is ready. Click “Submit to GoodPWR Solar” below to send it.</b>
-          <a class="btn sm" href="${S.pp.signedUrl}" target="_blank" rel="noopener">View signed form</a><button class="btn sm" id="dfEdit">Edit</button></div>` : ''}
+      ${S.pp.signedUrl ? `<div class="signed"><b>✓ Your form is signed – but not sent yet.<br><span style="font-weight:500">Click <u>Submit to GoodPWR Solar</u> to send it to us.</span></b>
+          <a class="btn sm" href="${S.pp.signedUrl}" target="_blank" rel="noopener">View signed form</a><button class="btn sm" id="dfEdit">Edit</button>
+          <button class="btn sm sun" id="dfSubmitNow" style="flex-basis:100%">Submit to GoodPWR Solar</button></div>` : ''}
       ${open('pdf') && !S.pp.signedUrl ? `
       <div class="dlrow">
         <button class="btn ${S.pp.formOpen ? '' : 'primary'}" id="dfToggle">${S.pp.formOpen ? 'Hide the online form' : 'Fill out & sign online'}</button>
@@ -1601,6 +1603,7 @@ function renderPartner() {
   if ($('#dfToggle')) $('#dfToggle').onclick = () => { keep(); S.pp.formOpen = !S.pp.formOpen; renderPartner(); if (S.pp.formOpen) $('#dform').scrollIntoView({ behavior: 'smooth', block: 'start' }); };
   if ($('#dfEdit')) $('#dfEdit').onclick = () => { keep(); URL.revokeObjectURL(S.pp.signedUrl); S.pp.signedUrl = ''; S.pp.formOnline = false; delete S.pp.files.pdf; S.pp.formOpen = true; renderPartner(); $('#dform').scrollIntoView({ behavior: 'smooth', block: 'start' }); };
   bindDesigneeForm();
+  if ($('#dfSubmitNow')) $('#dfSubmitNow').onclick = () => $('#pSubmit').click();
   $('#pSubmit').onclick = submitPartner;
 }
 
