@@ -1443,7 +1443,10 @@ function drawReq(d){
         <div style="display:flex;justify-content:space-between;gap:10px"><b>${esc(i.label)}</b>${chip(i.status)}</div>
         ${i.note ? `<div class="note" style="margin:6px 0 0">${esc(i.note)}</div>` : ''}
         ${i.key === 'msa' && d.msa ? msaRow(d) : ''}
-        ${i.files.length ? `<div class="files" style="margin-top:6px">${i.files.map(f => `<a href="${esc(f.url)}" target="_blank" rel="noopener">📄 ${esc(f.name)}</a>`).join('')}</div>` : ''}
+        ${(() => { const cur = i.files.filter(f => !f.archived), old = i.files.filter(f => f.archived);
+          return (cur.length ? `<div class="files" style="margin-top:6px">${cur.map(f => `<a href="${esc(f.url)}" target="_blank" rel="noopener">📄 ${esc(f.name)}</a>`).join('')}</div>` : '') +
+            (cur.length > 1 ? `<button class="btn sm ghost" style="margin-top:4px" data-arch="${esc(i.key)}" title="Keeps the newest file and moves the older ones to the Archived (replaced) folder">🗄 Archive older files</button>` : '') +
+            (old.length ? `<details style="margin-top:4px;font-size:12.5px"><summary class="muted" style="cursor:pointer">🗄 ${old.length} archived file${old.length > 1 ? 's' : ''}</summary><div class="files" style="opacity:.7">${old.map(f => `<a href="${esc(f.url)}" target="_blank" rel="noopener">📄 ${esc(f.name)}</a>`).join('')}</div></details>` : ''); })()}
         ${!closed ? `<div class="acts">
           ${i.status!=='Approved' && i.files.length ? `<button class="btn sm ok" data-a="Approved" data-k="${esc(i.key)}">Approve</button>` : ''}
           ${i.status==='Submitted' || i.status==='Approved' ? `<button class="btn sm bad" data-a="Needs Redo" data-k="${esc(i.key)}">Needs redo</button>` : ''}
@@ -1523,6 +1526,10 @@ function drawReq(d){
   };
   $('#cpBtn').onclick = () => { navigator.clipboard.writeText(d.link).then(() => toast('BP link copied'), () => prompt('Copy this link:', d.link)); };
   $('#clBtn').onclick = e => act(e.target, () => sapi(closed ? 'reopenRequest' : 'closeRequest', { id:d.id }), closed ? 'Request reopened' : 'Request closed');
+  drawer.querySelectorAll('[data-arch]').forEach(b => b.onclick = () => {
+    if (!confirm('Keep only the newest file and move the older ones to the "Archived (replaced)" folder in Drive?')) return;
+    act(b, () => sapi('archiveOld', { id:d.id, itemKey:b.dataset.arch }), 'Older files archived 🗄');
+  });
   drawer.querySelectorAll('[data-a]').forEach(b => b.onclick = () => {
     let note = '';
     if (b.dataset.a === 'Needs Redo') { note = prompt('What needs fixing? (The BP will see this note on their page and in the follow-up email.)'); if (note === null) return; }
